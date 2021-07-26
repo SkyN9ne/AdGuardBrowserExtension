@@ -124,7 +124,7 @@ const General = observer(() => {
     } = settings.names;
 
     // eslint-disable-next-line max-len
-    const ALLOW_ACCEPTABLE_ADS_LEARN_MORE_URL = 'https://adguard.com/forward.html?action=self_promotion&from=options_screen&app=browser_extension';
+    const ACCEPTABLE_ADS_LEARN_MORE_URL = 'https://adguard.com/forward.html?action=self_promotion&from=options_screen&app=browser_extension';
 
     // eslint-disable-next-line max-len
     const SAFEBROWSING_LEARN_MORE_URL = 'https://adguard.com/forward.html?action=protection_works&from=options_screen&app=browser_extension';
@@ -156,11 +156,11 @@ const General = observer(() => {
                     />
                 </div>
                 <SettingsSetCheckbox
-                    title={reactTranslator.getMessage('options_allow_acceptable_ads')}
-                    description={reactTranslator.getMessage('options_allow_acceptable_ads_desc', {
+                    title={reactTranslator.getMessage('options_block_acceptable_ads')}
+                    description={reactTranslator.getMessage('options_block_acceptable_ads_desc', {
                         a: () => (
                             <a
-                                href={ALLOW_ACCEPTABLE_ADS_LEARN_MORE_URL}
+                                href={ACCEPTABLE_ADS_LEARN_MORE_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -168,11 +168,11 @@ const General = observer(() => {
                             </a>
                         ),
                     })}
-                    disabled={!allowAcceptableAds}
+                    disabled={allowAcceptableAds}
                     id={ALLOW_ACCEPTABLE_ADS}
                     type={SETTINGS_TYPES.CHECKBOX}
-                    value={allowAcceptableAds}
-                    label={reactTranslator.getMessage('options_allow_acceptable_ads')}
+                    value={!allowAcceptableAds}
+                    label={reactTranslator.getMessage('options_block_acceptable_ads')}
                     handler={allowAcceptableAdsChangeHandler}
                 />
                 <SettingsSetCheckbox

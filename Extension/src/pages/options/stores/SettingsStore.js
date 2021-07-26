@@ -190,7 +190,7 @@ class SettingsStore {
         await this.setFilterRelatedSettingState(
             SEARCH_AND_SELF_PROMO_FILTER_ID,
             this.KEYS.ALLOW_ACCEPTABLE_ADS,
-            enabled,
+            !enabled,
         );
     }
 
