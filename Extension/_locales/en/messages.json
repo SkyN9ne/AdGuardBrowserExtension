@@ -596,11 +596,11 @@
     "options_general_settings": {
         "message": "General"
     },
-    "options_allow_acceptable_ads": {
-        "message": "Allow search ads and the self-promotion of websites"
+    "options_block_acceptable_ads": {
+        "message": "Block search ads and the self-promotion"
     },
-    "options_allow_acceptable_ads_desc": {
-        "message": "Search ads are ads that you see among the results of a search query when using an online search engine like Google, Bing, DuckDuckGo etc. <a><\/a>"
+    "options_block_acceptable_ads_desc": {
+        "message": "Get rid of context-based ads that appear in search results and self-promoting ads on websites. <a><\/a>"
     },
     "options_show_blocked_ads_count_title": {
         "message": "Indicate the number of blocked ads on the AdGuard extension icon"
