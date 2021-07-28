@@ -379,6 +379,7 @@ class SettingsStore {
         const newFilter = await messenger.addCustomFilter(filter);
         runInAction(() => {
             this.filters.push(newFilter);
+            this.visibleFilters.push(newFilter);
         });
     }
 
