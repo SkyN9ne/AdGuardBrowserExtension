@@ -215,6 +215,8 @@ const FilteringEventsRows = observer(({
     );
 });
 
+const DEFAULT_COLUMN_WIDTH_PX = 200;
+
 const FilteringEvents = observer(() => {
     const { logStore } = useContext(rootStore);
 
@@ -223,7 +225,7 @@ const FilteringEvents = observer(() => {
     const handleRowClick = useCallback((e) => {
         const { id } = e.currentTarget;
         logStore.setSelectedEventById(id);
-    }, []);
+    }, [logStore]);
 
     const columnsData = [
         {
@@ -258,61 +260,46 @@ const FilteringEvents = observer(() => {
         },
     ];
 
-    let columnsWidths = optionsStorage.getItem(optionsStorage.KEYS.COLUMNS_WIDTHS);
-    if (!columnsWidths || columnsWidths.length !== columnsData.length) {
-        columnsWidths = new Array(columnsData.length).fill(1 / columnsData.length);
-    }
-    const [relativeColumnWidths, setRelativeColumnSizes] = useState(columnsWidths);
+    const [columnsWidths, setColumnsWidth] = useState(() => {
+        const widths = optionsStorage.getItem(optionsStorage.KEYS.COLUMNS_WIDTHS);
+        if (!widths || widths.length !== columnsData.length) {
+            return new Array(columnsData.length).fill(DEFAULT_COLUMN_WIDTH_PX);
+        }
+        return widths;
+    });
 
     useEffect(() => {
-        optionsStorage.setItem(optionsStorage.KEYS.COLUMNS_WIDTHS, relativeColumnWidths);
-    }, [relativeColumnWidths]);
+        optionsStorage.setItem(optionsStorage.KEYS.COLUMNS_WIDTHS_PX, columnsWidths);
+    }, [columnsWidths]);
 
     let startClientX = null;
-    let tableClientWidth = null;
+
     const dispatchMove = throttle((clientX, columnIndex) => {
         const MIN_COLUMN_WIDTH = 50;
-        const columnWidth = tableClientWidth * relativeColumnWidths[columnIndex];
-        const leafColumnWidth = tableClientWidth * relativeColumnWidths[columnIndex + 1];
-        const columnsWidthSum = columnWidth + leafColumnWidth;
-
+        const columnWidth = columnsWidths[columnIndex];
         const deltaX = startClientX - clientX;
+
         const newColumnWidth = columnWidth - deltaX;
 
-        if (newColumnWidth < MIN_COLUMN_WIDTH
-            || newColumnWidth > columnsWidthSum - MIN_COLUMN_WIDTH) {
+        if (newColumnWidth < MIN_COLUMN_WIDTH) {
             return;
         }
 
-        const newNextColumnWidth = columnsWidthSum - newColumnWidth;
-
-        if (newColumnWidth + newNextColumnWidth > columnWidth + leafColumnWidth) {
-            return;
-        }
-
-        const newColumnRelativeWidth = newColumnWidth / tableClientWidth;
-
-        // eslint-disable-next-line max-len
-        const newNextColumnRelativeWidth = newNextColumnWidth / tableClientWidth;
-
-        setRelativeColumnSizes((prevSizesRelation) => {
-            const newSizesRelation = [...prevSizesRelation];
-            newSizesRelation[columnIndex] = newColumnRelativeWidth;
-            newSizesRelation[columnIndex + 1] = newNextColumnRelativeWidth;
-            return newSizesRelation;
+        setColumnsWidth((prevColumnsWidths) => {
+            const newColumnsWidths = [...prevColumnsWidths];
+            newColumnsWidths[columnIndex] = newColumnWidth;
+            return newColumnsWidths;
         });
     }, 20);
 
     const dispatchMovingStarted = (clientX) => {
         startClientX = clientX;
-        tableClientWidth = tableRef.current.getBoundingClientRect().width;
         // fixes cursor blinking and text selection
         document.body.classList.add('col-resize');
     };
 
     const dispatchEnd = () => {
         startClientX = null;
-        tableClientWidth = null;
         // clear after dragging end
         document.body.classList.remove('col-resize');
     };
@@ -405,7 +392,7 @@ const FilteringEvents = observer(() => {
             return {
                 ...column,
                 getWidth: () => {
-                    return `${relativeColumnWidths[idx] * 100}%`;
+                    return `${columnsWidths[idx]}px`;
                 },
                 getResizerProps: () => {
                     return getResizerProps(idx);
@@ -414,33 +401,33 @@ const FilteringEvents = observer(() => {
         });
     };
 
+    const minTableWidth = columnsWidths.reduce((acc, val) => acc + val, 0);
     const columns = addMethods(columnsData);
 
     return (
         <div className="filtering-log">
-            <div className="table filtering-log__inner" ref={tableRef}>
+            <div
+                style={{ minWidth: `${minTableWidth}px` }}
+                className="table filtering-log__inner"
+                ref={tableRef}
+            >
                 <div className="thead">
                     <div className="tr">
                         {
-                            columns.map((column, idx) => (
+                            columns.map((column) => (
                                 <div
                                     className="th"
                                     key={column.id}
                                     style={{ width: column.getWidth() }}
                                 >
                                     {column.Header}
-                                    {
-                                        idx < columns.length - 1
-                                                && (
-                                                    <div
-                                                        role="separator"
-                                                        className="resizer"
-                                                        key={column.id}
-                                                        style={{ cursor: 'col-resize' }}
-                                                        {...column.getResizerProps()}
-                                                    />
-                                                )
-                                    }
+                                    <div
+                                        role="separator"
+                                        className="resizer"
+                                        key={column.id}
+                                        style={{ cursor: 'col-resize' }}
+                                        {...column.getResizerProps()}
+                                    />
                                 </div>
                             ))
                         }
