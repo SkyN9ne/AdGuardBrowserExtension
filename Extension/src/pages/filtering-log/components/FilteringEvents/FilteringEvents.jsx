@@ -215,7 +215,8 @@ const FilteringEventsRows = observer(({
     );
 });
 
-const DEFAULT_COLUMN_WIDTH_PX = 200;
+const DEFAULT_COLUMN_WIDTH = 200;
+const MIN_COLUMN_WIDTH = 50;
 
 const FilteringEvents = observer(() => {
     const { logStore } = useContext(rootStore);
@@ -260,23 +261,23 @@ const FilteringEvents = observer(() => {
         },
     ];
 
-    const [columnsWidths, setColumnsWidth] = useState(() => {
-        const widths = optionsStorage.getItem(optionsStorage.KEYS.COLUMNS_WIDTHS);
-        if (!widths || widths.length !== columnsData.length) {
-            return new Array(columnsData.length).fill(DEFAULT_COLUMN_WIDTH_PX);
-        }
-        return widths;
-    });
+    const [columnsRenderData, setColumnsRenderData] = useState(
+        optionsStorage.getItem(optionsStorage.KEYS.COLUMNS_DATA),
+    );
 
     useEffect(() => {
-        optionsStorage.setItem(optionsStorage.KEYS.COLUMNS_WIDTHS_PX, columnsWidths);
-    }, [columnsWidths]);
+        optionsStorage.setItem(optionsStorage.KEYS.COLUMNS_DATA, columnsRenderData);
+    }, [columnsRenderData]);
 
     let startClientX = null;
 
-    const dispatchMove = throttle((clientX, columnIndex) => {
-        const MIN_COLUMN_WIDTH = 50;
-        const columnWidth = columnsWidths[columnIndex];
+    const dispatchMove = throttle((clientX, columnId) => {
+        let columnWidth = columnsRenderData[columnId]?.width;
+
+        if (!columnWidth) {
+            columnWidth = DEFAULT_COLUMN_WIDTH;
+        }
+
         const deltaX = startClientX - clientX;
 
         const newColumnWidth = columnWidth - deltaX;
@@ -285,10 +286,12 @@ const FilteringEvents = observer(() => {
             return;
         }
 
-        setColumnsWidth((prevColumnsWidths) => {
-            const newColumnsWidths = [...prevColumnsWidths];
-            newColumnsWidths[columnIndex] = newColumnWidth;
-            return newColumnsWidths;
+        setColumnsRenderData({
+            ...columnsRenderData,
+            [columnId]: {
+                ...columnsRenderData[columnId],
+                width: newColumnWidth,
+            },
         });
     }, 20);
 
@@ -304,7 +307,7 @@ const FilteringEvents = observer(() => {
         document.body.classList.remove('col-resize');
     };
 
-    const onResizeStart = (e, columnIndex) => {
+    const onResizeStart = (e, columnId) => {
         let isTouchEvent = false;
         if (e.type === 'touchstart') {
             // lets not respond to multiple touches (e.g. 2 or 3 fingers)
@@ -320,7 +323,7 @@ const FilteringEvents = observer(() => {
             mouse: {
                 moveEvent: 'mousemove',
                 // eslint-disable-next-line no-shadow
-                moveHandler: (e) => dispatchMove(e.clientX, columnIndex),
+                moveHandler: (e) => dispatchMove(e.clientX, columnId),
                 upEvent: 'mouseup',
                 upHandler: () => {
                     document.removeEventListener(
@@ -342,7 +345,7 @@ const FilteringEvents = observer(() => {
                         e.preventDefault();
                         e.stopPropagation();
                     }
-                    dispatchMove(e.touches[0].clientX, columnIndex);
+                    dispatchMove(e.touches[0].clientX, columnId);
                     return false;
                 },
                 upEvent: 'touchend',
@@ -380,28 +383,30 @@ const FilteringEvents = observer(() => {
         dispatchMovingStarted(clientX);
     };
 
-    const getResizerProps = (columnIndex) => {
+    const getResizerProps = (columnId) => {
         return {
-            onMouseDown: (e) => onResizeStart(e, columnIndex),
-            onTouchStart: (e) => onResizeStart(e, columnIndex),
+            onMouseDown: (e) => onResizeStart(e, columnId),
+            onTouchStart: (e) => onResizeStart(e, columnId),
         };
     };
 
     const addMethods = (columns) => {
-        return columns.map((column, idx) => {
+        return columns.map((column) => {
             return {
                 ...column,
                 getWidth: () => {
-                    return `${columnsWidths[idx]}px`;
+                    return `${columnsRenderData[column.id].width}px`;
                 },
                 getResizerProps: () => {
-                    return getResizerProps(idx);
+                    return getResizerProps(column.id);
                 },
             };
         });
     };
 
-    const minTableWidth = columnsWidths.reduce((acc, val) => acc + val, 0);
+    const minTableWidth = Object.values(columnsRenderData)
+        .reduce((acc, { width }) => acc + width, 0);
+
     const columns = addMethods(columnsData);
 
     return (
