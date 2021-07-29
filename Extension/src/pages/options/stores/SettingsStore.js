@@ -377,9 +377,27 @@ class SettingsStore {
     @action
     async addCustomFilter(filter) {
         const newFilter = await messenger.addCustomFilter(filter);
+
+        if (!newFilter) {
+            return;
+        }
+
         runInAction(() => {
             this.filters.push(newFilter);
-            this.visibleFilters.push(newFilter);
+
+            const isVisibleEnabledFilter = newFilter.enabled
+                && this.searchSelect !== SEARCH_FILTERS.DISABLED;
+
+            const isVisibleDisabledFilter = !newFilter.enabled
+                && this.searchSelect !== SEARCH_FILTERS.ENABLED;
+
+            const isVisibleFilter = isVisibleEnabledFilter || isVisibleDisabledFilter;
+
+            if (isVisibleFilter) {
+                this.visibleFilters.push(newFilter);
+            } else {
+                this.setSearchSelect(SEARCH_FILTERS.ALL);
+            }
         });
     }
 
