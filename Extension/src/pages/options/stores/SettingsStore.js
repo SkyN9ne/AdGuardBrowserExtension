@@ -385,17 +385,7 @@ class SettingsStore {
         runInAction(() => {
             this.filters.push(newFilter);
 
-            const isVisibleEnabledFilter = newFilter.enabled
-                && this.searchSelect !== SEARCH_FILTERS.DISABLED;
-
-            const isVisibleDisabledFilter = !newFilter.enabled
-                && this.searchSelect !== SEARCH_FILTERS.ENABLED;
-
-            const isVisibleFilter = isVisibleEnabledFilter || isVisibleDisabledFilter;
-
-            if (isVisibleFilter) {
-                this.visibleFilters.push(newFilter);
-            } else {
+            if (this.searchSelect !== SEARCH_FILTERS.ALL) {
                 this.setSearchSelect(SEARCH_FILTERS.ALL);
             }
         });
