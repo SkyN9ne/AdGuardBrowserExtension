@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
 /**
+ * @file
  * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
  * Adguard Browser Extension is free software: you can redistribute it and/or modify
@@ -16,14 +16,19 @@
  * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* eslint-disable max-len */
+
 import { contentPage } from './content-script';
-import { MESSAGE_TYPES } from '../common/constants';
+import { MessageType } from '../common/messages';
+import { messenger } from '../pages/services/messenger';
+import { SettingOption } from '../background/schema';
 
 export const contentUtils = (function () {
     const MAX_Z_INDEX = '2147483647';
 
     /**
      * Create style element with provided css
+     *
      * @param css
      * @returns {any | HTMLElement}
      */
@@ -36,6 +41,7 @@ export const contentUtils = (function () {
 
     /**
      * Creates iframe and appends it after target open tag
+     *
      * @param target Node where to append iframe with html
      * @param html html string to write inside iframe
      * @param alertStyles popup styles text
@@ -46,25 +52,18 @@ export const contentUtils = (function () {
         const prependedHtml = `${styleElement.outerHTML}\n${html}`;
 
         const iframe = document.createElement('iframe');
-        target.insertAdjacentElement('afterbegin', iframe);
         iframe.src = 'about:blank';
+        iframe.style.position = 'fixed';
         iframe.style.zIndex = MAX_Z_INDEX;
-
-        const iframedoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (navigator.userAgent.indexOf('Edge') > -1) {
-            // Edge doesn't allow to write html in iframe srcdoc
-            iframedoc.open();
-            iframedoc.write(prependedHtml);
-            iframedoc.close();
-        } else {
-            iframe.srcdoc = prependedHtml;
-        }
+        iframe.srcdoc = prependedHtml;
+        target.insertAdjacentElement('afterbegin', iframe);
 
         return iframe;
     };
 
     /**
      * Creates div and appends it to the page
+     *
      * @param target
      * @param html
      * @returns {any | HTMLElement}
@@ -79,16 +78,17 @@ export const contentUtils = (function () {
 
     /**
      * If isAdguardTab we append div, else we append iframe
+     *
      * @param target
      * @param html
      * @param isAdguardTab
      * @param alertStyles
+     * @param alertContainerStyles
      * @returns {HTMLElement}
      */
-    const appendAlertElement = (target, html, isAdguardTab, alertStyles) => {
-        const stylesElement = createStyleElement(alertStyles);
-        document.body.insertAdjacentElement('afterbegin', stylesElement);
-
+    const appendAlertElement = (target, html, isAdguardTab, alertStyles, alertContainerStyles) => {
+        const alertContainerElement = createStyleElement(alertContainerStyles);
+        document.body.insertAdjacentElement('afterbegin', alertContainerElement);
         if (isAdguardTab) {
             return appendDiv(target, html);
         }
@@ -98,6 +98,7 @@ export const contentUtils = (function () {
 
     /**
      * Generates alert html
+     *
      * @param {string} title
      * @param {string} text
      * @returns {string}
@@ -136,7 +137,11 @@ export const contentUtils = (function () {
      */
     function showAlertPopup(message) {
         const {
-            text, title, isAdguardTab, alertStyles,
+            text,
+            title,
+            isAdguardTab,
+            alertStyles,
+            alertContainerStyles,
         } = message;
 
         if (!title && !text) {
@@ -168,8 +173,17 @@ export const contentUtils = (function () {
             }
 
             if (document.body) {
-                const alertElement = appendAlertElement(document.body, alertDivHtml, isAdguardTab, alertStyles);
+                const alertElement = appendAlertElement(
+                    document.body,
+                    alertDivHtml,
+                    isAdguardTab,
+                    alertStyles,
+                    alertContainerStyles,
+                );
                 alertElement.classList.add('adguard-alert-iframe');
+                alertElement.onload = () => {
+                    alertElement.style.visibility = 'visible';
+                };
                 setTimeout(() => {
                     if (alertElement && alertElement.parentNode) {
                         alertElement.parentNode.removeChild(alertElement);
@@ -189,7 +203,7 @@ export const contentUtils = (function () {
      * Shows version updated popup.
      * Popup content is added right to the page content.
      *
-     * @param {{title,description, changelogHref, changelogText, offer, offerButtonHref, offerButtonText}} message
+     * @param {{title,description, changelogHref, changelogText, offer, offerDesc, offerButtonHref, offerButtonText}} message
      */
     function showVersionUpdatedPopup(message) {
         const {
@@ -204,10 +218,11 @@ export const contentUtils = (function () {
             showPromoNotification,
             disableNotificationText,
             alertStyles,
+            updateContainerStyles,
         } = message;
 
         const updateIframeHtml = `
-                            <div id="adguard-new-version-popup" class="adguard-update-popup adguard-update-popup--active">
+                            <div id="adguard-new-version-popup" class="adguard-update-popup adguard-update-popup--active${showPromoNotification ? ' adguard-update-popup--promo' : ''}">
                                 <div id="adguard-new-version-popup-close" class="adguard-update-popup__close close-iframe"></div>
                                 <div class="adguard-update-popup__logo"></div>
                                 <div class="adguard-update-popup__title">
@@ -225,12 +240,11 @@ export const contentUtils = (function () {
                                     </a>
                                 </div>
                                 <div class="adguard-update-popup__offer${showPromoNotification ? ' adguard-update-popup__offer--show' : ''}">
-                                    <div class="adguard-update-popup__offer-desc-wr">
-                                        <div class="adguard-update-popup__offer-desc">
+                                    <div class="adguard-update-popup__offer-close close-iframe set-notification-viewed"></div>
+                                    <div class="adguard-update-popup__offer-content">
+                                        <div class="adguard-update-popup__offer-title">
                                             ${offer}
                                         </div>
-                                    </div>
-                                    <div class="adguard-update-popup__offer-bottom">
                                         <a href="${offerButtonHref}" class="adguard-update-popup__btn close-iframe set-notification-viewed${showPromoNotification ? ' adguard-update-popup__btn--promo' : ''}" target="_blank">
                                             ${offerButtonText}
                                         </a>
@@ -248,16 +262,14 @@ export const contentUtils = (function () {
                     element.addEventListener('click', () => {
                         if (element.classList.contains('disable-notifications')) {
                             // disable update notifications
-                            contentPage.sendMessage({
-                                type: MESSAGE_TYPES.CHANGE_USER_SETTING,
-                                key: 'show-app-updated-disabled',
+                            messenger.sendMessage(MessageType.ChangeUserSettings, {
+                                key: SettingOption.DisableShowAppUpdatedNotification,
                                 value: true,
                             });
                         }
                         if (showPromoNotification
                             && element.classList.contains('set-notification-viewed')) {
-                            contentPage.sendMessage({
-                                type: 'setNotificationViewed',
+                            messenger.sendMessage(MessageType.SetNotificationViewed, {
                                 withDelay: false,
                             });
                         }
@@ -281,8 +293,8 @@ export const contentUtils = (function () {
             }
 
             if (document.body && !isAdguardTab) {
-                const stylesElement = createStyleElement(alertStyles);
-                document.body.insertAdjacentElement('afterbegin', stylesElement);
+                const updateIframeCss = createStyleElement(updateContainerStyles);
+                document.body.insertAdjacentElement('afterbegin', updateIframeCss);
 
                 const iframe = appendIframe(document.body, updateIframeHtml, alertStyles);
                 iframe.classList.add('adguard-update-iframe');

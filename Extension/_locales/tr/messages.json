@@ -20,8 +20,11 @@
     "popup_header_cta_link": {
         "message": "Daha fazla engellemek ister misin?"
     },
+    "popup_header_update_filters": {
+        "message": "Filtre güncellemelerini denetle"
+    },
     "options_popup_import_settings_wrong_file_ext": {
-        "message": "Dosya uzantısı %extension% olmalı"
+        "message": "Dosya uzantısı %extension% olmalıdır"
     },
     "popup_adguard_for_ios": {
         "message": "iOS için AdGuard"
@@ -42,13 +45,16 @@
         "message": "Bildirimleri devre dışı bırak"
     },
     "popup_adguard_footer_title": {
-        "message": "AdGuard'ı telefonunuza kurun"
+        "message": "AdGuard'ı telefonunuza edinin"
     },
     "options_popup_call_to_action": {
-        "message": "Yukarıdaki alana filtrenin URL adresini veya dosya konumunu girin."
+        "message": "Yukarıdaki alana filtrenin URL adresini veya dosya yolunu girin."
     },
     "options_popup_description": {
         "message": "Bu filtreye abone olacaksınız."
+    },
+    "options_popup_url_title": {
+        "message": "Yeni filtre aboneliği"
     },
     "options_popup_url_placeholder": {
         "message": "URL veya dosya yolu girin"
@@ -93,7 +99,7 @@
         "message": "AdGuard Reklam Engelleyici"
     },
     "description": {
-        "message": "Reklamlara ve açılır pencerelere karşı benzeri olmayan reklam engelleme eklentisi. Facebook, YouTube ve diğer tüm internet sitelerindeki reklamları engeller."
+        "message": "Reklamlara ve açılır pencerelere karşı benzeri olmayan reklam engelleme uzantısı. Facebook, YouTube ve diğer tüm sitelerdeki reklamları engeller."
     },
     "background_tab_title": {
         "message": "Arka plan sekmesi"
@@ -108,7 +114,7 @@
         "message": "İzin listesini ters çevir"
     },
     "options_allowlist_invert_desc": {
-        "message": "İzin listesi dışında her yerde reklamların engelini kaldırın"
+        "message": "İzin listesi dışında her yerde reklamların engelini kaldırın."
     },
     "options_allowlist_alert_invert": {
         "message": "İzin listesi ters çevrildi. Reklamlar yalnızca kendisine eklenen sitelerde engellenir. <a>Devre dışı bırak<\/a>"
@@ -126,7 +132,7 @@
         "message": "Siteye izin verildi"
     },
     "filtering_log_hide_referrer": {
-        "message": "Yönlendirici üçüncü taraflardan gizlendi"
+        "message": "Referrer üçüncü taraflardan gizlendi"
     },
     "filtering_log_hide_search_queries": {
         "message": "Arama sorgularınız gizlendi"
@@ -171,13 +177,13 @@
         "message": "Etkin:"
     },
     "options_filters_enabled_and_more": {
-        "message": "%enabled% ve %more% tane fazla"
+        "message": "%enabled% ve %more% tane daha"
     },
     "options_filters_enabled_and_last": {
         "message": "%enabled% ve %last%"
     },
     "options_filters_no_enabled": {
-        "message": "Etkinleştirilmiş filtre yok"
+        "message": "Etkin filtre yok"
     },
     "options_filters_filter_trusted_tag_desc": {
         "message": "Bu filtreye güvenmeyi seçtiniz."
@@ -297,7 +303,7 @@
         "message": "Filtreler güncellenirken hata oluştu"
     },
     "options_popup_update_not_found": {
-        "message": "Güncelleme bulunamadı!"
+        "message": "Güncelleme bulunamadı"
     },
     "options_popup_update_error": {
         "message": "Güncellemeler alınamadı. Lütfen daha sonra tekrar deneyin."
@@ -309,13 +315,13 @@
         "message": "güncellendi."
     },
     "options_popup_version_update_title_text": {
-        "message": "AdGuard eklentisi, %current_version% sürümüne güncellendi"
+        "message": "AdGuard uzantısı, %current_version% sürümüne güncellendi"
     },
     "options_popup_version_update_description_minor": {
         "message": "Bu sürüm çoğunlukla hata düzeltmeleri ve küçük iyileştirmeler içerir."
     },
     "options_popup_version_update_description_major": {
-        "message": "Bu, birçok yeni özellik ve iyileştirme getiren büyük bir eklenti güncellemesidir."
+        "message": "Bu, birçok yeni özellik ve iyileştirme getiren büyük bir uzantı güncellemesidir."
     },
     "options_popup_version_update_changelog_text": {
         "message": "Bu sürümdeki yenilikler neler?"
@@ -324,7 +330,7 @@
         "message": "AdGuard'ın yeteneklerinin bu tarayıcı ile sınırlı olmadığını biliyor muydunuz?"
     },
     "options_popup_version_update_offer_button_text": {
-        "message": "DAHA FAZLASINI ÖĞRENİN"
+        "message": "DAHA FAZLA BİLGİ EDİNİN"
     },
     "popup_block_site_ads_option": {
         "message": "Bu sitede reklam engelle"
@@ -333,7 +339,7 @@
         "message": "Site güvenliğini kontrol et"
     },
     "popup_reset_custom_rules": {
-        "message": "Bu sayfa için tüm kullanıcı kurallarını sıfırla"
+        "message": "Bu sayfa için tüm kullanıcı kurallarını kaldır"
     },
     "popup_open_settings": {
         "message": "AdGuard ayarları"
@@ -459,13 +465,13 @@
         "message": "Filtre"
     },
     "filtering_table_empty_reload_page_desc": {
-        "message": "Filtreleme günlüğü görmek için <reset>filtreleri devre dışı bırakın<\/reset> veya <refresh>sayfayı yenileyin<\/refresh>."
+        "message": "Olay günlüklerini filtrelemeyi görmek için <reset>filtreleri devre dışı bırakın<\/reset> veya <refresh>sayfayı yenileyin<\/refresh>."
     },
     "filtering_modal_info_title": {
         "message": "İstek ayrıntıları"
     },
     "filtering_modal_preview_title": {
-        "message": "Ön izleme"
+        "message": "Önizleme"
     },
     "filtering_modal_type": {
         "message": "Tür:"
@@ -495,10 +501,10 @@
         "message": "Engeli kaldır"
     },
     "filtering_modal_remove_user": {
-        "message": "Kullanıcı kurallarından kaldır"
+        "message": "Kuralı sil"
     },
     "filtering_modal_preview_request_button": {
-        "message": "Ön izleme"
+        "message": "Önizleme"
     },
     "filtering_modal_remove_allowlist": {
         "message": "İzin listesinden kaldır"
@@ -551,11 +557,26 @@
     "filtering_modal_hide_full_url": {
         "message": "Tam URL'yi gizle"
     },
+    "filtering_modal_show_full_rule": {
+        "message": "Tam kuralı göster"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Tam kuralı gizle"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Tüm öğeyi goster"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Tüm öğeyi gizle"
+    },
     "filtering_modal_copy_to_clipboard": {
         "message": "Panoya kopyala"
     },
     "filtering_modal_copied": {
         "message": "Kopyalandı"
+    },
+    "filtering_modal_converted_to": {
+        "message": "Dönüştürüldü:"
     },
     "filtering_log_filter_regular": {
         "message": "Normal"
@@ -597,7 +618,7 @@
         "message": "Arama motoru sonuçlarında görünen <a>sitelerinin öz tanıtımını yapan ve içeriğe dayalı reklamlardan<\/a> kurtulun."
     },
     "options_show_blocked_ads_count_title": {
-        "message": "AdGuard eklenti simgesinde engellenen reklamların sayısını göster"
+        "message": "AdGuard uzantı simgesinde engellenen reklamların sayısını göster"
     },
     "options_enable_autodetect_filter": {
         "message": "En uygun filtreleri otomatik olarak etkinleştir"
@@ -609,7 +630,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "Sistem"
+        "message": "Sistem varsayılanı"
     },
     "options_theme_selector_light": {
         "message": "Açık"
@@ -622,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Ayarları içe aktar"
+    },
+    "options_report_bug": {
+        "message": "Hata bildir"
+    },
+    "options_leave_feedback": {
+        "message": "Geri bildirimde bulun"
     },
     "options_privacy": {
         "message": "Gizlilik Modu"
@@ -636,7 +663,7 @@
         "message": "Denetleniyor..."
     },
     "options_set_update_interval": {
-        "message": "Filtre güncelleme sıklığı"
+        "message": "Filtreleri otomatik güncelle"
     },
     "options_set_update_interval_desc": {
         "message": "Daha etkili engelleme için filtrelerin düzenli olarak güncellenmesi gerekir."
@@ -660,13 +687,13 @@
         "message": "Satır sonu: AÇIK"
     },
     "options_open_changelog": {
-        "message": "Değişiklik günlüğü"
+        "message": "Değişiklik Günlüğü"
     },
     "options_safebrowsing_enabled": {
         "message": "Kimlik avı ve kötü amaçlı yazılım koruması"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "<a>Web servisimizle<\/a> alan adlarının tehlikeli olup olmadığını kontrol edin."
+        "message": "Potansiyel olarak kötü amaçlı ve kimlik avı sitelerini çevrimiçi bir veritabanına karşı kontrol ederek algılayan AdGuard Tarama Güvenliği modülünü etkinleştirin. <a>Devamını okuyun<\/a>"
     },
     "options_site": {
         "message": "Resmi Site"
@@ -687,7 +714,7 @@
         "message": "AdGuard'ın tam sürümüyle ilgili bilgileri göster"
     },
     "options_show_app_updated_notification": {
-        "message": "Eklenti güncellemelerini bana bildir"
+        "message": "Uzantı güncellemelerini bana bildir"
     },
     "options_open_log": {
         "message": "Filtreleme günlüğünü aç"
@@ -720,7 +747,7 @@
         "message": "İyileştirilmiş filtreleri kullan"
     },
     "options_use_optimized_filters_desc": {
-        "message": "Mobil cihazlar için iyileştirilmiş filtre listeleri"
+        "message": "Mobil cihazlar için iyileştirilmiş filtre listeleri."
     },
     "options_privacy_title": {
         "message": "Gizlilik Modu"
@@ -729,7 +756,7 @@
         "message": "En popüler izleme yöntemlerini engelleyerek kimliğinizi ve hassas kişisel bilgilerinizi binlerce çevrimiçi izleyicilerden koruyun."
     },
     "options_hide_referrer_title": {
-        "message": "Yönlendiriciyi üçüncü taraflardan gizle"
+        "message": "Referrer'i üçüncü taraflardan gizle"
     },
     "options_hide_referrer_desc": {
         "message": "Üçüncü tarafların hangi siteyi ziyaret ettiğinizi bilmelerini engelleyin."
@@ -741,10 +768,10 @@
         "message": "Arama motorlarında çıkan sonuçlarla ziyaret ettiğiniz sitelerden arama sorgularını gizleyin."
     },
     "options_send_not_track_title": {
-        "message": "İnternet sitelerine beni izlememesi için istek gönder"
+        "message": "Sizi izlememeleri için sitelere sinyaller gönder"
     },
     "options_send_not_track_desc": {
-        "message": "Ziyaret ettiğiniz internet sitelerine <gpc>Global Privacy Control<\/gpc> ve <dnt>Do Not Track<\/dnt> sinyalleri gönderin."
+        "message": "Ziyaret ettiğiniz sitelere <gpc>Global Privacy Control<\/gpc> ve <dnt>Do Not Track<\/dnt> sinyalleri gönderin."
     },
     "options_stripped_tracking_parameters": {
         "message": "İzleme parametreleri kaldırıldı"
@@ -771,13 +798,13 @@
         "message": "İzleme parametrelerini kaldır"
     },
     "options_strip_tracking_params_description": {
-        "message": "Etkinleştirildiğinde, AdGuard URL İzleme filtresi sayfaların URL'lerinden izleme parametrelerini kaldırmak için kullanılır."
+        "message": "AdGuard URL İzleme filtresiyle parametreleri web isteklerinden kaldırın."
     },
     "options_block_known_trackers_title": {
-        "message": "Bilinen izleyicileri engelle"
+        "message": "İzleyicileri engelle"
     },
     "options_block_known_trackers_description": {
-        "message": "Etkinleştirildiğinde, AdGuard İzleme Koruması filtresi bilinen izleyicileri engellemek için kullanılır."
+        "message": "AdGuard İzleme Koruması filtresiyle izleyicileri ve web analizi araçlarını engelleyin."
     },
     "options_third_party_title": {
         "message": "Kendini yok eden üçüncü taraf çerezler"
@@ -819,7 +846,7 @@
         "message": "Koruma düğmesi"
     },
     "short_name": {
-        "message": "AdGuard Reklam Engelleyici"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Hakkında"
@@ -846,22 +873,19 @@
         "message": "Kaldır"
     },
     "options_nav_better_than_extension": {
-        "message": "Tam kapsamlı AdGuard programı neden eklentiden daha iyi?"
+        "message": "AdGuard uygulaması neden uzantıdan daha iyidir?"
     },
     "options_nav_compare": {
-        "message": "Nasıl karşılaştırıyorlar"
-    },
-    "options_nav_hide": {
-        "message": "Gizle"
+        "message": "Karşılaştır"
     },
     "options_filters_search": {
         "message": "Ara"
     },
     "options_about_title": {
-        "message": "AdGuard Tarayıcı Eklentisi"
+        "message": "AdGuard Tarayıcı uzantısı"
     },
     "group_description_adblocking": {
-        "message": "Can sıkıcı afişler, açılır pencereler, video reklamları ve benzeri şeylerle tek seferde hepsiyle başa çıkmak için reklam engellemeyi yapılandırın."
+        "message": "Rahatsız edici afişler, açılır pencereler, video reklamları ve benzeri şeylerle tek seferde hepsiyle başa çıkmak için reklam engellemeyi yapılandırın."
     },
     "group_description_stealth": {
         "message": "Bilinen tüm popüler izleme yöntemlerini engelleyerek kimliğinizi ve hassas kişisel bilgilerinizi binlerce çevrimiçi izleyiciden koruyun."
@@ -882,7 +906,7 @@
         "message": "İnternet filtrelemesini tercihinize göre ayarlamak için kendi filtrelerinizi oluşturun."
     },
     "group_description_lang": {
-        "message": "Kendinizi sınırlamayın — herhangi bir dilde internet sitelerindeki reklamları engelleyin."
+        "message": "Kendinizi sınırlamayın — herhangi bir dilde sitelerdeki reklamları engelleyin."
     },
     "fullscreen_user_rules_title": {
         "message": "Kullanıcı kuralları"
@@ -963,7 +987,7 @@
         "message": "Medya"
     },
     "filtering_log_tag_tooltip_other": {
-        "message": "Yazı tipi, ping, WebRTC, WebSocket vb."
+        "message": "Yazı tipi, ping, WebRTC, WebSocket, vb."
     },
     "filtering_log_badge_tooltip_third_party": {
         "message": "Üçüncü taraf isteği"
@@ -1012,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Yine de devam et"
+    },
+    "text_collapser_show_default": {
+        "message": "Tüm metni göster"
+    },
+    "text_collapser_hide_default": {
+        "message": "Tüm metni gizle"
+    },
+    "close_button_title": {
+        "message": "Kapat"
     }
 }

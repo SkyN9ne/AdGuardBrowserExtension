@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Želite onemogočiti še več?"
     },
+    "popup_header_update_filters": {
+        "message": "Preveri obstoj posodobitev filtra"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Končnica datoteke mora biti %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Na ta filter boste naročeni."
+    },
+    "options_popup_url_title": {
+        "message": "Nova naročnina filtra"
     },
     "options_popup_url_placeholder": {
         "message": "Vnesite URL ali pot"
@@ -333,7 +339,7 @@
         "message": "Preveri varnost spletne strani"
     },
     "popup_reset_custom_rules": {
-        "message": "Ponastavi vsa uporabniška pravila za to stran"
+        "message": "Izbriši vsa uporabniška pravila za to stran"
     },
     "popup_open_settings": {
         "message": "Nastavitve AdGuarda"
@@ -495,7 +501,7 @@
         "message": "Omogoči"
     },
     "filtering_modal_remove_user": {
-        "message": "Odstrani iz uporabniških filtrov"
+        "message": "Izbriši pravilo"
     },
     "filtering_modal_preview_request_button": {
         "message": "Predogled"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Skrij celoten URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Prikaži celotno pravilo"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Skrij celotno pravilo"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Prikaži celoten element"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Skrij celoten element"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Kopiraj v odložišče"
@@ -612,7 +630,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "Sistemska"
+        "message": "Sistemska privzeta"
     },
     "options_theme_selector_light": {
         "message": "Svetla"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Uvozi nastavitve"
+    },
+    "options_report_bug": {
+        "message": "Prijavi napako"
+    },
+    "options_leave_feedback": {
+        "message": "Pošlji povratne informacije"
     },
     "options_privacy": {
         "message": "Skrit način"
@@ -639,7 +663,7 @@
         "message": "Preverjanje..."
     },
     "options_set_update_interval": {
-        "message": "Interval posodabljanja filtrov"
+        "message": "Samodejno posodobi filtre"
     },
     "options_set_update_interval_desc": {
         "message": "Za učinkovitejše zaviranje je treba filtre redno posodabljati."
@@ -669,7 +693,7 @@
         "message": "Varstvo pred lažnim predstavljanjem in škodljivimi programi"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Preverite, ali so domene nevarne z <a>našo spletno storitvijo<\/a>."
+        "message": "Omogoči AdGuard varnostni modul za brskanje, ki zazna potencialno zlonamerne in lažne spletne strani, z njihovim preverjanjem v spletni zbirki podatkov. <a>Preberi več<\/a>"
     },
     "options_site": {
         "message": "Uradna spletna stran"
@@ -774,13 +798,13 @@
         "message": "Odstrani sledilne parametre"
     },
     "options_strip_tracking_params_description": {
-        "message": "Ko je omogočen, se AdGuard filter sledilcev URL-jem uporablja za odstranitev parametrov sledenja iz URL-jev strani."
+        "message": "Odstranite parametre iz spletnih zahtev s filtrom AdGuard Sledenje URL."
     },
     "options_block_known_trackers_title": {
-        "message": "Onemogoča znane sledilce"
+        "message": "Onemogoči sledilce"
     },
     "options_block_known_trackers_description": {
-        "message": "Ko je omogočen, se AdGuard filter za zaščito pred sledenjem uporablja za zaviranje znanih sledilcev."
+        "message": "Onemogočite sledilnike in orodja za spletno analitiko s filtrom AdGuard Zaščita pred sledenjem."
     },
     "options_third_party_title": {
         "message": "Samouničilni piškotki tretje strani"
@@ -822,7 +846,7 @@
         "message": "Zaščitno stikalo"
     },
     "short_name": {
-        "message": "AdGuard Zaviralec oglasov"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Vizitka"
@@ -849,13 +873,10 @@
         "message": "Odstrani"
     },
     "options_nav_better_than_extension": {
-        "message": "Zakaj je AdGuard polnopravni program boljši od razširitve?"
+        "message": "Zakaj je aplikacija AdGuard boljša od razširitve?"
     },
     "options_nav_compare": {
-        "message": "Kako se primerjajo"
-    },
-    "options_nav_hide": {
-        "message": "Skrij"
+        "message": "Primerjaj"
     },
     "options_filters_search": {
         "message": "Poišči"
@@ -876,7 +897,7 @@
         "message": "Odstrani pojavna okna in druga nadležna obvestila, kot so obvestila o piškotkih."
     },
     "group_description_security": {
-        "message": "Zaščitite se pred zlonamernimi programi, lažnim predstavljanjem in drugimi spletnimi grožnjami."
+        "message": "Obvarujte se pred zlonamernimi programi, lažnim predstavljanjem in drugimi spletnimi grožnjami."
     },
     "group_description_miscellaneous": {
         "message": "Več nastavitev za še večjo nastavitev vašega brskanja po spletu z AdGuardom."
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Vseeno nadaljuj"
+    },
+    "text_collapser_show_default": {
+        "message": "Prikaži celotno besedilo"
+    },
+    "text_collapser_hide_default": {
+        "message": "Skrij celotno besedilo"
+    },
+    "close_button_title": {
+        "message": "Zapri"
     }
 }

@@ -5,8 +5,9 @@
     padding: 24px 0;
 
     &__item {
-        padding: 16px 33px;
-        line-height: 22px;
+        padding: 15px 38px;
+        margin-bottom: 8px;
+        line-height: 20px;
         color: var(--gray-base);
         text-decoration: none;
         display: inline-block;
@@ -22,30 +23,20 @@
         }
 
         &:hover {
-            background-color: var(--gray300);
+            background-color: var(--white);
 
             @media (prefers-color-scheme: dark) {
-                color: var(--grayDark);
+                background-color: var(--gray900);
             }
         }
 
         &--active {
-            background-color: var(--gray300);
+            background-color: var(--white);
             position: relative;
-            font-weight: 500;
+            font-weight: 600;
             overflow: visible;
 
             @media (prefers-color-scheme: dark) {
-                color: var(--grayDark);
-            }
-
-            &:before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 4px;
-                height: 100%;
                 background-color: var(--gray900);
             }
         }
@@ -58,30 +49,6 @@
     @media (min-width: 640px) {
         padding: 0;
     }
-
-    &__desc {
-        width: 100%;
-        padding: 28px 33px 0 38px;
-    }
-
-    &__message {
-        margin-bottom: 30px;
-    }
-
-    &__link {
-        /* white-space: nowrap; */
-        color: var(--green400);
-    }
-
-    &__hide {
-        border: 0;
-        padding: 0;
-        background-color: transparent;
-        cursor: pointer;
-        margin-top: 24px;
-        font-size: 14px;
-        color: var(--gray700);
-    }
 }
 
 .light-mode {
@@ -91,10 +58,12 @@
 
             &:hover {
                 color: var(--gray-base);
+                background-color: var(--white);
             }
 
             &--active {
                 color: var(--gray-base);
+                background-color: var(--white);
             }
         }
     }
@@ -106,11 +75,15 @@
             color: var(--gray300);
 
             &:hover {
-                color: var(--grayDark);
+                background-color: var(--gray900);
             }
 
             &--active {
-                color: var(--grayDark);
+                background-color: var(--gray900);
+
+                &:before {
+                    background-color: var(--grayDark);
+                }
             }
         }
     }

@@ -1,4 +1,22 @@
 /**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
  * This task updates locales in repository
  */
 import axios from 'axios';
@@ -79,7 +97,7 @@ const downloadLocales = async (locales) => {
 
     // Decrease this value if you encounter error:
     // "Maximum number of concurrent requests for this endpoint is reached"
-    const LOCALES_DOWNLOAD_BATCH_SIZE = 20;
+    const LOCALES_DOWNLOAD_BATCH_SIZE = 2;
 
     return promiseBatchMap(localeUrlPairs, LOCALES_DOWNLOAD_BATCH_SIZE, async (localeUrlPair) => {
         const { locale, url } = localeUrlPair;
@@ -112,9 +130,10 @@ const saveLocales = async (localeDataPairs) => {
 
 /**
  * Checks messages for required locales, if doesn't find them, then adds from baseMessages
+ *
  * @param {string} locale - locale
- * @param {Object} messages - locale messages
- * @param {Object} baseMessages - base locale messages
+ * @param {object} messages - locale messages
+ * @param {object} baseMessages - base locale messages
  */
 const checkRequiredFields = (locale, messages, baseMessages) => {
     const requiredFields = PERSISTENT_MESSAGES;

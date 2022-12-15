@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Хочете блокувати більше?"
     },
+    "popup_header_update_filters": {
+        "message": "Перевірити оновлення фільтрів"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Розширення файлу має бути %extension%"
     },
@@ -45,10 +48,13 @@
         "message": "AdGuard для мобільного"
     },
     "options_popup_call_to_action": {
-        "message": "Введіть правильну URL-адресу або шлях до файлу фільтра в полі вгорі."
+        "message": "Введіть дійсну URL-адресу або шлях до файлу фільтра."
     },
     "options_popup_description": {
-        "message": "Ви будете підписані на цей фільтр."
+        "message": "Цей фільтр буде додано."
+    },
+    "options_popup_url_title": {
+        "message": "Додавання нового фільтра"
     },
     "options_popup_url_placeholder": {
         "message": "Введіть URL-адресу або шлях до файлу"
@@ -93,7 +99,7 @@
         "message": "AdGuard Антибанер"
     },
     "description": {
-        "message": "Неперевершений захист від реклами та спливних вікон. Блокує рекламу в Facebook, YouTube та на всіх інших вебсайтах."
+        "message": "Неперевершений захист від реклами та спливних вікон. Блокує рекламу на Facebook, YouTube та усіх інших сайтах."
     },
     "background_tab_title": {
         "message": "Фонова вкладка"
@@ -120,7 +126,7 @@
         "message": "Правила заміни:"
     },
     "filtering_log_privacy_applied_rules": {
-        "message": "Захист від стеження"
+        "message": "Захист від стеження застосовано"
     },
     "filtering_log_in_allowlist": {
         "message": "Це дозволений сайт"
@@ -195,7 +201,7 @@
         "message": "Збережено"
     },
     "options_popup_import_success_title": {
-        "message": "Налаштування успішно імпортовані"
+        "message": "Налаштування успішно імпортовано"
     },
     "options_popup_import_error_title": {
         "message": "Помилка під час імпорту налаштувань"
@@ -333,7 +339,7 @@
         "message": "Перевірити безпечність сайту"
     },
     "popup_reset_custom_rules": {
-        "message": "Скинути всі правила користувача для цієї сторінки"
+        "message": "Видалити всі правила користувача для цієї сторінки"
     },
     "popup_open_settings": {
         "message": "Налаштування AdGuard"
@@ -405,13 +411,13 @@
         "message": "Завантаження бази даних фільтрів..."
     },
     "filters_download_loading": {
-        "message": "Зачекайте доки завантажується база даних фільтрів..."
+        "message": "Будь ласка, зачекайте доки завантажується база даних фільтрів..."
     },
     "filtering_modal_element": {
         "message": "Елемент:"
     },
     "filtering_modal_cookie": {
-        "message": "Куки:"
+        "message": "Кукі-файл:"
     },
     "filtering_modal_important": {
         "message": "Надати правилу вищий пріоритет"
@@ -495,7 +501,7 @@
         "message": "Розблокувати"
     },
     "filtering_modal_remove_user": {
-        "message": "Вилучити з правил користувача"
+        "message": "Вилучити правило"
     },
     "filtering_modal_preview_request_button": {
         "message": "Перегляд"
@@ -528,7 +534,7 @@
         "message": "Параметри:"
     },
     "filtering_modal_apply_domains": {
-        "message": "Застосувати правило до всіх вебсайтів"
+        "message": "Застосувати правило для всіх сайтів"
     },
     "filtering_modal_third_party": {
         "message": "Застосувати тільки для сторонніх запитів"
@@ -546,10 +552,22 @@
         "message": "Відкрити в новій вкладці"
     },
     "filtering_modal_show_full_url": {
-        "message": "Показати повну URL-адресу"
+        "message": "Показати URL-адресу цілком"
     },
     "filtering_modal_hide_full_url": {
-        "message": "Приховати повну URL-адресу"
+        "message": "Скоротити URL-адресу"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Показати правило цілком"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Скоротити правило"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Показати елемент цілком"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Скоротити елемент"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Копіювати в буфер обміну"
@@ -626,6 +644,12 @@
     "options_import_settings": {
         "message": "Імпорт налаштувань"
     },
+    "options_report_bug": {
+        "message": "Повідомити про помилку"
+    },
+    "options_leave_feedback": {
+        "message": "Поділитись"
+    },
     "options_privacy": {
         "message": "Захист від стеження"
     },
@@ -639,7 +663,7 @@
         "message": "Перевірка..."
     },
     "options_set_update_interval": {
-        "message": "Інтервал оновлення фільтрів"
+        "message": "Інтервал автоматичного оновлення"
     },
     "options_set_update_interval_desc": {
         "message": "Задля якісного блокування слід регулярно оновлювати фільтри."
@@ -669,7 +693,7 @@
         "message": "Захист від шахрайства і зловмисних програм"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Перевіряти безпечність сайтів за допомогою <a>нашого спеціального сервісу<\/a>."
+        "message": "Увімкнути «Безпеку перегляду» AdGuard, щоб виявляти потенційно зловмисні та шахрайські сайти. <a>Докладніше<\/a>"
     },
     "options_site": {
         "message": "Офіційний сайт"
@@ -729,7 +753,7 @@
         "message": "Захист від стеження"
     },
     "options_privacy_desc": {
-        "message": "Захистіть свої приватні дані від тисяч елементів стеження, блокуючи інтернет-лічильники та системи вебаналітики."
+        "message": "Захистіть свої приватні дані, заблокувавши елементи стеження та системи вебаналітики."
     },
     "options_hide_referrer_title": {
         "message": "Приховувати Referrer від сторонніх ресурсів"
@@ -753,10 +777,10 @@
         "message": "Параметри стеження вилучено"
     },
     "options_modified_first_party_cookie": {
-        "message": "Основні куки змінено"
+        "message": "Первинний кукі-файл змінено"
     },
     "options_modified_third_party_cookie": {
-        "message": "Сторонні куки змінено"
+        "message": "Сторонній кукі-файл змінено"
     },
     "options_remove_client_data_title": {
         "message": "Вилучати заголовок X-Client-Data"
@@ -774,22 +798,22 @@
         "message": "Вилучати параметри стеження"
     },
     "options_strip_tracking_params_description": {
-        "message": "Якщо увімкнути, Фільтр URL-стеження AdGuard буде увімкнено, щоб видаляти параметри стеження з URL-адрес."
+        "message": "Видаляти параметри стеження з URL-адрес за допомогою Фільтра URL-стеження AdGuard."
     },
     "options_block_known_trackers_title": {
-        "message": "Блокувати відомі елементи стеження"
+        "message": "Блокувати елементи стеження"
     },
     "options_block_known_trackers_description": {
-        "message": "Якщо увімкнути, Фільтр захисту від стеження AdGuard буде увімкнено, щоб блокувати відомі елементи стеження."
+        "message": "Блокувати стеження та системи вебаналітики за допомогою Фільтра захисту від стеження AdGuard."
     },
     "options_third_party_title": {
-        "message": "Самознищення сторонніх куків"
+        "message": "Самознищення сторонніх кукі-файлів"
     },
     "options_third_party_desc": {
         "message": "Обмежити час збереження сторонніх кукі-файлів (хвилини)."
     },
     "options_first_party_title": {
-        "message": "Самознищення основних куків (не рекомендовано)"
+        "message": "Самознищення первинних кукі-файлів (не рекомендовано)"
     },
     "options_first_party_desc": {
         "message": "Обмежити час збереження основних кукі-файлів (хвилини)."
@@ -807,28 +831,28 @@
         "message": "Статистика"
     },
     "popup_statistics_time_day": {
-        "message": "День"
+        "message": "Минула доба"
     },
     "popup_statistics_time_week": {
-        "message": "Тиждень"
+        "message": "Минулий тиждень"
     },
     "popup_statistics_time_month": {
-        "message": "Місяць"
+        "message": "Минулий місяць"
     },
     "popup_statistics_time_year": {
-        "message": "Рік"
+        "message": "Минулий рік"
     },
     "popup_switch_button": {
         "message": "Перемикач захисту"
     },
     "short_name": {
-        "message": "AdGuard Антибанер"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Про розширення"
     },
     "options_privacy_policy": {
-        "message": "Політика приватності"
+        "message": "Політика конфіденційності"
     },
     "options_acknowledgment": {
         "message": "Подяки"
@@ -849,13 +873,10 @@
         "message": "Вилучити"
     },
     "options_nav_better_than_extension": {
-        "message": "Чому повноцінна програма AdGuard краща, ніж розширення?"
+        "message": "Чому програма AdGuard краща, ніж розширення?"
     },
     "options_nav_compare": {
-        "message": "Чим вони відрізняються"
-    },
-    "options_nav_hide": {
-        "message": "Приховати"
+        "message": "Порівняти"
     },
     "options_filters_search": {
         "message": "Пошук"
@@ -873,10 +894,10 @@
         "message": "Сховати небажані кнопки «Подобається», «Поділитися» та інші віджети соціальних мереж."
     },
     "group_description_annoyances": {
-        "message": "Видаліть спливні вікна та інші надокучливі сповіщення, наприклад, повідомлення про куки."
+        "message": "Видаліть спливні вікна та інші надокучливі сповіщення, наприклад, повідомлення про кукі-файли."
     },
     "group_description_security": {
-        "message": "Захистіться від зловмисного програмного забезпечення, фішингу та інших інтернет-загроз."
+        "message": "Захистіться від зловмисного програмного забезпечення, фішингу та інших загроз в інтернеті."
     },
     "group_description_miscellaneous": {
         "message": "Додаткові фільтрі, щоб налаштувати блокування за допомогою AdGuard."
@@ -981,7 +1002,7 @@
         "message": "Загальні"
     },
     "options_stealth_cookies_title": {
-        "message": "Куки"
+        "message": "Кукі-файли"
     },
     "options_stealth_miscellaneous_title": {
         "message": "Різне"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "В усякому разі продовжити"
+    },
+    "text_collapser_show_default": {
+        "message": "Показати текст цілком"
+    },
+    "text_collapser_hide_default": {
+        "message": "Скоротити текст"
+    },
+    "close_button_title": {
+        "message": "Закрити"
     }
 }

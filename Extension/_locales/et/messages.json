@@ -14,6 +14,9 @@
     "popup_header_cta_link": {
         "message": "Soovid rohkem blokeerida?"
     },
+    "popup_header_update_filters": {
+        "message": "Käivita filtrite uuendamine"
+    },
     "popup_adguard_for_ios": {
         "message": "AdGuard for iOS"
     },
@@ -266,6 +269,9 @@
     "popup_security_report": {
         "message": "Kontrolli veebilehe turvalisust"
     },
+    "popup_reset_custom_rules": {
+        "message": "Eemalda kõik selle lehe kasutajareeglid"
+    },
     "popup_open_settings": {
         "message": "AdGuardi seaded"
     },
@@ -354,7 +360,7 @@
         "message": "Filter"
     },
     "filtering_table_empty_reload_page_desc": {
-        "message": "Logi nägemiseks keela filtrid või <a>värskenda lehte<\/a>."
+        "message": "<reset>Lülitage filtrid välja<\/reset> või <refresh>laadige uuesti lehekülg<\/refresh> , et näha filtreeritavaid sündmuste logisid."
     },
     "filtering_modal_info_title": {
         "message": "Päringu detailid"
@@ -379,9 +385,6 @@
     },
     "filtering_modal_unblock": {
         "message": "Eemalda blokeering"
-    },
-    "filtering_modal_remove_user": {
-        "message": "Eemalda see kasutaja reeglitest"
     },
     "filtering_modal_add_title": {
         "message": "Reegli lisamine"
@@ -414,13 +417,7 @@
         "message": "Aktiveeri automaatselt sobivad filtrid"
     },
     "options_theme_selector_system": {
-        "message": "Süsteem"
-    },
-    "options_theme_selector_light": {
-        "message": "Hele"
-    },
-    "options_theme_selector_dark": {
-        "message": "Tume teema"
+        "message": "Süsteemi vaikeseade"
     },
     "options_export_settings": {
         "message": "Seadete eksportimine"
@@ -433,9 +430,6 @@
     },
     "options_update_antibanner_filters": {
         "message": "Käivita filtrite uuendamine"
-    },
-    "options_set_update_interval": {
-        "message": "Filtrite uuendamise sagedus"
     },
     "options_userfilter_export": {
         "message": "Ekspordi"
@@ -521,9 +515,6 @@
     "popup_switch_button": {
         "message": "Kaitse lüliti"
     },
-    "short_name": {
-        "message": "AdGuardi reklaamiblokeerija"
-    },
     "options_about": {
         "message": "Teave"
     },
@@ -556,5 +547,8 @@
     },
     "options_stealth_general_title": {
         "message": "Üldine"
+    },
+    "short_name": {
+        "message": "AdGuard"
     }
 }

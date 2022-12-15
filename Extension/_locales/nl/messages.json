@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Wilt u meer blokkeren?"
     },
+    "popup_header_update_filters": {
+        "message": "Controleren op filterupdates"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "De bestandsextensie moet %extension% zijn"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Je wordt geabonneerd op deze filter."
+    },
+    "options_popup_url_title": {
+        "message": "Nieuw filter abonnement"
     },
     "options_popup_url_placeholder": {
         "message": "Voer URL of pad in"
@@ -99,13 +105,13 @@
         "message": "Achtergrond tabblad"
     },
     "options_allowlist": {
-        "message": "Toestemmingslijst"
+        "message": "Toelatingslijst"
     },
     "options_allowlist_desc": {
-        "message": "AdGuard filtert geen websites uit de toestemmingslijst."
+        "message": "AdGuard filtert geen websites van de toelatingslijst."
     },
     "options_allowlist_invert": {
-        "message": "Toestemmingslijst omkeren"
+        "message": "Toelatingslijst omkeren"
     },
     "options_allowlist_invert_desc": {
         "message": "Advertenties overal deblokkeren, behalve op de toelatingslijst."
@@ -114,7 +120,7 @@
         "message": "De toelatingslijst is omgekeerd. Advertenties worden alleen geblokkeerd op websites die eraan zijn toegevoegd. <a>Uitschakelen<\/a>"
     },
     "options_userfilter": {
-        "message": "Eigen filter"
+        "message": "Gebruikersregels"
     },
     "filtering_log_modified_rules": {
         "message": "Aangepaste regels:"
@@ -123,7 +129,7 @@
         "message": "Incognito modus toegepast"
     },
     "filtering_log_in_allowlist": {
-        "message": "De website staat op de toestemmingslijst"
+        "message": "De website staat op de toelatingslijst"
     },
     "filtering_log_hide_referrer": {
         "message": "Verwijzing verborgen voor derde partijen"
@@ -333,7 +339,7 @@
         "message": "Beveiliging van website controleren"
     },
     "popup_reset_custom_rules": {
-        "message": "Alle gebruikersregels herstellen voor deze webpagina"
+        "message": "Alle gebruikersregels voor deze website verwijderen"
     },
     "popup_open_settings": {
         "message": "AdGuard-instellingen"
@@ -345,7 +351,7 @@
         "message": "Beveiligingsrapport"
     },
     "popup_in_allowlist_android": {
-        "message": "In de toestemmingslijst"
+        "message": "Op de toelatingslijst"
     },
     "popup_site_protection_disabled_android": {
         "message": "De bescherming is gepauzeerd"
@@ -495,13 +501,13 @@
         "message": "Deblokkeren"
     },
     "filtering_modal_remove_user": {
-        "message": "Verwijderen uit eigen filters"
+        "message": "Regel verwijderen"
     },
     "filtering_modal_preview_request_button": {
         "message": "Voorbeeldweergave"
     },
     "filtering_modal_remove_allowlist": {
-        "message": "Verwijderen uit de toestemmingslijst"
+        "message": "Verwijderen van de toelatingslijst"
     },
     "filtering_modal_add_title": {
         "message": "Toevoegen van een regel"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Volledige URL verbergen"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Volledige regel weergeven"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Volledige regel verbergen"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Volledig element weergeven"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Volledig element verbergen"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Kopiëren naar klembord"
@@ -612,7 +630,7 @@
         "message": "Thema"
     },
     "options_theme_selector_system": {
-        "message": "Systeem"
+        "message": "Systeem standaard"
     },
     "options_theme_selector_light": {
         "message": "Licht"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Instellingen importeren"
+    },
+    "options_report_bug": {
+        "message": "Een fout rapporteren"
+    },
+    "options_leave_feedback": {
+        "message": "Feedback geven"
     },
     "options_privacy": {
         "message": "Incognito modus"
@@ -639,7 +663,7 @@
         "message": "Controleren..."
     },
     "options_set_update_interval": {
-        "message": "Filters update frequentie"
+        "message": "Filters automatisch bijwerken"
     },
     "options_set_update_interval_desc": {
         "message": "Voor een effectievere blokkering moeten de filters regelmatig worden bijgewerkt."
@@ -669,7 +693,7 @@
         "message": "Phishing- en malware-bescherming"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Controleren of het domein gevaarlijk is met behulp van <a>onze webservice<\/a>."
+        "message": "AdGuard Browsing Security-module inschakelen die potentieel kwaadaardige en phishing-sites detecteert door ze te vergelijken met een online database. <a>Meer lezen<\/a>"
     },
     "options_site": {
         "message": "Officiële website"
@@ -774,13 +798,13 @@
         "message": "Traceerparameters verwijderen"
     },
     "options_strip_tracking_params_description": {
-        "message": "Wanneer ingeschakeld, wordt het AdGuard URL-trackingfilter gebruikt om trackingparameters uit de URL's van pagina's te verwijderen."
+        "message": "Parameters uit webverzoeken verwijderen met AdGuard URL Tracking-filter"
     },
     "options_block_known_trackers_title": {
-        "message": "Bekende volgers blokkeren"
+        "message": "Volgers blokkeren"
     },
     "options_block_known_trackers_description": {
-        "message": "Wanneer ingeschakeld, wordt het AdGuard Tracking Protection filter gebruikt om bekende volgers te blokkeren."
+        "message": "Volgers en webanalysetools blokkeren met AdGuard Tracking Protection-filter."
     },
     "options_third_party_title": {
         "message": "Zelf-vernietigende cookies van derden"
@@ -822,7 +846,7 @@
         "message": "Bescherming schakelaar"
     },
     "short_name": {
-        "message": "AdGuard-advertentieblokkeerder"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Over"
@@ -849,13 +873,10 @@
         "message": "Verwijderen"
     },
     "options_nav_better_than_extension": {
-        "message": "Waarom is het volledige AdGuard programma beter dan de uitbreiding?"
+        "message": "Waarom is de AdGuard-app beter dan de uitbreiding?"
     },
     "options_nav_compare": {
-        "message": "Hoe ze zich verhouden"
-    },
-    "options_nav_hide": {
-        "message": "Verbergen"
+        "message": "Vergelijken"
     },
     "options_filters_search": {
         "message": "Zoeken"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Toch doorgaan"
+    },
+    "text_collapser_show_default": {
+        "message": "Volledige tekst weergeven"
+    },
+    "text_collapser_hide_default": {
+        "message": "Volledige tekst verbergen"
+    },
+    "close_button_title": {
+        "message": "Sluiten"
     }
 }

@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Хочаце заблакаваць больш?"
     },
+    "popup_header_update_filters": {
+        "message": "Праверыць абнаўленні фільтраў"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Пашырэнне файла павінна быць %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Вы падпішацеся на гэты фільтр."
+    },
+    "options_popup_url_title": {
+        "message": "Новая падпіска на фільтр"
     },
     "options_popup_url_placeholder": {
         "message": "Увядзіце URL або шлях да файла фільтра"
@@ -333,7 +339,7 @@
         "message": "Справаздача пра бяспеку сайта"
     },
     "popup_reset_custom_rules": {
-        "message": "Скінуць усе карыстацкія правілы для гэтай старонкі"
+        "message": "Выдаліць усе карыстацкія правілы для гэтай старонкі"
     },
     "popup_open_settings": {
         "message": "Наладзіць AdGuard"
@@ -459,7 +465,7 @@
         "message": "Фільтр"
     },
     "filtering_table_empty_reload_page_desc": {
-        "message": "Адключыць фільтры ці <a>перазагрузіць старонку<\/a>, каб убачыць часопіс."
+        "message": "<reset>Адключыце фільтры<\/reset> або <refresh>перазагрузіце старонку<\/refresh> , каб убачыць журналы падзей фільтрацыі."
     },
     "filtering_modal_info_title": {
         "message": "Інфармацыя пра запыт"
@@ -495,7 +501,7 @@
         "message": "Разблакаваць"
     },
     "filtering_modal_remove_user": {
-        "message": "Выдаліць з карыстальніцкага фільтра"
+        "message": "Выдаліць правіла"
     },
     "filtering_modal_preview_request_button": {
         "message": "Перадпрагляд"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Схаваць поўны URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Паказаць поўнае правіла"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Схаваць поўнае правіла"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Паказаць поўны элемент"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Схаваць поўны элемент"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Капіяваць"
@@ -612,7 +630,7 @@
         "message": "Тэма"
     },
     "options_theme_selector_system": {
-        "message": "Сістэмная"
+        "message": "Сістэмныя налады"
     },
     "options_theme_selector_light": {
         "message": "Светлая"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Імпарт налад"
+    },
+    "options_report_bug": {
+        "message": "Паведаміць пра памылку"
+    },
+    "options_leave_feedback": {
+        "message": "Пакінуць водгук"
     },
     "options_privacy": {
         "message": "Антытрэкінг"
@@ -639,7 +663,7 @@
         "message": "Праверка..."
     },
     "options_set_update_interval": {
-        "message": "Інтэрвал абнаўлення фільтраў"
+        "message": "Аўтаматычнае абнаўленне фільтраў"
     },
     "options_set_update_interval_desc": {
         "message": "Для больш эфектыўнага блакавання фільтры трэба рэгулярна абнаўляць."
@@ -669,7 +693,7 @@
         "message": "Абарона фішынгавых і шкодных сайтаў"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Праверце, ці небяспечны дамен, выкарыстоўваючы <a>наш ўэб-сэрвіс<\/a>."
+        "message": "Уключыце модуль бяспекі прагляду AdGuard, які выяўляе патэнцыйна шкоднасныя і фішынгавыя сайты, правяраючы іх з базай дадзеных у Інтэрнэце. <a>Чытаць больш<\/a>"
     },
     "options_site": {
         "message": "Афіцыйны сайт"
@@ -774,7 +798,7 @@
         "message": "Выдаляць параметры адсочвання"
     },
     "options_strip_tracking_params_description": {
-        "message": "Калі гэта опцыя ўлучана, фільтр асочвання па URL выкарыстоўваецца для выдалення параметраў асочвання з адрасоў старонак."
+        "message": "Выдаленне параметраў з вэб-запытаў з дапамогай фільтра адсочвання URL AdGuard."
     },
     "options_block_known_trackers_title": {
         "message": "Блакаваць вядомыя трэкеры"
@@ -822,7 +846,7 @@
         "message": "Пераключэнне абароны"
     },
     "short_name": {
-        "message": "AdGuard Антыбанар"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Пра нас"
@@ -849,13 +873,10 @@
         "message": "Выдаліць"
     },
     "options_nav_better_than_extension": {
-        "message": "Чаму поўнафункцыйная праграма AdGuard лепшая за пашырэнне?"
+        "message": "Чаму праграма AdGuard лепшая за пашырэнне?"
     },
     "options_nav_compare": {
-        "message": "Чым яны адрозніваюцца"
-    },
-    "options_nav_hide": {
-        "message": "Схаваць"
+        "message": "Параўнаць"
     },
     "options_filters_search": {
         "message": "Пошук"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Усё адно працягнуць"
+    },
+    "text_collapser_show_default": {
+        "message": "Паказаць поўны тэкст"
+    },
+    "text_collapser_hide_default": {
+        "message": "Схаваць поўны тэкст"
+    },
+    "close_button_title": {
+        "message": "Зачыніць"
     }
 }

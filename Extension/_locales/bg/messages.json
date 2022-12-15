@@ -1,18 +1,33 @@
 {
+    "options_filters_list_search_display_option_all_filters": {
+        "message": "Всички филтри"
+    },
     "options_filters_list_search_display_option_enabled": {
-        "message": "Включен"
+        "message": "Включено"
     },
     "options_filters_list_search_display_option_disabled": {
-        "message": "Деактивиран"
+        "message": "Изключено"
+    },
+    "options_filters_empty_title": {
+        "message": "Нищо не е намерено"
+    },
+    "options_antibanner_custom_filter_already_exists": {
+        "message": "Този персонализиран филтър вече е добавен"
     },
     "popup_header_cta_link": {
         "message": "Искаш да блокираш повече?"
+    },
+    "popup_header_update_filters": {
+        "message": "Провери за актуализации на филтрите"
     },
     "options_popup_next_button": {
         "message": "Следващ"
     },
     "options_popup_check_false_title": {
         "message": "Грешка"
+    },
+    "options_popup_try_again_button": {
+        "message": "Опитай пак"
     },
     "options_popup_filter_description": {
         "message": "Описание:"
@@ -31,6 +46,12 @@
     },
     "options_select_update_period_default": {
         "message": "По подразбиране"
+    },
+    "options_select_update_period_24h": {
+        "message": "24 часа"
+    },
+    "options_select_update_period_6h": {
+        "message": "6 часа"
     },
     "options_select_update_period_disabled": {
         "message": "Деактивиран"
@@ -56,6 +77,15 @@
     "popup_site_filtering_state_disabled": {
         "message": "Защитата е деактивирана. Актуализациите са недостъпни."
     },
+    "popup_statistics_months_may": {
+        "message": "Май"
+    },
+    "popup_statistics_months_jun": {
+        "message": "Юни"
+    },
+    "popup_statistics_months_jul": {
+        "message": "Юли"
+    },
     "options_popup_update_not_found": {
         "message": "Няма намерени актуализации"
     },
@@ -64,6 +94,12 @@
     },
     "popup_block_site_ads_option": {
         "message": "Блокирай рекламите на този сайт"
+    },
+    "popup_security_report": {
+        "message": "Проверка на сигурността на уебсайта"
+    },
+    "popup_reset_custom_rules": {
+        "message": "Премахване на всички потребителски правила за тази страница"
     },
     "popup_open_settings": {
         "message": "AdGuard настройки"
@@ -173,9 +209,6 @@
     "filtering_modal_unblock": {
         "message": "Деблокирай"
     },
-    "filtering_modal_remove_user": {
-        "message": "Премахни от потребителските филтри"
-    },
     "filtering_modal_preview_request_button": {
         "message": "Преглед"
     },
@@ -239,12 +272,6 @@
     "options_select_theme": {
         "message": "Тема"
     },
-    "options_theme_selector_system": {
-        "message": "Система"
-    },
-    "options_theme_selector_light": {
-        "message": "Светъл цвят"
-    },
     "options_export_settings": {
         "message": "Експортиране на настройките"
     },
@@ -278,6 +305,9 @@
     "options_site": {
         "message": "Официален сайт"
     },
+    "options_reset_stats": {
+        "message": "Нулирай статистиката"
+    },
     "options_reset_stats_done": {
         "message": "Статистиката е нулирана"
     },
@@ -306,13 +336,16 @@
         "message": "Действия"
     },
     "short_name": {
-        "message": "AdGuard рекламен блокер"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Относно"
     },
     "options_privacy_policy": {
         "message": "Правила за поверителност"
+    },
+    "options_acknowledgment": {
+        "message": "Благодарности"
     },
     "options_github": {
         "message": "GitHub"
@@ -322,9 +355,6 @@
     },
     "options_remove_filter_confirm_modal_ok_button": {
         "message": "Премахни"
-    },
-    "options_nav_hide": {
-        "message": "Скрий"
     },
     "options_filters_search": {
         "message": "Търси"
@@ -338,6 +368,9 @@
     "options_confirm_modal_cancel_button": {
         "message": "Отказ"
     },
+    "filtering_log_details_modal_try_again": {
+        "message": "Опитай пак"
+    },
     "options_stealth_general_title": {
         "message": "General"
     },
@@ -346,6 +379,9 @@
     },
     "blocking_pages_advanced_button": {
         "message": "Разширени"
+    },
+    "close_button_title": {
+        "message": "Затвори"
     },
     "description": {
         "message": "Unmatched adblock extension against advertising and pop-ups. Blocks ads on Facebook, YouTube and all other websites."

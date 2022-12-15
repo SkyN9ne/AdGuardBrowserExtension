@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, { useState, useEffect } from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import AceEditor from 'react-ace';
@@ -7,15 +25,17 @@ import 'ace-builds/src-noconflict/ext-searchbox';
 import 'ace-builds/src-noconflict/theme-textmate';
 import 'ace-builds/src-noconflict/mode-text';
 
-import { log } from '../../../../common/log';
+import { Log } from '../../../../common/log';
 import './mode-adguard';
 
 import './editor.pcss';
 
 const DEFAULT_EDITOR_SIZE = {
-    width: '100%',
+    width: '610px',
     height: '300px',
 };
+
+const EDITOR_PADDING = 26;
 
 const Editor = ({
     name,
@@ -27,29 +47,27 @@ const Editor = ({
     highlightRules,
     shouldResetSize,
 }) => {
-    const [size, setSize] = useState(DEFAULT_EDITOR_SIZE);
-
     const SIZE_STORAGE_KEY = `${name}_editor-size`;
+    const editorStorageSize = localStorage.getItem(SIZE_STORAGE_KEY);
+    const [size, setSize] = useState(JSON.parse(editorStorageSize) || DEFAULT_EDITOR_SIZE);
 
     useEffect(() => {
-        const editorStorageSize = localStorage.getItem(SIZE_STORAGE_KEY);
-
         if (editorStorageSize) {
             try {
                 setSize(JSON.parse(editorStorageSize));
             } catch (e) {
                 setSize(DEFAULT_EDITOR_SIZE);
-                log.debug(e.message);
+                Log.debug(e.message);
             }
         }
-    }, [setSize, SIZE_STORAGE_KEY]);
+    }, [editorStorageSize]);
 
     useEffect(() => {
         if (shouldResetSize) {
             localStorage.removeItem(SIZE_STORAGE_KEY);
             setSize(DEFAULT_EDITOR_SIZE);
         }
-    }, [shouldResetSize]);
+    }, [shouldResetSize, SIZE_STORAGE_KEY]);
 
     const editorStyles = {
         width: size.width,
@@ -58,9 +76,11 @@ const Editor = ({
 
     // On fullscreen ignore size change
     const onResize = fullscreen
-        ? () => {}
+        ? () => { }
         : (width, height) => {
-            localStorage.setItem(SIZE_STORAGE_KEY, JSON.stringify({ width, height }));
+            localStorage.setItem(SIZE_STORAGE_KEY, JSON.stringify({
+                width: width + EDITOR_PADDING, height,
+            }));
             editorRef.current.editor.resize();
         };
 

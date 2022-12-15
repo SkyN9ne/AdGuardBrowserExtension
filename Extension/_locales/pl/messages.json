@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Chcesz zablokować więcej?"
     },
+    "popup_header_update_filters": {
+        "message": "Sprawdź, czy są aktualizacje filtrów"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Plik musi mieć rozszerzenie %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Zasubskrybujesz ten filtr."
+    },
+    "options_popup_url_title": {
+        "message": "Nowa subskrypcja filtra"
     },
     "options_popup_url_placeholder": {
         "message": "Wpisz adres URL lub ścieżkę"
@@ -333,7 +339,7 @@
         "message": "Sprawdź bezpieczeństwo witryny"
     },
     "popup_reset_custom_rules": {
-        "message": "Zresetuj wszystkie reguły użytkownika dla tej strony"
+        "message": "Usuń wszystkie reguły użytkownika dla tej strony"
     },
     "popup_open_settings": {
         "message": "Ustawienia AdGuard"
@@ -495,7 +501,7 @@
         "message": "Odblokuj"
     },
     "filtering_modal_remove_user": {
-        "message": "Usuń z reguł użytkownika"
+        "message": "Usuń regułę"
     },
     "filtering_modal_preview_request_button": {
         "message": "Podgląd"
@@ -612,7 +618,7 @@
         "message": "Motyw"
     },
     "options_theme_selector_system": {
-        "message": "Systemowy"
+        "message": "Domyślny systemowy"
     },
     "options_theme_selector_light": {
         "message": "Jasny"
@@ -625,6 +631,12 @@
     },
     "options_import_settings": {
         "message": "Importowanie ustawień"
+    },
+    "options_report_bug": {
+        "message": "Zgłoś błąd"
+    },
+    "options_leave_feedback": {
+        "message": "Zostaw opinię"
     },
     "options_privacy": {
         "message": "Tryb Niewidzialności"
@@ -639,7 +651,7 @@
         "message": "Sprawdzanie..."
     },
     "options_set_update_interval": {
-        "message": "Interwał aktualizacji filtrów"
+        "message": "Automatycznie aktualizuj filtry"
     },
     "options_set_update_interval_desc": {
         "message": "Aby zapewnić skuteczniejsze blokowanie, filtry należy regularnie aktualizować."
@@ -669,7 +681,7 @@
         "message": "Ochrona przed phishingiem i malware"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Sprawdź, czy domeny są niebezpieczne, korzystając z <a>naszej usługi internetowej<\/a>."
+        "message": "Włącz moduł AdGuard Bezpieczne Przeglądanie, który wykrywa potencjalnie złośliwe i phishingowe witryny, sprawdzając je w internetowej bazie danych. <a>Czytaj więcej<\/a>"
     },
     "options_site": {
         "message": "Oficjalna strona"
@@ -773,15 +785,6 @@
     "options_strip_tracking_params_title": {
         "message": "Usunięto parametry śledzenia"
     },
-    "options_strip_tracking_params_description": {
-        "message": "Po włączeniu, filtr śledzenia URL AdGuard jest używany do usuwania parametrów śledzenia z adresów URL stron"
-    },
-    "options_block_known_trackers_title": {
-        "message": "Blokuj znane trackery"
-    },
-    "options_block_known_trackers_description": {
-        "message": "Po włączeniu Filtr elementów szpiegujących służy do blokowania znanych trackerów."
-    },
     "options_third_party_title": {
         "message": "Samoniszczące ciasteczka firm trzecich"
     },
@@ -822,7 +825,7 @@
         "message": "Przełącznik ochrony"
     },
     "short_name": {
-        "message": "Bloker reklam AdGuard"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "O rozszerzeniu"
@@ -847,15 +850,6 @@
     },
     "options_remove_filter_confirm_modal_ok_button": {
         "message": "Usuń"
-    },
-    "options_nav_better_than_extension": {
-        "message": "Dlaczego pełnoprawny program AdGuard jest lepszy niż rozszerzenie?"
-    },
-    "options_nav_compare": {
-        "message": "Jak się mają do siebie"
-    },
-    "options_nav_hide": {
-        "message": "Ukryj"
     },
     "options_filters_search": {
         "message": "Wyszukaj"
@@ -1015,5 +1009,8 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Kontynuuj mimo to"
+    },
+    "close_button_title": {
+        "message": "Zamknij"
     }
 }

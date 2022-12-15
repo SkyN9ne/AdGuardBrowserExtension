@@ -5,7 +5,7 @@ plan:
   key: BERELEASESPECS
   name: browser extension - build release
 variables:
-  dockerNode: adguard/node-ssh:15.14--6
+  dockerNode: adguard/node-ssh:14.18--2
 
 stages:
   - Build:
@@ -25,21 +25,25 @@ Build:
   tasks:
     - checkout:
         force-clean-build: 'true'
-    - checkout:
-        repository: extensions-private
-        path: private
-        force-clean-build: 'true'
     - script:
         interpreter: SHELL
         scripts:
           - |-
             set -x
             set -e
+
+            # Fix mixed logs
+            exec 2>&1
+
             ls -la
 
             yarn install ${bamboo.varsYarn}
             yarn locales:validate --min
-            CREDENTIALS_PASSWORD="${bamboo.extensionsPassphrase}" yarn release
+            yarn release
+
+            # zip source files for publishing on AMO
+            git ls-files | zip -@ build/release/source.zip
+
             rm -rf node_modules
     - inject-variables:
         file: build/release/build.txt
@@ -74,6 +78,11 @@ Build:
     - name: opera.zip
       location: build/release
       pattern: opera.zip
+      shared: true
+      required: true
+    - name: source.zip
+      location: build/release
+      pattern: source.zip
       shared: true
       required: true
   requirements:

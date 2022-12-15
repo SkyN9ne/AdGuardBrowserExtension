@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Többet akar blokkolni?"
     },
+    "popup_header_update_filters": {
+        "message": "Szűrő frissítések ellenőrzése"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "A fájl kiterjesztése %extension% kell, hogy legyen"
     },
@@ -50,6 +53,9 @@
     "options_popup_description": {
         "message": "Feliratkozik erre a szűrőre."
     },
+    "options_popup_url_title": {
+        "message": "Új szűrő feliratkozás"
+    },
     "options_popup_url_placeholder": {
         "message": "Adjon meg egy URL-t vagy elérési utat"
     },
@@ -63,10 +69,10 @@
         "message": "Hiba"
     },
     "options_popup_check_false_description": {
-        "message": "Hiba történt az egyéni szűrő hozzáadásakor."
+        "message": "Hiba történt az egyéni szűrő hozzáadása során."
     },
     "options_popup_try_again_button": {
-        "message": "Próbálja újra"
+        "message": "Újrapróbálkozás"
     },
     "options_popup_filter_title": {
         "message": "Cím:"
@@ -333,7 +339,7 @@
         "message": "Webhely biztonságának ellenőrzése"
     },
     "popup_reset_custom_rules": {
-        "message": "Egyéni szabályok visszaállítása ezen az oldalon"
+        "message": "Felhasználói szabályok törlése ezen az oldalon"
     },
     "popup_open_settings": {
         "message": "AdGuard beállítások"
@@ -495,7 +501,7 @@
         "message": "Feloldás"
     },
     "filtering_modal_remove_user": {
-        "message": "Eltávolítás a felhasználói szabályok közül"
+        "message": "Szabály törlése"
     },
     "filtering_modal_preview_request_button": {
         "message": "Előnézet"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Ne mutassa a teljes URL-t"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Teljes szabály megjelenítése"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Teljes szabály elrejtése"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Teljes elem megjelenítése"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Teljes elem elrejtése"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Másolás vágólapra"
@@ -612,7 +630,7 @@
         "message": "Téma"
     },
     "options_theme_selector_system": {
-        "message": "Rendszer"
+        "message": "Rendszer alapértelmezett"
     },
     "options_theme_selector_light": {
         "message": "Világos"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Beállítások importálása"
+    },
+    "options_report_bug": {
+        "message": "Hiba jelentése"
+    },
+    "options_leave_feedback": {
+        "message": "Visszajelzés küldése"
     },
     "options_privacy": {
         "message": "Lopakodó mód"
@@ -639,7 +663,7 @@
         "message": "Ellenőrzés..."
     },
     "options_set_update_interval": {
-        "message": "Szűrőfrissítési gyakoriság"
+        "message": "Szűrők automatikus frissítése"
     },
     "options_set_update_interval_desc": {
         "message": "A hatékonyabb blokkolás érdekében a szűrőket rendszeresen frissíteni kell."
@@ -669,7 +693,7 @@
         "message": "Adathalászat- és kártevők elleni védelem"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Annak ellenőrzése a <a>saját szolgáltatásunkkal<\/a>, hogy egy domain veszélyes-e."
+        "message": "Az AdGuard Böngészési Biztonság moduljának engedélyezése, amely felismeri a potenciálisan rosszindulatú és adathalász webhelyeket azáltal, hogy összeveti őket egy online adatbázissal. <a>További információ<\/a>"
     },
     "options_site": {
         "message": "Hivatalos webhely"
@@ -774,13 +798,13 @@
         "message": "Követési paraméterek levágása"
     },
     "options_strip_tracking_params_description": {
-        "message": "Ha engedélyezve van, az AdGuard URL Követési szűrőt használjuk ahhoz, hogy eltávolítsuk a nyomkövetésre használt paramétereket az oldalak URL-jeiből."
+        "message": "Az AdGuard URL Tracking filter segítségével eltávolítja a paramétereket a webes kérésekből."
     },
     "options_block_known_trackers_title": {
-        "message": "Ismert nyomkövetők blokkolása"
+        "message": "Nyomkövetők blokkolása"
     },
     "options_block_known_trackers_description": {
-        "message": "Ha engedélyezve van, az AdGuard Nyomkövetés Elleni szűrője blokkolja az ismert nyomkövetőket."
+        "message": "Az AdGuard Tracking Protection szűrő segítségével blokkolja a nyomkövetőket és az elemző eszközöket."
     },
     "options_third_party_title": {
         "message": "Harmadik féltől származó sütik önmegsemmisítése"
@@ -822,7 +846,7 @@
         "message": "Védelem kapcsoló"
     },
     "short_name": {
-        "message": "AdGuard Hirdetésblokkoló"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Névjegy"
@@ -849,13 +873,10 @@
         "message": "Eltávolítás"
     },
     "options_nav_better_than_extension": {
-        "message": "Miért jobb az AdGuard teljes értékű programja, mint a bővítmény?"
+        "message": "Miért jobb az AdGuard alkalmazás, mint a böngészőbővítmény?"
     },
     "options_nav_compare": {
-        "message": "Hogyan kerülnek összehasonlításra"
-    },
-    "options_nav_hide": {
-        "message": "Elrejtés"
+        "message": "Összehasonlítás"
     },
     "options_filters_search": {
         "message": "Keresés"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Folytatás ennek ellenére"
+    },
+    "text_collapser_show_default": {
+        "message": "Teljes szöveg megjelenítése"
+    },
+    "text_collapser_hide_default": {
+        "message": "Teljes szöveg elrejtése"
+    },
+    "close_button_title": {
+        "message": "Bezárás"
     }
 }

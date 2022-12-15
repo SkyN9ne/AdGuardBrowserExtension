@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Vill du blockera mer?"
     },
+    "popup_header_update_filters": {
+        "message": "Kontrollera om det finns uppdateringar"
+    },
     "popup_adguard_for_ios": {
         "message": "AdGuard för iOS"
     },
@@ -43,6 +46,9 @@
     },
     "options_popup_description": {
         "message": "Du kommer att abonnera på det här filtret."
+    },
+    "options_popup_url_title": {
+        "message": "Ny filterprenumeration"
     },
     "options_popup_url_placeholder": {
         "message": "Skriv in URL eller sökväg"
@@ -178,6 +184,9 @@
     },
     "popup_site_filtering_state_paused": {
         "message": "Skyddet är pausat"
+    },
+    "popup_tab_blocked_all_count": {
+        "message": "Totalt: %num%"
     },
     "popup_statistics_total": {
         "message": "Totalt"
@@ -395,9 +404,6 @@
     "filtering_modal_unblock": {
         "message": "Avblockera"
     },
-    "filtering_modal_remove_user": {
-        "message": "Ta bort från det egna filtret"
-    },
     "filtering_modal_preview_request_button": {
         "message": "Förhandsgranska"
     },
@@ -430,9 +436,6 @@
     },
     "filtering_modal_copied": {
         "message": "Kopierad"
-    },
-    "filtering_log_filter_regular": {
-        "message": "Regular"
     },
     "filtering_log_filter_allowed": {
         "message": "Vitlistade"
@@ -485,6 +488,12 @@
     "options_import_settings": {
         "message": "Importera inställningar"
     },
+    "options_report_bug": {
+        "message": "Rapportera ett fel"
+    },
+    "options_leave_feedback": {
+        "message": "Lämna feedback"
+    },
     "options_privacy": {
         "message": "Integritet"
     },
@@ -493,9 +502,6 @@
     },
     "options_check_update": {
         "message": "Kolla efter uppdateringar"
-    },
-    "options_set_update_interval": {
-        "message": "Filterppdateringsintervall"
     },
     "options_userfilter_export": {
         "message": "Exportera"
@@ -529,6 +535,9 @@
     },
     "options_open_log": {
         "message": "Öppna filtreringslogg"
+    },
+    "options_reset_stats": {
+        "message": "Rensa statistik"
     },
     "options_reset_stats_done": {
         "message": "Statistik har nollställts"
@@ -603,7 +612,7 @@
         "message": "Skyddsomkopplare"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Om"
@@ -626,11 +635,8 @@
     "options_remove_filter_confirm_modal_ok_button": {
         "message": "Ta bort"
     },
-    "options_nav_compare": {
-        "message": "Jämför dem"
-    },
-    "options_nav_hide": {
-        "message": "Dölj"
+    "options_nav_better_than_extension": {
+        "message": "Varför är AdGuard-appen bättre än tillägget?"
     },
     "options_filters_search": {
         "message": "Sök"
@@ -657,7 +663,7 @@
         "message": "Media"
     },
     "options_stealth_general_title": {
-        "message": "General"
+        "message": "Allmänt"
     },
     "options_stealth_miscellaneous_title": {
         "message": "Annat"
@@ -685,5 +691,8 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Fortsätt ändå"
+    },
+    "close_button_title": {
+        "message": "Stäng"
     }
 }

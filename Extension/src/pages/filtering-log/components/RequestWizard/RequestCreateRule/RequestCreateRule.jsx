@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, { useContext, useRef } from 'react';
 import cn from 'classnames';
 import { observer } from 'mobx-react';
@@ -38,24 +56,29 @@ const RequestCreateRule = observer(() => {
 
     const renderPatterns = (patterns) => {
         const patternItems = patterns.map((pattern, idx) => (
-            <label
-                /* eslint-disable-next-line react/no-array-index-key */
-                key={`pattern${idx}`}
-                className="radio-button-label"
-                htmlFor={pattern}
-            >
+            <div className="radio-button-wrapper">
                 <input
                     type="radio"
                     id={pattern}
                     name="rulePattern"
+                    className="radio-button-input"
                     value={pattern}
                     checked={pattern === wizardStore.rulePattern}
                     onChange={handlePatternChange(pattern)}
                 />
-                {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                <div className="radio-button" />
-                {pattern}
-            </label>
+                <label
+                    /* eslint-disable-next-line react/no-array-index-key */
+                    key={`pattern${idx}`}
+                    className="radio-button-label"
+                    htmlFor={pattern}
+                >
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <div className="radio-button" />
+                </label>
+                <div className="radio-button-desc">
+                    {pattern}
+                </div>
+            </div>
         ));
 
         return (
@@ -85,26 +108,38 @@ const RequestCreateRule = observer(() => {
             }
 
             // $removeparam option is available only for requests with query
+            // and is not shown for cookie rules
             if (id === RULE_OPTIONS.RULE_REMOVE_PARAM
-                && logStore.selectedEvent.requestUrl?.indexOf('?') < 0) {
+                && (logStore.selectedEvent.requestUrl?.indexOf('?') < 0
+                    || logStore.selectedEvent.requestRule?.cookieRule)) {
                 return null;
             }
 
             return (
-                // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                <label className="checkbox-label" key={id}>
+                <div className="checkbox-wrapper">
                     <input
+                        id={id}
+                        className="checkbox-input"
                         type="checkbox"
                         name={id}
                         value={id}
                         onChange={handleOptionsChange(id)}
                         checked={wizardStore.ruleOptions[id].checked}
                     />
-                    <div className="custom-checkbox">
-                        <Icon id="#checked" classname="icon--checked" />
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label
+                        htmlFor={id}
+                        className="checkbox-label"
+                        key={id}
+                    >
+                        <div className="custom-checkbox">
+                            <Icon id="#checked" classname="icon--checked" />
+                        </div>
+                    </label>
+                    <div className="checkbox-label__desc">
+                        {label}
                     </div>
-                    {label}
-                </label>
+                </div>
             );
         });
 
@@ -122,7 +157,7 @@ const RequestCreateRule = observer(() => {
     };
 
     const handleAddRuleClick = async () => {
-        await messenger.addUserRule(wizardStore.rule);
+        await messenger.filteringLogAddUserRule(wizardStore.rule);
         const addedRuleState = wizardStore.requestModalState === WIZARD_STATES.BLOCK_REQUEST
             ? ADDED_RULE_STATES.BLOCK
             : ADDED_RULE_STATES.UNBLOCK;
@@ -161,11 +196,11 @@ const RequestCreateRule = observer(() => {
                 <button
                     type="button"
                     onClick={handleBackClick}
-                    className="request-modal__navigation request-modal__navigation--back"
+                    className="request-modal__navigation request-modal__navigation--button"
                 >
-                    <Icon classname="icon--contain" id="#arrow-left" />
+                    <Icon classname="icon--24" id="#arrow-left" />
+                    <span className="request-modal__header">{title}</span>
                 </button>
-                <span className="request-modal__header">{title}</span>
             </div>
             <div ref={ref} className="request-modal__content">
                 <div className="request-info">

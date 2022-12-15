@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "もっとブロックするには？"
     },
+    "popup_header_update_filters": {
+        "message": "フィルタの更新を確認する"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "ファイル拡張子は %extension% になっている必要があります"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "このフィルタへのサブスクリプションが有効になります。"
+    },
+    "options_popup_url_title": {
+        "message": "新しいフィルタ・サブスクリプション"
     },
     "options_popup_url_placeholder": {
         "message": "URLまたはファイルパスを入力してください"
@@ -333,7 +339,7 @@
         "message": "サイトの安全性を確認する"
     },
     "popup_reset_custom_rules": {
-        "message": "このページに対するユーザールールを全部リセット"
+        "message": "このページに対するユーザールールを全部削除する"
     },
     "popup_open_settings": {
         "message": "AdGuard 設定"
@@ -393,7 +399,7 @@
         "message": "このウェブサイトでフィルタリングを無効にする"
     },
     "context_update_antibanner_filters": {
-        "message": "フィルタの アップデートを確認する"
+        "message": "フィルタの更新を確認する"
     },
     "alert_popup_filter_enabled_title": {
         "message": "フィルタの自動有効化"
@@ -495,7 +501,7 @@
         "message": "ブロックを解除する"
     },
     "filtering_modal_remove_user": {
-        "message": "ユーザールールから除去する"
+        "message": "ルールを削除する"
     },
     "filtering_modal_preview_request_button": {
         "message": "プレビュー"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "フルURLを非表示にする"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "ルールの全文を表示する"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "ルールの全文を非表示にする"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "要素の全文を表示する"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "要素の全文を非表示にする"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "クリップボードにコピー"
@@ -612,7 +630,7 @@
         "message": "カラーテーマ"
     },
     "options_theme_selector_system": {
-        "message": "システムのテーマに合わせる"
+        "message": "システムに合わせる"
     },
     "options_theme_selector_light": {
         "message": "ライト"
@@ -626,11 +644,17 @@
     "options_import_settings": {
         "message": "設定をインポート"
     },
+    "options_report_bug": {
+        "message": "バグ・不具合を報告する"
+    },
+    "options_leave_feedback": {
+        "message": "ご提案・問題を送信"
+    },
     "options_privacy": {
         "message": "ステルス・モード"
     },
     "options_update_antibanner_filters": {
-        "message": "フィルタのアップデートを確認する"
+        "message": "フィルタの更新を確認する"
     },
     "options_check_update": {
         "message": "フィルタ更新を確認する"
@@ -639,7 +663,7 @@
         "message": "確認中…"
     },
     "options_set_update_interval": {
-        "message": "フィルタ更新期間"
+        "message": "フィルタの自動更新"
     },
     "options_set_update_interval_desc": {
         "message": "より効果的にブロックするためには、フィルタを頻繁に更新する必要があります。"
@@ -669,7 +693,7 @@
         "message": "フィッシング詐欺とマルウェアからの保護"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "訪問するドメインが危険かどうかを、<a>AdGuardのウェブサービス<\/a>が確認します。"
+        "message": "「AdGuardブラウジングセキュリティ」機能が、訪問するサイトをオンラインデータベースと照合し、悪意のあるサイトやフィッシングサイトを検出します。<a>詳しくはこちら<\/a>"
     },
     "options_site": {
         "message": "公式ウェブサイト"
@@ -774,13 +798,13 @@
         "message": "追跡パラメータを削除する"
     },
     "options_strip_tracking_params_description": {
-        "message": "オンにしますと、「AdGuard URL追跡防止フィルタ」がページのURLから追跡パラメーターを取り除きます。"
+        "message": "「AdGuard URL追跡防止フィルタ」を使ってページのURLから追跡パラメーターを取り除きます。"
     },
     "options_block_known_trackers_title": {
-        "message": "既知のすべての追跡をブロックする"
+        "message": "トラッカー（個人情報追跡）をブロックする"
     },
     "options_block_known_trackers_description": {
-        "message": "有効にすると、「AdGuard追跡防止フィルタ」が既知のトラッカー（個人情報追跡ソフトウェア）をブロックするために使用されます。"
+        "message": "「AdGuard追跡防止フィルタ」を使ってトラッカー（個人情報追跡ソフトウェア）とウェブ分析ツールをブロックします。"
     },
     "options_third_party_title": {
         "message": "サードパーティクッキーの自動削除"
@@ -822,7 +846,7 @@
         "message": "保護スイッチ"
     },
     "short_name": {
-        "message": "AdGuard 広告ブロッカー"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "AdGuardについて"
@@ -849,13 +873,10 @@
         "message": "削除"
     },
     "options_nav_better_than_extension": {
-        "message": "アプリ版AdGuardが拡張機能版よりも優れている理由は？"
+        "message": "AdGuardアプリ版が拡張機能版よりも優れている理由は？"
     },
     "options_nav_compare": {
         "message": "比較を見る"
-    },
-    "options_nav_hide": {
-        "message": "非表示"
     },
     "options_filters_search": {
         "message": "検索"
@@ -876,7 +897,7 @@
         "message": "ポップアップウィンドウやクッキー通知などのような煩わしい通知を削除します。"
     },
     "group_description_security": {
-        "message": "マルウェア、フィッシング詐欺やその他のオンライン危険から保護します。"
+        "message": "マルウェア、フィッシング詐欺やその他のオンライン脅威から保護します。"
     },
     "group_description_miscellaneous": {
         "message": "AdGuardを使用したウェブサーフィンをさらに微調整するための追加設定です。"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "そのままページを開く"
+    },
+    "text_collapser_show_default": {
+        "message": "全文を表示する"
+    },
+    "text_collapser_hide_default": {
+        "message": "全文を非表示にする"
+    },
+    "close_button_title": {
+        "message": "閉じる"
     }
 }

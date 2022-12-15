@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import { createContext } from 'react';
 import browser from 'webextension-polyfill';
 import {
@@ -13,7 +31,7 @@ import punycode from 'punycode/';
 import { messenger } from '../../services/messenger';
 import { POPUP_STATES, TIME_RANGES, VIEW_STATES } from '../constants';
 import { reactTranslator } from '../../../common/translators/reactTranslator';
-import { MESSAGE_TYPES } from '../../../common/constants';
+import { MessageType } from '../../../common/messages';
 
 // Do not allow property change outside of store actions
 configure({ enforceActions: 'observed' });
@@ -92,6 +110,10 @@ class PopupStore {
         const currentTab = tabs?.[0];
 
         const response = await messenger.getTabInfoForPopup(currentTab?.id);
+
+        if (!response) {
+            return;
+        }
 
         runInAction(() => {
             const {
@@ -302,24 +324,25 @@ class PopupStore {
     @action
     closePromoNotification = async () => {
         this.promoNotification = null;
-        await messenger.sendMessage(MESSAGE_TYPES.SET_NOTIFICATION_VIEWED, { withDelay: false });
+        await messenger.sendMessage(MessageType.SetNotificationViewed, { withDelay: false });
     };
 
     @action
     openPromoNotificationUrl = async () => {
-        const { url } = this.promoNotification;
+        let { url } = this.promoNotification;
+        url = `${url}&from=popup`;
         runInAction(() => {
             this.promoNotification = null;
         });
-        await messenger.sendMessage(MESSAGE_TYPES.SET_NOTIFICATION_VIEWED, { withDelay: false });
-        await messenger.sendMessage('openTab', { url });
+        await messenger.sendMessage(MessageType.SetNotificationViewed, { withDelay: false });
+        await messenger.sendMessage(MessageType.OpenTab, { url });
     };
 
     @action
     updateBlockedStats = (tabInfo) => {
         this.totalBlocked = tabInfo.totalBlocked;
         this.totalBlockedTab = tabInfo.totalBlockedTab;
-    }
+    };
 
     @action
     onSettingUpdated = (name, value) => {
@@ -335,7 +358,7 @@ class PopupStore {
             return null;
         }
 
-        return this.settings.values[this.settings.names.APPEARANCE_THEME];
+        return this.settings.values[this.settings.names.AppearanceTheme];
     }
 }
 

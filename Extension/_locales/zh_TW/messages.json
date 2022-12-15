@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "想要封鎖更多嗎？"
     },
+    "popup_header_update_filters": {
+        "message": "檢查過濾器更新"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "該副檔名必須為 %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "您將訂閱該過濾器。"
+    },
+    "options_popup_url_title": {
+        "message": "新的過濾器訂閱"
     },
     "options_popup_url_placeholder": {
         "message": "輸入網址或檔案路徑"
@@ -333,7 +339,7 @@
         "message": "檢查網站安全性"
     },
     "popup_reset_custom_rules": {
-        "message": "重置關於此頁面之所有的使用者規則"
+        "message": "移除關於此頁面之所有的使用者規則"
     },
     "popup_open_settings": {
         "message": "AdGuard 設定"
@@ -495,7 +501,7 @@
         "message": "解除封鎖"
     },
     "filtering_modal_remove_user": {
-        "message": "從使用者規則中移除"
+        "message": "刪除規則"
     },
     "filtering_modal_preview_request_button": {
         "message": "預覽"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "隱藏完整的網址"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "顯示完整的規則"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "隱藏完整的規則"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "顯示完整的元件"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "隱藏完整的元件"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "複製到剪貼簿"
@@ -612,7 +630,7 @@
         "message": "主題"
     },
     "options_theme_selector_system": {
-        "message": "系統"
+        "message": "系統預設"
     },
     "options_theme_selector_light": {
         "message": "淺色"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "匯入設定"
+    },
+    "options_report_bug": {
+        "message": "報告程式錯誤"
+    },
+    "options_leave_feedback": {
+        "message": "留下回饋意見"
     },
     "options_privacy": {
         "message": "隱匿模式"
@@ -639,7 +663,7 @@
         "message": "正在檢查…"
     },
     "options_set_update_interval": {
-        "message": "過濾器更新間隔"
+        "message": "自動更新的過濾器"
     },
     "options_set_update_interval_desc": {
         "message": "為了更有效的封鎖，過濾器需要被定期地更新。"
@@ -669,7 +693,7 @@
         "message": "網路釣魚和惡意軟體防護"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "用<a>我們的網路服務<\/a>來檢查網域是否危險。"
+        "message": "透過對照線上資料庫來檢查潛在地惡意的和網路釣魚的網站，啟用偵測它們之 AdGuard 瀏覽安全模組。<a>閱讀更多<\/a>"
     },
     "options_site": {
         "message": "官方的網站"
@@ -774,13 +798,13 @@
         "message": "移除追蹤參數"
     },
     "options_strip_tracking_params_description": {
-        "message": "當被啟用時，AdGuard 網址追蹤過濾器被用於從頁面的網址中移除追蹤參數"
+        "message": "用 AdGuard 網址追蹤過濾器從網路請求中移除參數。"
     },
     "options_block_known_trackers_title": {
-        "message": "封鎖已知的追蹤器"
+        "message": "封鎖追蹤器"
     },
     "options_block_known_trackers_description": {
-        "message": "當被啟用時，AdGuard 追蹤防護過濾器被用於封鎖已知的追蹤器"
+        "message": "用 AdGuard 追蹤防護過濾器來封鎖追蹤器和網路分析工具。"
     },
     "options_third_party_title": {
         "message": "第三方的 cookies 之自毀"
@@ -822,7 +846,7 @@
         "message": "防護開關"
     },
     "short_name": {
-        "message": "AdGuard 廣告封鎖器"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "關於"
@@ -849,13 +873,10 @@
         "message": "移除"
     },
     "options_nav_better_than_extension": {
-        "message": "為什麼全面的 AdGuard 程式比擴充功能更好？"
+        "message": "為什麼 AdGuard 程式比擴充功能更好？"
     },
     "options_nav_compare": {
-        "message": "它們如何比較"
-    },
-    "options_nav_hide": {
-        "message": "隱藏"
+        "message": "比較"
     },
     "options_filters_search": {
         "message": "搜尋"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "無論如何繼續"
+    },
+    "text_collapser_show_default": {
+        "message": "顯示全文"
+    },
+    "text_collapser_hide_default": {
+        "message": "隱藏全文"
+    },
+    "close_button_title": {
+        "message": "關閉"
     }
 }

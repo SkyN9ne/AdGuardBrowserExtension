@@ -17,6 +17,9 @@
     "popup_header_cta_link": {
         "message": "Vil du blokkere mer?"
     },
+    "popup_header_update_filters": {
+        "message": "Se etter filteroppdateringer"
+    },
     "popup_adguard_for_ios": {
         "message": "AdGuard for iOS"
     },
@@ -40,6 +43,9 @@
     },
     "options_popup_description": {
         "message": "Du vil abonnere på det filteret."
+    },
+    "options_popup_url_title": {
+        "message": "Nytt filterabonnement"
     },
     "options_popup_url_placeholder": {
         "message": "Skriv inn URL eller filbane"
@@ -410,9 +416,6 @@
     "filtering_modal_unblock": {
         "message": "Fjern blokkering"
     },
-    "filtering_modal_remove_user": {
-        "message": "Fjern fra brukerfiltre"
-    },
     "filtering_modal_preview_request_button": {
         "message": "Forhåndsvisning"
     },
@@ -495,7 +498,7 @@
         "message": "Theme"
     },
     "options_theme_selector_system": {
-        "message": "System"
+        "message": "Systemstandard"
     },
     "options_theme_selector_light": {
         "message": "Lyst"
@@ -509,6 +512,12 @@
     "options_import_settings": {
         "message": "Importer innstillinger"
     },
+    "options_report_bug": {
+        "message": "Meld inn en feil"
+    },
+    "options_leave_feedback": {
+        "message": "Gi tilbakemelding"
+    },
     "options_privacy": {
         "message": "Snikemodus"
     },
@@ -520,9 +529,6 @@
     },
     "options_check_update_progress": {
         "message": "Sjekker..."
-    },
-    "options_set_update_interval": {
-        "message": "Filteroppdateringsvanlighet"
     },
     "options_userfilter_export": {
         "message": "Eksporter"
@@ -621,7 +627,7 @@
         "message": "Beskyttelsesbryter"
     },
     "short_name": {
-        "message": "AdGuard-annonseblokkerer"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Om"
@@ -644,11 +650,8 @@
     "options_remove_filter_confirm_modal_ok_button": {
         "message": "Fjern"
     },
-    "options_nav_compare": {
-        "message": "Sammenligning av dem"
-    },
-    "options_nav_hide": {
-        "message": "Skjul"
+    "options_nav_better_than_extension": {
+        "message": "Hvorfor er AdGuard-appen bedre enn utvidelsen?"
     },
     "options_filters_search": {
         "message": "Søk"
@@ -715,6 +718,9 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Fortsett likevel"
+    },
+    "close_button_title": {
+        "message": "Lukk"
     },
     "description": {
         "message": "Unmatched adblock extension against advertising and pop-ups. Blocks ads on Facebook, YouTube and all other websites."

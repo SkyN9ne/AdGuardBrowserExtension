@@ -1,5 +1,22 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { Filter } from '../Filter';
@@ -28,12 +45,11 @@ const SearchGroup = ({
     return (
         <>
             <div className={groupClassName}>
-                <div
-                    role="button"
+                <button
+                    type="button"
                     tabIndex={0}
                     className="setting__area setting__area_group"
                     onClick={groupClickHandler}
-                    onKeyUp={groupClickHandler}
                 >
                     <Icon
                         id={`#setting-${groupId}`}
@@ -44,7 +60,7 @@ const SearchGroup = ({
                             {groupName}
                         </div>
                     </div>
-                </div>
+                </button>
                 <div className="setting__inline-control setting__inline-control_group">
                     <Setting
                         id={groupId}
@@ -61,19 +77,6 @@ const SearchGroup = ({
             </div>
         </>
     );
-};
-
-SearchGroup.defaultProps = {
-    filtersToShow: [],
-};
-
-SearchGroup.propTypes = {
-    groupName: PropTypes.string.isRequired,
-    groupId: PropTypes.number.isRequired,
-    checkboxHandler: PropTypes.func.isRequired,
-    checkboxValue: PropTypes.bool.isRequired,
-    filtersToShow: PropTypes.arrayOf(PropTypes.object),
-    groupClickHandler: PropTypes.func.isRequired,
 };
 
 export { SearchGroup };

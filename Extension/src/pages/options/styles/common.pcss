@@ -2,13 +2,18 @@
     box-sizing: border-box;
 }
 
+:root {
+    color-scheme: light dark;
+}
+
 html,
 .root {
     height: 100%;
 }
 
 body {
-    font-family: Roboto, "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Ubuntu, Arial, sans-serif;
+    font-family: 'Roboto Flex', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Ubuntu, Arial, sans-serif;
+    font-optical-sizing: none;
     margin: 0;
     height: 100%;
     font-size: 16px;
@@ -29,11 +34,21 @@ h2 {
     font-size: inherit;
 }
 
+a {
+    &:focus-visible {
+        outline: 2px solid var(--outline);
+    }
+}
+
 button,
 input,
 textarea,
 select {
     font-family: inherit;
+
+    &:focus-visible {
+        outline: 2px solid var(--outline);
+    }
 }
 
 /* custom checkbox */
@@ -124,6 +139,30 @@ label.checkbox-label {
     display: flex;
 }
 
+.links-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
+
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    &__item {
+        color: var(--gray4a);
+        margin-bottom: 15px;
+        font-size: 16px;
+        text-decoration: underline;
+        cursor: pointer;
+
+        @media (prefers-color-scheme: dark) {
+            color: var(--gray300);
+        }
+    }
+}
+
 .footer {
     width: 100%;
     flex: 0 0 auto;
@@ -162,10 +201,12 @@ label.checkbox-label {
             }
 
             &:hover {
-                background-color: var(--gray100);
+                @media (min-width: 1024px) {
+                    background-color: var(--gray100);
 
-                @media (prefers-color-scheme: dark) {
-                    background-color: var(--gray900);
+                    @media (prefers-color-scheme: dark) {
+                        background-color: var(--gray900);
+                    }
                 }
             }
         }
@@ -292,7 +333,6 @@ label.checkbox-label {
     }
 
     &__btn {
-        outline: none;
         margin: 12px;
         position: relative;
 
@@ -309,6 +349,34 @@ label.checkbox-label {
             @media (prefers-color-scheme: dark) {
                 background-color: var(--gray900);
             }
+        }
+    }
+
+    &__input-file {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+
+        &:focus + .links-menu__item {
+            outline: 2px solid var(--outline);
+        }
+    }
+
+    &__label {
+        margin: 12px;
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: flex-start;
+        align-content: center;
+    }
+
+    &__title {
+        display: none;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+
+        @media (min-width: 640px) {
+            display: block;
         }
     }
 }
@@ -350,6 +418,8 @@ select:focus {
 
 
 .light-mode {
+    color-scheme: light;
+
     body {
         background-color: var(--transparent);
         color: var(--gray-base);
@@ -402,9 +472,17 @@ select:focus {
     .actions__btn--active {
         background-color: var(--gray100);
     }
+
+    .links-menu {
+        &__item {
+            color: var(--gray4a);
+        }
+    }
 }
 
 .dark-mode {
+    color-scheme: dark;
+
     body {
         background-color: var(--black);
         color: var(--gray300)
@@ -455,5 +533,11 @@ select:focus {
 
     .actions__btn--active {
         background-color: var(--gray900);
+    }
+
+    .links-menu {
+        &__item {
+            color:  var(--gray300);
+        }
     }
 }

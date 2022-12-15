@@ -1,8 +1,8 @@
-! Checksum: Qtq9dqeM7n37mp6pEATwMA
+! Checksum: 4NiMCHwyWGexFSGSMS0OFg
 ! Title: AdGuard Experimental filter
 ! Description: Filter designed to test certain hazardous filtering rules before they are added to the basic filters.
-! Version: 2.0.0.95
-! TimeUpdated: 2022-01-13T12:31:39+00:00
+! Version: 2.0.1.3
+! TimeUpdated: 2022-08-24T07:31:42+00:00
 ! Expires: 4 days (update frequency)
 ! Homepage: https://github.com/AdguardTeam/AdGuardFilters
 ! License: https://github.com/AdguardTeam/AdguardFilters/blob/master/LICENSE
@@ -147,13 +147,13 @@
 ! This section contain any type of rule grouped by domain.
 !
 ! main youtube page - changing view for the first row of elements
-www.youtube.com#$?##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) > #contents:first-child { max-width: unset !important; }
-www.youtube.com#$?##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) ytd-rich-grid-media { max-width: unset !important; }
-www.youtube.com#$?##contents ytd-rich-grid-row:has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) { --ytd-rich-grid-items-per-row: 1 !important; }
+www.youtube.com#$?##contents ytd-rich-grid-row:-abp-has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) > #contents:first-child { max-width: unset !important; }
+www.youtube.com#$?##contents ytd-rich-grid-row:-abp-has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) ytd-rich-grid-media { max-width: unset !important; }
+www.youtube.com#$?##contents ytd-rich-grid-row:-abp-has(> div[id="contents"] > ytd-rich-item-renderer[style="display: none !important;"]) { --ytd-rich-grid-items-per-row: 1 !important; }
 ! https://github.com/AdguardTeam/AdguardFilters/issues/96262
 developer.android.com,adssettings.google.com##sc-survey-survey-manager
 !
-! Whitelist
+! Allowlist
 ! http://adguard.com/filterrules.html#exclusionRules
 ! http://adguard.com/filterrules.html#hideRulesExceptions
 ! http://adguard.com/filterrules.html#cssInjectionExceptions
@@ -167,12 +167,6 @@ developer.android.com,adssettings.google.com##sc-survey-survey-manager
 !
 ! This file contains all experimental rules for Spyware filter.
 !
-/fbevents.js^
-/ads/beacon-
-/AppMeasurement-$script,domain=~mlb.com
-!
-||welcoming-carpets.tk^$third-party
-||creative-banana.tk^$third-party
 !-------------------------------------------------------------------!
 !------- Experimental rules for Social filter ----------------------!
 !-------------------------------------------------------------------!
@@ -243,8 +237,10 @@ developer.android.com,adssettings.google.com##sc-survey-survey-manager
 ! Rules which are restricted to one or more domains.
 ! This section contain any type of rule grouped by domain.
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/105359#issuecomment-1069375715
+ozerki.ru#?#header > div.popup:-abp-has(> div.popup__container div.rkf_popup_button > a[href="https://express.superapteka.ru/"])
 !
-! Whitelist
+! Allowlist
 !
 ! This section contains all kinds of exception rules.
 !
@@ -266,7 +262,6 @@ developer.android.com,adssettings.google.com##sc-survey-survey-manager
 ! Mobile advertising networks known rotator domains
 ! Used to show ads in mobile apps and websites
 !
-reddit.com##.CommentsPage > article[id][class][style*="z-index: 1;"]
 !-------------------------------------------------------------------!
 !---------------------- Dangerous rules ----------------------------!
 !-------------------------------------------------------------------!
@@ -277,8 +272,6 @@ reddit.com##.CommentsPage > article[id][class][style*="z-index: 1;"]
 !################## For advertisement ##################
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/64754
-! https://github.com/AdguardTeam/AdguardFilters/issues/63128
-tumblr.com###base-container div[style="height:0;display:flex;flex-direction:column;overflow:hidden"] + div:not([class]):not([id]) > div[class]:not([data-id]):not([class*=" "])
 !
 !################## For tracking ##################
 ||uim.tifbs.net/js/2048.js

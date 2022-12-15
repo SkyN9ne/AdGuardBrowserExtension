@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "רוצה לחסום יותר?"
     },
+    "popup_header_update_filters": {
+        "message": "בדוק אחר עדכוני מסננים"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "סיומת הקובץ חייבת להיות %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "תהיה רשום כמנוי אל המסנן הזה."
+    },
+    "options_popup_url_title": {
+        "message": "מינוי חדש של מסנן"
     },
     "options_popup_url_placeholder": {
         "message": "הכנס כתובת או נתיב קובץ"
@@ -99,19 +105,19 @@
         "message": "לשונית רקע"
     },
     "options_allowlist": {
-        "message": "רשימת התרה"
+        "message": "רשימת היתר"
     },
     "options_allowlist_desc": {
-        "message": "AdGuard אינו מסנן אתרים מרשימת ההתרה."
+        "message": "AdGuard אינו מסנן אתרים מרשימת ההיתר."
     },
     "options_allowlist_invert": {
-        "message": "הפוך את רשימת ההתרה"
+        "message": "הפוך את רשימת ההיתר"
     },
     "options_allowlist_invert_desc": {
-        "message": "בטל חסימת פרסומות בכל מקום מלבד רשימת ההתרה."
+        "message": "בטל חסימת פרסומות בכל מקום מלבד רשימת ההיתר."
     },
     "options_allowlist_alert_invert": {
-        "message": "רשימת ההתרה הפוכה. פרסומות נחסמות רק באתרים שהתווספו אליה. <a>השבת<\/a>"
+        "message": "רשימת ההיתר הפוכה. פרסומות נחסמות רק באתרים שהתווספו אליה. <a>השבת<\/a>"
     },
     "options_userfilter": {
         "message": "כללי משתמש"
@@ -123,7 +129,7 @@
         "message": "מצב סתר מוחל"
     },
     "filtering_log_in_allowlist": {
-        "message": "האתר ברשימת ההתרה"
+        "message": "האתר מותר"
     },
     "filtering_log_hide_referrer": {
         "message": "מפנה מוסתר מצדדים שלישיים"
@@ -333,7 +339,7 @@
         "message": "בדוק אבטחת אתר"
     },
     "popup_reset_custom_rules": {
-        "message": "אפס את כל כללי המשתמש עבור דף זה"
+        "message": "הסר את כל כללי המשתמש עבור דף זה"
     },
     "popup_open_settings": {
         "message": "הגדרות AdGuard"
@@ -345,7 +351,7 @@
         "message": "דוח אבטחה"
     },
     "popup_in_allowlist_android": {
-        "message": "ברשימת ההתרה"
+        "message": "ברשימת ההיתר"
     },
     "popup_site_protection_disabled_android": {
         "message": "ההגנה מושהית"
@@ -495,13 +501,13 @@
         "message": "בטל חסימה"
     },
     "filtering_modal_remove_user": {
-        "message": "הסר מכללי משתמש"
+        "message": "מחק כלל"
     },
     "filtering_modal_preview_request_button": {
         "message": "הצג מראש"
     },
     "filtering_modal_remove_allowlist": {
-        "message": "הסר מרשימת ההתרה"
+        "message": "הסר מרשימת ההיתר"
     },
     "filtering_modal_add_title": {
         "message": "הוספת כלל"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "הסתר מען מלא"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "הראה כלל מלא"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "הסתר כלל מלא"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "הראה אלמנט מלא"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "הסתר אלמנט מלא"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "העתק ללוח גזירה"
@@ -612,7 +630,7 @@
         "message": "ערכת נושא"
     },
     "options_theme_selector_system": {
-        "message": "מערכת"
+        "message": "ברירת מחדל"
     },
     "options_theme_selector_light": {
         "message": "בהירה"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "ייבא הגדרות"
+    },
+    "options_report_bug": {
+        "message": "דווח על תקל"
+    },
+    "options_leave_feedback": {
+        "message": "השאר משוב"
     },
     "options_privacy": {
         "message": "מצב סתר"
@@ -639,7 +663,7 @@
         "message": "בודק…"
     },
     "options_set_update_interval": {
-        "message": "מרווח עדכון מסננים"
+        "message": "עדכון אוטומטי של מסננים"
     },
     "options_set_update_interval_desc": {
         "message": "עבור חסימה יעילה יותר, המסננים צריכים להתעדכן באופן קבוע."
@@ -669,7 +693,7 @@
         "message": "הגנה מפני דיוג ונוזקה"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "בדוק אם תחומים מסוכנים עם <a>שירות הרשת שלנו<\/a>."
+        "message": "אפשר את מודול אבטחה גלישה של AdGuard אשר מגלה אתרים זדניים ואתרי דיוג פוטנציאליים ע״י בדיקתם כנגד מסד נתונים מקוון. <a>קרא עוד<\/a>"
     },
     "options_site": {
         "message": "האתר הרשמי"
@@ -774,13 +798,13 @@
         "message": "הסר פרמטרי מעקב"
     },
     "options_strip_tracking_params_description": {
-        "message": "כאשר מאופשר, מסנן מעקב מענים של AdGuard משמש כדי להסיר פרמטרי מעקב ממענים של דפים."
+        "message": "הסר פרמטרים מבקשות רשת עם מסנן מעקב מענים של AdGuard."
     },
     "options_block_known_trackers_title": {
-        "message": "חסום עוקבנים ידועים"
+        "message": "חסום עוקבנים"
     },
     "options_block_known_trackers_description": {
-        "message": "כאשר מאופשר, מסנן הגנה מפני מעקב של AdGuard משמש כדי לחסום עוקבנים ידועים."
+        "message": "חסום עוקבנים וכלי אנליטיקת רשת עם מסנן הגנה מפני מעקב של AdGuard."
     },
     "options_third_party_title": {
         "message": "השמדה עצמית של עוגיות צד שלישי"
@@ -822,7 +846,7 @@
         "message": "מתג הגנה"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "אודות"
@@ -849,13 +873,10 @@
         "message": "הסר"
     },
     "options_nav_better_than_extension": {
-        "message": "למה התוכנית השלמה של AdGuard טובה יותר מההרחבה?"
+        "message": "למה היישום של AdGuard טוב יותר מההרחבה?"
     },
     "options_nav_compare": {
-        "message": "איך הם בהשוואה"
-    },
-    "options_nav_hide": {
-        "message": "הסתר"
+        "message": "השווה"
     },
     "options_filters_search": {
         "message": "חפש"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "המשך בכל זאת"
+    },
+    "text_collapser_show_default": {
+        "message": "הראה מלל מלא"
+    },
+    "text_collapser_hide_default": {
+        "message": "הסתר מלל מלא"
+    },
+    "close_button_title": {
+        "message": "סגור"
     }
 }

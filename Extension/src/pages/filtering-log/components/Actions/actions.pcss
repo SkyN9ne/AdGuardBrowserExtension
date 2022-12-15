@@ -21,7 +21,7 @@
         height: 24px;
         margin: 0 16px 0 16px;
         padding: 0 16px 0 0;
-        border-right: 1px solid var(--gray300);
+        border-right: 1px solid var(--gray400);
 
         @media (prefers-color-scheme: dark) {
             border-right: 1px solid var(--gray400);
@@ -77,13 +77,10 @@
         font-size: 14px;
         font-weight: 400;
         background-color: transparent;
-
-        &:focus {
-            outline: none;
-        }
     }
 
     &__refresh-ico {
+        transform: translateY(-1px);
         margin-right: 5px;
     }
 
@@ -96,10 +93,6 @@
         background-color: transparent;
         display: flex;
         align-items: center;
-
-        &:focus {
-            outline: none;
-        }
     }
 
     &__del {

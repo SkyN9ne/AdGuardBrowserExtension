@@ -1,17 +1,53 @@
-import React, { useContext } from 'react';
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+import React, { useContext, useState, useRef } from 'react';
 import { observer } from 'mobx-react';
+import cn from 'classnames';
 
 import { popupStore } from '../../stores/PopupStore';
 import { messenger } from '../../../services/messenger';
 import { Icon } from '../../../common/components/ui/Icon';
+import { addMinDurationTime } from '../../../../common/common-script';
+import { MIN_FILTERS_UPDATE_DISPLAY_DURATION } from '../../../common/constants';
 
 import './header.pcss';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
 
 export const Header = observer(() => {
     const store = useContext(popupStore);
+    const [filtersUpdating, setFiltersUpdating] = useState(false);
 
     const { applicationFilteringDisabled } = store;
+
+    const updateFiltersWithMinDuration = addMinDurationTime(
+        messenger.updateFilters.bind(messenger),
+        MIN_FILTERS_UPDATE_DISPLAY_DURATION,
+    );
+
+    const refUpdatingBtn = useRef(null);
+
+    const handleUpdateFiltersClick = async () => {
+        refUpdatingBtn.current.blur();
+        setFiltersUpdating(true);
+        await updateFiltersWithMinDuration();
+        setFiltersUpdating(false);
+    };
 
     const handleEnableClick = async () => {
         await store.changeApplicationFilteringDisabled(false);
@@ -36,34 +72,51 @@ export const Header = observer(() => {
                 />
             </div>
             <div className="popup-header__buttons">
+                <button
+                    className={cn(
+                        'button',
+                        'popup-header__button',
+                        { 'updating-filters': filtersUpdating },
+                    )}
+                    ref={refUpdatingBtn}
+                    disabled={filtersUpdating}
+                    type="button"
+                    onClick={handleUpdateFiltersClick}
+                    title={reactTranslator.getMessage('popup_header_update_filters')}
+                >
+                    <Icon
+                        id="#update-filters"
+                        classname="icon--update-filters"
+                    />
+                </button>
                 {!applicationFilteringDisabled
-                && (
-                    <button
-                        className="button popup-header__button"
-                        type="button"
-                        onClick={handlePauseClick}
-                        title={reactTranslator.getMessage('context_disable_protection')}
-                    >
-                        <Icon
-                            id="#pause"
-                            classname="icon--button"
-                        />
-                    </button>
-                )}
+                    && (
+                        <button
+                            className="button popup-header__button"
+                            type="button"
+                            onClick={handlePauseClick}
+                            title={reactTranslator.getMessage('context_disable_protection')}
+                        >
+                            <Icon
+                                id="#pause"
+                                classname="icon--pause"
+                            />
+                        </button>
+                    )}
                 {applicationFilteringDisabled
-                && (
-                    <button
-                        className="button popup-header__button"
-                        type="button"
-                        onClick={handleEnableClick}
-                        title={reactTranslator.getMessage('context_enable_protection')}
-                    >
-                        <Icon
-                            id="#start"
-                            classname="icon--button icon--start"
-                        />
-                    </button>
-                )}
+                    && (
+                        <button
+                            className="button popup-header__button"
+                            type="button"
+                            onClick={handleEnableClick}
+                            title={reactTranslator.getMessage('context_enable_protection')}
+                        >
+                            <Icon
+                                id="#start"
+                                classname="icon--button icon--start"
+                            />
+                        </button>
+                    )}
                 <button
                     className="button popup-header__button"
                     type="button"
@@ -72,7 +125,7 @@ export const Header = observer(() => {
                 >
                     <Icon
                         id="#settings"
-                        classname="icon--button icon--settings"
+                        classname="icon--settings"
                     />
                 </button>
             </div>

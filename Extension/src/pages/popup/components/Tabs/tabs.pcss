@@ -16,6 +16,30 @@
     &__content {
         height: 168px;
         overflow: auto;
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--gray100);
+
+            @media (prefers-color-scheme: dark) {
+                background: var(--grayDark);
+            }
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--gray300);
+            border-radius: 20px;
+            border: 3px solid var(--gray100);
+
+            @media (prefers-color-scheme: dark) {
+                background-color: var(--gray700);
+                border: 3px solid var(--grayDark);
+            }
+        }
 
         @media (prefers-color-scheme: dark) {
             background-color: var(--black);
@@ -25,12 +49,12 @@
     &__tab {
         font-size: 16px;
         width: 50%;
-        height: 32px;
+        padding: 6px 5px;
+        line-height: 20px;
         border: 0;
         color: var(--gray700);
         cursor: pointer;
         text-align: center;
-        line-height: 32px;
         transition: var(--t3) color;
 
         &:hover {
@@ -67,6 +91,16 @@
 
         &__content {
             background-color: var(--white);
+
+            &::-webkit-scrollbar-track {
+                background: var(--gray100);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--gray300);
+                border-radius: 20px;
+                border: 3px solid var(--gray100);
+            }
         }
 
         &__tab {
@@ -92,6 +126,16 @@
 
         &__content {
             background-color: var(--black);
+
+            &::-webkit-scrollbar-track {
+                background: var(--grayDark);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--gray700);
+                border-radius: 20px;
+                border: 3px solid var(--grayDark);
+            }
         }
 
         &__tab {

@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import { merge } from 'webpack-merge';
 import fs from 'fs';
 import path from 'path';
@@ -40,9 +58,16 @@ const getClickToLoadSha = () => {
     return click2loadSource.sha;
 };
 
+/**
+ * Updates manifest object with new values
+ *
+ * @param env
+ * @param targetPart
+ * @param addedPart
+ * @returns {*&{content_security_policy: string, version: string}}
+ */
 export const updateManifest = (env, targetPart, addedPart) => {
-    const target = JSON.parse(targetPart.toString());
-    const union = merge(target, addedPart);
+    const union = merge(targetPart, addedPart);
 
     const devPolicy = env === ENVS.DEV
         ? { content_security_policy: `script-src 'self' 'unsafe-eval' '${getClickToLoadSha()}'; object-src 'self'` }
@@ -55,6 +80,22 @@ export const updateManifest = (env, targetPart, addedPart) => {
         ...union,
         ...devPolicy,
     };
+
+    return result;
+};
+
+/**
+ * Receives targetPart as a buffer updates it and returns it as a buffer
+ *
+ * @param env
+ * @param targetPart
+ * @param addedPart
+ * @returns {Buffer}
+ */
+export const updateManifestBuffer = (env, targetPart, addedPart) => {
+    const target = JSON.parse(targetPart.toString());
+
+    const result = updateManifest(env, target, addedPart);
 
     return Buffer.from(JSON.stringify(result, null, 4));
 };
@@ -98,7 +139,6 @@ export const updateLocalesMSGName = (content, env, browser) => {
 
     const messages = JSON.parse(content.toString());
     messages.name.message += suffix;
-    messages.short_name.message += suffix;
 
     return JSON.stringify(messages, null, 4);
 };
@@ -114,8 +154,9 @@ export const chunkArray = (arr, size) => arr.reduce((chunks, el, idx) => {
 
 /**
  * Gets strings for certain locale
+ *
  * @param {string} locale
- * @returns {Object}
+ * @returns {object}
  */
 export const getLocaleTranslations = async (locale) => {
     const filePath = path.join(LOCALES_ABSOLUTE_PATH, locale, LOCALE_DATA_FILENAME);
@@ -125,6 +166,7 @@ export const getLocaleTranslations = async (locale) => {
 
 /**
  * Compares two arrays
+ *
  * @param {Array} arr1
  * @param {Array} arr2
  * @returns {boolean}

@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "想要拦截更多内容？"
     },
+    "popup_header_update_filters": {
+        "message": "检查过滤器更新"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "文件扩展名应为 %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "您将订阅相应的过滤器。"
+    },
+    "options_popup_url_title": {
+        "message": "新过滤器订阅"
     },
     "options_popup_url_placeholder": {
         "message": "输入 URL 或路径"
@@ -333,7 +339,7 @@
         "message": "检测网站安全性"
     },
     "popup_reset_custom_rules": {
-        "message": "重置此页面所有的用户规则"
+        "message": "移除用于此网页上的所有用户规则"
     },
     "popup_open_settings": {
         "message": "AdGuard 设置"
@@ -495,7 +501,7 @@
         "message": "取消拦截"
     },
     "filtering_modal_remove_user": {
-        "message": "从用户过滤器内移除"
+        "message": "移除规则"
     },
     "filtering_modal_preview_request_button": {
         "message": "预览"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "隐藏完整 URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "显示完整规则"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "影藏完整规则"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "显示完整元素"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "影藏完整元素"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "复制到剪贴板"
@@ -612,7 +630,7 @@
         "message": "主题"
     },
     "options_theme_selector_system": {
-        "message": "系统"
+        "message": "系统默认"
     },
     "options_theme_selector_light": {
         "message": "浅色"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "导入设置"
+    },
+    "options_report_bug": {
+        "message": "报告错误"
+    },
+    "options_leave_feedback": {
+        "message": "留下反馈"
     },
     "options_privacy": {
         "message": "隐身模式"
@@ -639,7 +663,7 @@
         "message": "检查中..."
     },
     "options_set_update_interval": {
-        "message": "过滤器更新间隔"
+        "message": "自动更新过滤器"
     },
     "options_set_update_interval_desc": {
         "message": "为了更有效地拦截，过滤器需要定期更新。"
@@ -669,7 +693,7 @@
         "message": "钓鱼和恶意保护"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "<a>使用我们的网络服务<\/a>以查看网域是否危险。"
+        "message": "启用 AdGuard 的浏览安全模块。本模块与线上数据库进行核对后，可以检测潜在的恶意网站和钓鱼网站。<a>了解更多<\/a>"
     },
     "options_site": {
         "message": "官方网站"
@@ -774,13 +798,13 @@
         "message": "移除跟踪参数"
     },
     "options_strip_tracking_params_description": {
-        "message": "开启后，AdGuard URL 跟踪过滤器用于移除网页 URL 中的跟踪参数"
+        "message": "开启 AdGuard URL 跟踪过滤器移除网络请求的跟踪参数。"
     },
     "options_block_known_trackers_title": {
-        "message": "拦截已知跟踪器"
+        "message": "拦截跟踪器"
     },
     "options_block_known_trackers_description": {
-        "message": "启用后，将使用 AdGuard 跟踪保护过滤器阻止已知跟踪器"
+        "message": "启用 AdGuard 跟踪保护过滤器拦截跟踪器和网络分析工具"
     },
     "options_third_party_title": {
         "message": "自销毁第三方 cookie"
@@ -822,7 +846,7 @@
         "message": "保护开关"
     },
     "short_name": {
-        "message": "AdGuard 广告拦截器"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "关于"
@@ -849,13 +873,10 @@
         "message": "移除"
     },
     "options_nav_better_than_extension": {
-        "message": "为什么完整的 AdGuard 应用程序比扩展更好？"
+        "message": "为什么 AdGuard 应用程序比扩展更好？"
     },
     "options_nav_compare": {
         "message": "两者对比"
-    },
-    "options_nav_hide": {
-        "message": "隐藏"
     },
     "options_filters_search": {
         "message": "搜索"
@@ -993,16 +1014,16 @@
         "message": "位于 <strong>%host%<\/strong> 的网页已被报告为钓鱼网站，根据您的安全设置，我们拦截了与此网站的连接。"
     },
     "blocking_pages_advanced_button": {
-        "message": "高级"
+        "message": "高级设置"
     },
     "blocking_pages_more_info_button": {
         "message": "更多信息"
     },
     "blocking_pages_page_title": {
-        "message": "访问被拒绝"
+        "message": "拒绝访问"
     },
     "blocking_pages_safe_header_title": {
-        "message": "AdGuard 已阻止访问此网页"
+        "message": "AdGuard 已经阻止了该页面的加载"
     },
     "blocking_pages_rule_header_title": {
         "message": "由 AdGuard 拦截"
@@ -1011,9 +1032,18 @@
         "message": "根据以下过滤规则， Adguard 已阻止该网页加载"
     },
     "blocking_pages_btn_go_back": {
-        "message": "返回"
+        "message": "返回上一页"
     },
     "blocking_pages_btn_proceed": {
-        "message": "依然继续访问"
+        "message": "继续访问"
+    },
+    "text_collapser_show_default": {
+        "message": "显示完整文本"
+    },
+    "text_collapser_hide_default": {
+        "message": "隐藏完整文本"
+    },
+    "close_button_title": {
+        "message": "关闭"
     }
 }

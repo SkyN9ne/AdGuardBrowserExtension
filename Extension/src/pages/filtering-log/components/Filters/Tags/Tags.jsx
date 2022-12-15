@@ -1,9 +1,27 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React from 'react';
 import classNames from 'classnames';
 
 import { reactTranslator } from '../../../../../common/translators/reactTranslator';
 import { Popover } from '../../../../common/components/ui/Popover';
-import { isMacOs } from '../../../../helpers';
+import { UserAgent } from '../../../../../common/user-agent';
 
 export const Tags = ({
     tags,
@@ -85,7 +103,7 @@ export const Tags = ({
     };
 
     const handleTagClick = (e) => {
-        if (isMacOs ? e.metaKey : e.ctrlKey) {
+        if (UserAgent.isMacOs ? e.metaKey : e.ctrlKey) {
             toggleMultiple(e.target.value);
         } else {
             enableOne(e.target.value);
@@ -111,6 +129,7 @@ export const Tags = ({
                     onClick={handleTagClick}
                     value={id}
                     key={id}
+                    aria-label={tooltip}
                 >
                     {title}
                 </button>

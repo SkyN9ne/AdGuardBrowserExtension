@@ -1,6 +1,22 @@
-import { translator } from '../common/translators/translator';
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-export const isMacOs = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+import { translator } from '../common/translators/translator';
 
 export const getFilenameExtension = (filename) => {
     if (!filename) {
@@ -13,7 +29,14 @@ export const getFilenameExtension = (filename) => {
     return parts[parts.length - 1];
 };
 
-export const uploadFile = (file, requiredExtension) => new Promise((resolve, reject) => {
+/**
+ * Handles file upload
+ *
+ * @param file
+ * @param requiredExtension
+ * @returns {Promise<string>}
+ */
+export const handleFileUpload = (file, requiredExtension) => new Promise((resolve, reject) => {
     if (getFilenameExtension(file.name) !== requiredExtension) {
         reject(new Error(translator.getMessage(
             'options_popup_import_settings_wrong_file_ext',
@@ -37,6 +60,7 @@ export const hoursToMs = (hours) => {
 
 /**
  * Awaits required period of time
+ *
  * @param timeoutMs
  * @returns {Promise<unknown>}
  */
@@ -157,3 +181,28 @@ export const isVerticalScroll = (() => {
             || (angle > deg240ToRad && angle < deg300ToRad);
     };
 })();
+
+/**
+ * Checks the length of the array with filters and returns the contents for notification
+ *
+ * @param updatedFilters
+ */
+export const updateFilterDescription = (updatedFilters) => {
+    if (!updatedFilters) {
+        return {
+            title: translator.getMessage('options_popup_update_title_error'),
+            description: translator.getMessage('options_popup_update_error'),
+        };
+    }
+    const filterNames = updatedFilters.map((filter) => filter.name).join(', ');
+    let description;
+    if (updatedFilters.length === 0) {
+        description = `${filterNames} ${translator.getMessage('options_popup_update_not_found')}`;
+    } else if (updatedFilters.length === 1) {
+        description = `${filterNames} ${translator.getMessage('options_popup_update_filter')}`;
+    } else if (updatedFilters.length > 1) {
+        description = `${filterNames} ${translator.getMessage('options_popup_update_filters')}`;
+    }
+
+    return { description };
+};

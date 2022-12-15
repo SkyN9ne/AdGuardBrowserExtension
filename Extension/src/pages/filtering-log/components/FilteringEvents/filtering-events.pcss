@@ -2,7 +2,8 @@
     display: flex;
     max-width: 100%;
     height: 100%;
-    overflow-x: auto;
+    overflow: hidden;
+    user-select: none;
 
     * {
         box-sizing: border-box;
@@ -11,11 +12,23 @@
     &__inner {
         table-layout: fixed;
         width: 100%;
-        height: calc(100% - 30px);
+        height: 100%;
+
+        & .thead {
+            min-width: 100%;
+            position: sticky;
+            transform: translateY(-3px);
+            z-index: 2;
+            background-color: var(--white);
+            box-shadow: 0 1px 0 0 var(--thColor);
+
+            @media (prefers-color-scheme: dark) {
+                background-color: var(--bgColor);
+            }
+        }
 
         & .thead .th {
-            position: sticky;
-            top: 0;
+            box-shadow: 0 1px 0 0 var(--thColor);
             background-color: var(--white);
 
             @media (prefers-color-scheme: dark) {
@@ -23,16 +36,21 @@
             }
         }
 
-        & .thead .tr {
-            box-shadow: 0 1px 0 0 var(--thColor);
-        }
-
         & .tbody {
             z-index: 1;
         }
 
-        & .tbody .tr {
-            border-top: 1px solid var(--borderColor);
+        & .tr--tbody {
+            border: 0;
+            border-bottom: 1px solid var(--borderColor);
+            background-color: transparent;
+            text-align: left;
+            padding: 0;
+            width: 100%;
+
+            &:focus {
+                z-index: 1;
+            }
 
             &:hover {
                 cursor: pointer;
@@ -80,14 +98,34 @@
             }
         }
 
+        & .tr--active, & .tr--active:hover {
+            background: var(--regular-row-active);
+
+            &.red, &.red:hover {
+                background-color: var(--red-row-active);
+            }
+
+            &.green, &.green:hover {
+                background-color: var(--green-row-active);
+            }
+
+            &.yellow, &.yellow:hover {
+                background-color: var(--orange-row-active);
+            }
+        }
+
+        & .thead .tr {
+            border-top: 0;
+        }
+
         & .list {
+            width: 100vw;
             z-index: 1;
         }
 
         & .th {
             text-align: left;
             padding: 7px 10px;
-            font-weight: normal;
             font-size: 14px;
             color: var(--darkText);
             position: relative;
@@ -139,6 +177,11 @@
         /* due to AG-10446 */
         position: relative;
         z-index: 10;
+        background-color: var(--white);
+
+        @media (prefers-color-scheme: dark) {
+            background-color: var(--bgColor);
+        }
     }
 
     &__empty-in {
@@ -182,9 +225,17 @@
         }
     }
 
+    &__th {
+        line-height: 30px;
+    }
+
     & .table {
         & .tr {
             height: 30px;
+            display: flex;
+            flex-wrap: nowrap;
+            width: auto!important;
+            min-width: 100%;
         }
 
         & .resizer {
@@ -203,15 +254,16 @@
                 content: "";
                 display: block;
                 position: absolute;
+                top: calc(50% - 10px);
                 right: 50%;
                 width: 1px;
-                height: 70%;
+                height: 20px;
                 background-color: var(--gray400);
             }
         }
 
         & .th, & .td {
-            padding: 0 10px;
+            flex-shrink: 0;
             height: 30px;
             display: inline-block;
             width: 20%;
@@ -220,16 +272,16 @@
             overflow: hidden;
         }
 
+        & .th {
+            padding: 7px 10px;
+            font-weight: 450;
+            color: var(--gray900);
+        }
+
         & .td {
+            padding: 0 10px;
             line-height: 30px;
         }
-    }
-}
-
-.list {
-    div div {
-        left: -1px!important;
-        cursor: pointer;
     }
 }
 
@@ -252,6 +304,10 @@
 }
 
 .light-mode {
+    & .thead {
+        background-color: var(--white);
+    }
+
     & .filtering-log {
         &__desc {
             color: var(--gray-base);
@@ -265,50 +321,8 @@
             background-color: var(--white);
         }
 
-        &__inner .tbody .tr {
-            &:hover {
-                background: var(--regular-row-hover);
-            }
-
-            &:active {
-                background: var(--regular-row-active);
-            }
-
-            &.red {
-                background-color: var(--red-row);
-
-                &:hover {
-                    background-color: var(--red-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--red-row-active);
-                }
-            }
-
-            &.green {
-                background-color: var(--green-row);
-
-                &:hover {
-                    background-color: var(--green-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--green-row-active);
-                }
-            }
-
-            &.yellow {
-                background-color: var(--orange-row);
-
-                &:hover {
-                    background-color: var(--orange-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--orange-row-active);
-                }
-            }
+        &__empty {
+            background-color: var(--white);
         }
 
         &__empty-img {
@@ -324,6 +338,10 @@
 }
 
 .dark-mode {
+    & .thead {
+        background-color: var(--bgColor);
+    }
+
     & .filtering-log {
         &__desc {
             color: var(--gray300);
@@ -335,52 +353,11 @@
 
         &__inner .thead .th {
             background-color: var(--bgColor);
+            color: var(--gray300);
         }
 
-        &__inner .tbody .tr {
-            &:hover {
-                background: var(--regular-row-hover);
-            }
-
-            &:active {
-                background: var(--regular-row-active);
-            }
-
-            &.red {
-                background-color: var(--red-row);
-
-                &:hover {
-                    background-color: var(--red-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--red-row-active);
-                }
-            }
-
-            &.green {
-                background-color: var(--green-row);
-
-                &:hover {
-                    background-color: var(--green-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--green-row-active);
-                }
-            }
-
-            &.yellow {
-                background-color: var(--orange-row);
-
-                &:hover {
-                    background-color: var(--orange-row-hover);
-                }
-
-                &:active {
-                    background-color: var(--orange-row-active);
-                }
-            }
+        &__empty {
+            background-color: var(--bgColor);
         }
 
         &__empty-img {

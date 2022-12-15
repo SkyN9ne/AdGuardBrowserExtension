@@ -1,13 +1,37 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 import React, { useCallback } from 'react';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
+import { Forward, ForwardAction, ForwardFrom } from '../../../../common/forward';
 
-import { MESSAGE_TYPES } from '../../../../common/constants';
+import { MessageType } from '../../../../common/messages';
 import { getParams } from '../../getParams';
 import { messenger } from '../../../services/messenger';
 
 import '../../styles/index.pcss';
+
+export const ADGUARD_SITE_URL = Forward.get({
+    action: ForwardAction.AdguardSite,
+    from: ForwardFrom.Adblocker,
+});
 
 export const AdBlocked = () => {
     const { rule, url } = getParams();
@@ -19,7 +43,7 @@ export const AdBlocked = () => {
 
     const handleProceed = useCallback((e) => {
         e.preventDefault();
-        messenger.sendMessage(MESSAGE_TYPES.ADD_URL_TO_TRUSTED, { url });
+        messenger.sendMessage(MessageType.AddUrlToTrusted, { url });
     }, [url]);
 
     return (
@@ -31,7 +55,7 @@ export const AdBlocked = () => {
                     </div>
                 </div>
                 <div className="alert__body">
-                    <a href="https://adguard.com" className="alert__logo" />
+                    <a href={ADGUARD_SITE_URL} className="alert__logo" />
                     <div className="hero hero--green" />
                     <div className="alert__body-title">
                         <span>

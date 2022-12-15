@@ -1,17 +1,34 @@
-import { SimpleRegex } from '@adguard/tsurlfilter/dist/es/simple-regex';
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import {
-    MASK_ALLOWLIST,
-    OPTIONS_DELIMITER,
-    NETWORK_RULE_OPTIONS,
-} from '@adguard/tsurlfilter/dist/es/network-rule-options';
-import { CosmeticRuleMarker } from '@adguard/tsurlfilter/dist/es/cosmetic-rule-marker';
+    SimpleRegex,
+    CosmeticRuleMarker,
+    NetworkRule,
+} from '@adguard/tsurlfilter';
 
 import { strings } from '../../../../common/strings';
 import { UrlUtils } from './utils';
-import { log } from '../../../../common/log';
+import { Log } from '../../../../common/log';
 
 /**
  * Splits request url by backslash to block or allow patterns
+ *
  * @param {string} requestUrl - request event url
  * @param {string} domain - request event domain
  * @param {boolean} isAllowlist - flag determining if patterns would be blocking or allowing
@@ -30,7 +47,7 @@ export const splitToPatterns = (requestUrl, domain, isAllowlist) => {
     }
 
     if (isAllowlist) {
-        prefix = MASK_ALLOWLIST + prefix;
+        prefix = NetworkRule.MASK_ALLOWLIST + prefix;
     }
 
     const patterns = [];
@@ -77,19 +94,21 @@ export const splitToPatterns = (requestUrl, domain, isAllowlist) => {
  * Creates rule blocking document level rules
  * e.g. for rule "@@||example.org^$urlblock" ->
  *      blocking rule would be " @@||example.org^$urlblock,badfilter"
+ *
  * @param rule
  * @returns {string}
  */
 export const createDocumentLevelBlockRule = (rule) => {
     const { ruleText } = rule;
-    if (ruleText.indexOf(OPTIONS_DELIMITER) > -1) {
-        return `${ruleText},${NETWORK_RULE_OPTIONS.BADFILTER}`;
+    if (ruleText.indexOf(NetworkRule.OPTIONS_DELIMITER) > -1) {
+        return `${ruleText},${NetworkRule.OPTIONS.BADFILTER}`;
     }
-    return ruleText + OPTIONS_DELIMITER + NETWORK_RULE_OPTIONS.BADFILTER;
+    return ruleText + NetworkRule.OPTIONS_DELIMITER + NetworkRule.OPTIONS.BADFILTER;
 };
 
 /**
  * Generates exception rule with required mask
+ *
  * @param ruleText
  * @param mask
  * @returns {*}
@@ -107,6 +126,7 @@ const generateExceptionRule = (ruleText, mask) => {
 
 /**
  * Creates exception rules for css rules
+ *
  * @param rule
  * @param event
  * @returns {string}
@@ -136,13 +156,14 @@ export const createExceptionCssRule = (rule, event) => {
         return domainPart + generateExceptionRule(ruleText, CosmeticRuleMarker.Html);
     }
 
-    log.error('Cannot createExceptionCssRule for the rule:', rule);
+    Log.error('Cannot createExceptionCssRule for the rule:', rule);
 
     return '';
 };
 
 /**
  * Creates exception rule for blocking script rule
+ *
  * @param rule
  * @param event
  * @returns {string}
@@ -169,16 +190,17 @@ const getBlockDomainRule = (domain, ruleOption) => {
     return MASK_START_URL
         + domain
         + MASK_SEPARATOR
-        + OPTIONS_DELIMITER
+        + NetworkRule.OPTIONS_DELIMITER
         + ruleOption;
 };
 
 const getUnblockDomainRule = (domain, ruleOption) => {
-    return MASK_ALLOWLIST + getBlockDomainRule(domain, ruleOption);
+    return NetworkRule.MASK_ALLOWLIST + getBlockDomainRule(domain, ruleOption);
 };
 
 /**
  * Create exception rules for cookie event
+ *
  * @param event
  * @returns {string[]} array of patterns
  */
@@ -189,16 +211,16 @@ export const createExceptionCookieRules = (event) => {
         requestRule: { modifierValue },
     } = event;
     const domain = UrlUtils.getCookieDomain(frameDomain);
-    const totalUnblockingRule = getUnblockDomainRule(domain, NETWORK_RULE_OPTIONS.COOKIE);
+    const totalUnblockingRule = getUnblockDomainRule(domain, NetworkRule.OPTIONS.COOKIE);
 
     const patterns = [];
     if (cookieName) {
-        patterns.push(getUnblockDomainRule(domain, `${NETWORK_RULE_OPTIONS.COOKIE}=${cookieName}`));
+        patterns.push(getUnblockDomainRule(domain, `${NetworkRule.OPTIONS.COOKIE}=${cookieName}`));
     }
     if (modifierValue
         && modifierValue !== cookieName
     ) {
-        patterns.push(getUnblockDomainRule(domain, `${NETWORK_RULE_OPTIONS.COOKIE}=${modifierValue}`));
+        patterns.push(getUnblockDomainRule(domain, `${NetworkRule.OPTIONS.COOKIE}=${modifierValue}`));
     }
     patterns.push(totalUnblockingRule);
 
@@ -209,8 +231,8 @@ export const createExceptionRemoveParamRules = (event) => {
     const { frameDomain, requestRule } = event;
 
     return [
-        getUnblockDomainRule(frameDomain, `${NETWORK_RULE_OPTIONS.REMOVEPARAM}=${requestRule.modifierValue}`),
-        getUnblockDomainRule(frameDomain, NETWORK_RULE_OPTIONS.REMOVEPARAM),
+        getUnblockDomainRule(frameDomain, `${NetworkRule.OPTIONS.REMOVEPARAM}=${requestRule.modifierValue}`),
+        getUnblockDomainRule(frameDomain, NetworkRule.OPTIONS.REMOVEPARAM),
     ];
 };
 
@@ -218,13 +240,14 @@ export const createExceptionRemoveHeaderRules = (event) => {
     const { frameDomain, requestRule } = event;
 
     return [
-        getUnblockDomainRule(frameDomain, `${NETWORK_RULE_OPTIONS.REMOVEHEADER}=${requestRule.modifierValue}`),
-        getUnblockDomainRule(frameDomain, NETWORK_RULE_OPTIONS.REMOVEHEADER),
+        getUnblockDomainRule(frameDomain, `${NetworkRule.OPTIONS.REMOVEHEADER}=${requestRule.modifierValue}`),
+        getUnblockDomainRule(frameDomain, NetworkRule.OPTIONS.REMOVEHEADER),
     ];
 };
 
 /**
  * Creates blocking rule for cookie event
+ *
  * @param event
  * @returns {string}
  */
@@ -234,11 +257,11 @@ export const createBlockingCookieRule = (event) => {
         cookieName,
     } = event;
     const domain = UrlUtils.getCookieDomain(frameDomain);
-    const blockingRule = getBlockDomainRule(domain, NETWORK_RULE_OPTIONS.COOKIE);
+    const blockingRule = getBlockDomainRule(domain, NetworkRule.OPTIONS.COOKIE);
 
     const patterns = [];
     if (cookieName) {
-        patterns.push(getBlockDomainRule(domain, `${NETWORK_RULE_OPTIONS.COOKIE}=${cookieName}`));
+        patterns.push(getBlockDomainRule(domain, `${NetworkRule.OPTIONS.COOKIE}=${cookieName}`));
     }
     patterns.push(blockingRule);
 

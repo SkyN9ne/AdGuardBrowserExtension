@@ -1,4 +1,5 @@
 /**
+ * @file
  * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
  * Adguard Browser Extension is free software: you can redistribute it and/or modify
@@ -16,8 +17,6 @@
  */
 
 import { DevToolsRulesConstructor } from './devtools-rules-constructor';
-import { runtimeImpl } from '../../common/common-script';
-import { MESSAGE_TYPES } from '../../common/constants';
 
 /**
  * Helper object that provides methods used in devtools panel's code
@@ -29,15 +28,8 @@ export const DevToolsHelper = (function () {
     const PREVIEW_STYLE_ID = 'adguard-preview-style';
 
     /**
-     * Add user rule
-     * @param options Object {ruleText: 'ruleText'}
-     */
-    const addRule = function (options) {
-        runtimeImpl.sendMessage({ type: MESSAGE_TYPES.ADD_USER_RULE, data: { ruleText: options.ruleText } });
-    };
-
-    /**
      * Add rule preview
+     *
      * @param options Object {ruleText: 'ruleText'}
      */
     const applyPreview = function (options) {
@@ -76,7 +68,6 @@ export const DevToolsHelper = (function () {
     };
 
     return {
-        addRule,
         applyPreview,
         cancelPreview,
     };

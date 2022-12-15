@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, {
     useContext,
     useEffect,
@@ -6,18 +24,22 @@ import React, {
 } from 'react';
 import { observer } from 'mobx-react';
 import { Range } from 'ace-builds';
-import { SimpleRegex } from '@adguard/tsurlfilter/dist/es/simple-regex';
+import debounce from 'lodash/debounce';
+import { SimpleRegex } from '@adguard/tsurlfilter';
 
 import { userRulesEditorStore } from './UserRulesEditorStore';
 import { Editor } from '../Editor';
 import { UserRulesSavingButton } from './UserRulesSavingButton';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
 import { Popover } from '../ui/Popover';
+import { Checkbox } from '../ui/Checkbox';
 import { Icon } from '../ui/Icon';
 import { messenger } from '../../../services/messenger';
-import { MESSAGE_TYPES, NOTIFIER_TYPES } from '../../../../common/constants';
-import { uploadFile } from '../../../helpers';
-import { log } from '../../../../common/log';
+import { MessageType } from '../../../../common/messages';
+import { NotifierType } from '../../../../common/constants';
+import { HANDLER_DELAY_MS } from '../../constants';
+import { handleFileUpload } from '../../../helpers';
+import { Log } from '../../../../common/log';
 import { ToggleWrapButton } from './ToggleWrapButton';
 import { exportData, ExportTypes } from '../../utils/export';
 
@@ -38,9 +60,36 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
     }
 
     useEffect(() => {
+        let removeListenerCallback = () => {};
+
         (async () => {
             await store.requestSettingsData();
+
+            const events = [
+                NotifierType.SettingUpdated,
+            ];
+            removeListenerCallback = await messenger.createEventListener(
+                events,
+                async (message) => {
+                    const { type } = message;
+
+                    switch (type) {
+                        case NotifierType.SettingUpdated: {
+                            await store.requestSettingsData();
+                            break;
+                        }
+                        default: {
+                            Log.debug('Undefined message type:', type);
+                            break;
+                        }
+                    }
+                },
+            );
         })();
+
+        return () => {
+            removeListenerCallback();
+        };
     }, [store]);
 
     // Get initial storage content and set to the editor
@@ -65,7 +114,7 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
 
             // initial export button state
             const { userRules } = await messenger.sendMessage(
-                MESSAGE_TYPES.GET_USER_RULES_EDITOR_DATA,
+                MessageType.GetUserRulesEditorData,
             );
             if (userRules.length > 0) {
                 store.setUserRulesExportAvailableState(true);
@@ -78,11 +127,12 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
     /**
      * One of the reasons for request filter to update
      * may be adding user rules from other places like assistant and others
-     * @return {Promise<void>}
+     *
+     * @returns {Promise<void>}
      */
     const handleUserFilterUpdated = useCallback(async () => {
         const { userRules } = await messenger.sendMessage(
-            MESSAGE_TYPES.GET_USER_RULES_EDITOR_DATA,
+            MessageType.GetUserRulesEditorData,
         );
 
         if (!store.userRulesEditorContentChanged) {
@@ -103,13 +153,13 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
 
     // Append listeners
     useEffect(() => {
-        let removeListenerCallback = () => {};
+        let removeListenerCallback = () => { };
 
         (async () => {
             // Subscribe to events of request filter update
             // to have actual user rules in the editor
             const events = [
-                NOTIFIER_TYPES.USER_FILTER_UPDATED,
+                NotifierType.userFilterUpdated,
             ];
 
             removeListenerCallback = await messenger.createEventListener(
@@ -118,12 +168,12 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
                     const { type } = message;
 
                     switch (type) {
-                        case NOTIFIER_TYPES.USER_FILTER_UPDATED: {
+                        case NotifierType.userFilterUpdated: {
                             await handleUserFilterUpdated();
                             break;
                         }
                         default: {
-                            log.debug('Undefined message type:', type);
+                            Log.debug('Undefined message type:', type);
                             break;
                         }
                     }
@@ -169,11 +219,35 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
         const file = event.target.files[0];
 
         try {
-            const rawNewRules = await uploadFile(file, 'txt');
-            editorRef.current.editor.setValue(rawNewRules, 1);
-            await store.saveUserRules(rawNewRules);
+            const rawNewRules = await handleFileUpload(file, 'txt');
+            const trimmedNewRules = rawNewRules.trim();
+
+            if (trimmedNewRules.length < 0) {
+                return;
+            }
+
+            const oldRulesString = editorRef.current.editor.getValue();
+            const oldRules = oldRulesString.split('\n');
+            const newRules = trimmedNewRules.split('\n');
+            const uniqNewRules = newRules.filter((newRule) => {
+                const trimmedNewRule = newRule.trim();
+                if (trimmedNewRule.length === 0) {
+                    return true;
+                }
+
+                const isInOldRules = oldRules.some((oldRule) => oldRule === trimmedNewRule);
+                return !isInOldRules;
+            });
+
+            const rulesUnion = [...oldRules, ...uniqNewRules];
+            const rulesUnionString = rulesUnion.join('\n').trim();
+
+            if (oldRulesString !== rulesUnionString) {
+                editorRef.current.editor.setValue(rulesUnionString, 1);
+                await store.saveUserRules(rulesUnionString);
+            }
         } catch (e) {
-            log.debug(e.message);
+            Log.debug(e.message);
             if (uiStore?.addNotification) {
                 uiStore.addNotification({ description: e.message });
             }
@@ -254,7 +328,7 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
             await messenger.setEditorStorageContent(content);
         }
 
-        await messenger.sendMessage(MESSAGE_TYPES.OPEN_FULLSCREEN_USER_RULES);
+        await messenger.sendMessage(MessageType.OpenFullscreenUserRules);
     };
 
     const closeEditorFullscreen = async () => {
@@ -266,6 +340,10 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
 
         window.close();
     };
+
+    const handleUserRulesToggle = debounce((e) => {
+        store.updateSetting(e.id, e.data);
+    }, HANDLER_DELAY_MS);
 
     const fullscreenTooltipText = fullscreen
         ? reactTranslator.getMessage('options_editor_close_fullscreen_button_tooltip')
@@ -283,6 +361,24 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
             />
             <div className="actions actions--divided">
                 <div className="actions__group">
+                    {
+                        fullscreen && (
+                            <label
+                                className="actions__label"
+                                htmlFor="user-filter-enabled"
+                            >
+                                <div className="actions__title">
+                                    {reactTranslator.getMessage('fullscreen_user_rules_title')}
+                                </div>
+                                <Checkbox
+                                    id="user-filter-enabled"
+                                    handler={handleUserRulesToggle}
+                                    value={store.userFilterEnabled}
+                                    className="checkbox__label--actions"
+                                />
+                            </label>
+                        )
+                    }
                     <UserRulesSavingButton onClick={saveClickHandler} />
                     <input
                         type="file"
@@ -315,16 +411,18 @@ export const UserRulesEditor = observer(({ fullscreen, uiStore }) => {
                             fullscreen ? (
                                 <button
                                     type="button"
-                                    className="actions__btn actions__btn--icon"
+                                    className="button actions__btn actions__btn--icon"
                                     onClick={closeEditorFullscreen}
+                                    aria-label={reactTranslator.getMessage('options_editor_close_fullscreen_button_tooltip')}
                                 >
                                     <Icon classname="icon--extend" id="#reduce" />
                                 </button>
                             ) : (
                                 <button
                                     type="button"
-                                    className="actions__btn actions__btn--icon"
+                                    className="button actions__btn actions__btn--icon"
                                     onClick={openEditorFullscreen}
+                                    aria-label={reactTranslator.getMessage('options_editor_open_fullscreen_button_tooltip')}
                                 >
                                     <Icon classname="icon--extend" id="#extend" />
                                 </button>

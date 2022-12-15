@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Хотите блокировать больше?"
     },
+    "popup_header_update_filters": {
+        "message": "Проверить обновления фильтров"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Расширение файла должно быть %extension%"
     },
@@ -33,7 +36,7 @@
         "message": "Версия:"
     },
     "options_filters_filter_link": {
-        "message": "На главную"
+        "message": "Перейти на сайт"
     },
     "options_filters_filter_updated": {
         "message": "Обновлен:"
@@ -42,13 +45,16 @@
         "message": "Отключить уведомления"
     },
     "popup_adguard_footer_title": {
-        "message": "AdGuard для мобильного"
+        "message": "AdGuard для мобильных устройств"
     },
     "options_popup_call_to_action": {
         "message": "Введите корректный URL фильтра или путь к локальному файлу в строку выше."
     },
     "options_popup_description": {
         "message": "Вы будете подписаны на этот фильтр."
+    },
+    "options_popup_url_title": {
+        "message": "Новая подписка на фильтр"
     },
     "options_popup_url_placeholder": {
         "message": "Путь или ссылка:"
@@ -81,7 +87,7 @@
         "message": "Количество правил:"
     },
     "options_popup_filter_homepage": {
-        "message": "Домашняя страница:"
+        "message": "Сайт:"
     },
     "options_popup_filter_url": {
         "message": "URL:"
@@ -162,7 +168,7 @@
         "message": "Фильтры"
     },
     "options_antibanner_rules_count": {
-        "message": "Количество фильтров: %rules_count%"
+        "message": "Количество правил фильтрации: %rules_count%"
     },
     "options_antibanner_custom_group": {
         "message": "Собственные"
@@ -219,7 +225,7 @@
         "message": "Защита включена"
     },
     "popup_site_filtering_state_disabled": {
-        "message": "Защита выключена"
+        "message": "Защита отключена"
     },
     "popup_site_filtering_state_paused": {
         "message": "Защита приостановлена"
@@ -234,40 +240,40 @@
         "message": "Всего: %num%"
     },
     "popup_statistics_total": {
-        "message": "Всего"
+        "message": "Всего правил"
     },
     "popup_statistics_week_days_mon": {
-        "message": "Пон."
+        "message": "Пн"
     },
     "popup_statistics_week_days_tue": {
-        "message": "Вт."
+        "message": "Вт"
     },
     "popup_statistics_week_days_wed": {
-        "message": "Ср."
+        "message": "Ср"
     },
     "popup_statistics_week_days_thu": {
-        "message": "Чт."
+        "message": "Чт"
     },
     "popup_statistics_week_days_fri": {
-        "message": "Пт."
+        "message": "Пт"
     },
     "popup_statistics_week_days_sat": {
-        "message": "Сб."
+        "message": "Сб"
     },
     "popup_statistics_week_days_sun": {
-        "message": "Вс."
+        "message": "Вс"
     },
     "popup_statistics_months_jan": {
-        "message": "Янв."
+        "message": "Янв"
     },
     "popup_statistics_months_feb": {
-        "message": "Фев."
+        "message": "Фев"
     },
     "popup_statistics_months_mar": {
         "message": "Март"
     },
     "popup_statistics_months_apr": {
-        "message": "Апр."
+        "message": "Апр"
     },
     "popup_statistics_months_may": {
         "message": "Май"
@@ -279,19 +285,19 @@
         "message": "Июль"
     },
     "popup_statistics_months_aug": {
-        "message": "Авг."
+        "message": "Авг"
     },
     "popup_statistics_months_sep": {
-        "message": "Сент."
+        "message": "Сент"
     },
     "popup_statistics_months_oct": {
-        "message": "Окт."
+        "message": "Окт"
     },
     "popup_statistics_months_nov": {
-        "message": "Ноя."
+        "message": "Ноя"
     },
     "popup_statistics_months_dec": {
-        "message": "Дек."
+        "message": "Дек"
     },
     "options_popup_update_title_error": {
         "message": "Ошибка обновления фильтров"
@@ -333,7 +339,7 @@
         "message": "Проверить безопасность сайта"
     },
     "popup_reset_custom_rules": {
-        "message": "Сбросить все пользовательские правила для этой страницы"
+        "message": "Удалить все пользовательские правила для этой страницы"
     },
     "popup_open_settings": {
         "message": "Настройки AdGuard"
@@ -495,7 +501,7 @@
         "message": "Разблокировать"
     },
     "filtering_modal_remove_user": {
-        "message": "Удалить из Пользовательских правил"
+        "message": "Удалить правило"
     },
     "filtering_modal_preview_request_button": {
         "message": "Предпросмотр"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Скрыть полный URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Показать правило целиком"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Скрыть полное правило"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Показать элемент полностью"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Скрыть подробности элемента"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Копировать"
@@ -626,6 +644,12 @@
     "options_import_settings": {
         "message": "Импорт настроек"
     },
+    "options_report_bug": {
+        "message": "Сообщить об ошибке"
+    },
+    "options_leave_feedback": {
+        "message": "Оставить отзыв"
+    },
     "options_privacy": {
         "message": "Антитрекинг"
     },
@@ -639,7 +663,7 @@
         "message": "Проверка..."
     },
     "options_set_update_interval": {
-        "message": "Интервал обновления фильтров"
+        "message": "Автообновление фильтров"
     },
     "options_set_update_interval_desc": {
         "message": "Для более эффективной блокировки фильтры необходимо регулярно обновлять."
@@ -669,7 +693,7 @@
         "message": "Защита от фишинговых и вредоносных сайтов"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Проверьте, опасен ли домен, используя <a>наш веб-сервис<\/a>."
+        "message": "Включите модуль Антифишинг, который обнаруживает потенциально вредоносные и фишинговые сайты, сверяя их с онлайн-базой данных. <a>Подробнее<\/a>"
     },
     "options_site": {
         "message": "Официальный сайт"
@@ -774,13 +798,13 @@
         "message": "Удалять параметры отслеживания"
     },
     "options_strip_tracking_params_description": {
-        "message": "Если эта опция включена, фильтр отслеживания по URL удаляет параметры отслеживания из адресов страниц."
+        "message": "Использовать Фильтр отслеживания по URL для удаления параметров отслеживания из адресов страниц."
     },
     "options_block_known_trackers_title": {
-        "message": "Блокировать известные трекеры"
+        "message": "Блокировать трекеры"
     },
     "options_block_known_trackers_description": {
-        "message": "Если эта опция включена, специальный фильтр AdGuard борется со всеми известными трекерами."
+        "message": "Использовать Фильтр счётчиков и систем аналитики для блокировки трекеров."
     },
     "options_third_party_title": {
         "message": "Самоуничтожение сторонних файлов cookies"
@@ -807,22 +831,22 @@
         "message": "Статистика"
     },
     "popup_statistics_time_day": {
-        "message": "Последние 24 часа"
+        "message": "За день"
     },
     "popup_statistics_time_week": {
-        "message": "Прошлая неделя"
+        "message": "За неделю"
     },
     "popup_statistics_time_month": {
-        "message": "Прошлый месяц"
+        "message": "За месяц"
     },
     "popup_statistics_time_year": {
-        "message": "Прошлый год"
+        "message": "За год"
     },
     "popup_switch_button": {
         "message": "Переключение защиты"
     },
     "short_name": {
-        "message": "AdGuard Антибаннер"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "О программе"
@@ -849,13 +873,10 @@
         "message": "Удалить"
     },
     "options_nav_better_than_extension": {
-        "message": "Почему полнофункциональная программа AdGuard лучше расширения?"
+        "message": "Почему приложение AdGuard лучше расширения?"
     },
     "options_nav_compare": {
-        "message": "В чем разница"
-    },
-    "options_nav_hide": {
-        "message": "Скрыть"
+        "message": "Сравнить"
     },
     "options_filters_search": {
         "message": "Поиск"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Все равно продолжить"
+    },
+    "text_collapser_show_default": {
+        "message": "Показать полный текст"
+    },
+    "text_collapser_hide_default": {
+        "message": "Скрыть полный текст"
+    },
+    "close_button_title": {
+        "message": "Закрыть"
     }
 }

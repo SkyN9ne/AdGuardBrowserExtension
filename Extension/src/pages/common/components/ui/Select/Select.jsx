@@ -1,6 +1,24 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { useOutsideFocus } from '../../../hooks/useOutsideFocus';
 import { useSelect } from './SelectProvider';
 import { Icon } from '../Icon';
 
@@ -13,6 +31,7 @@ export const Select = ({
     value,
 }) => {
     const ref = useRef(null);
+    const refList = useRef(null);
 
     const [hidden, setHidden] = useSelect(id);
 
@@ -48,6 +67,10 @@ export const Select = ({
         setHidden(true);
     });
 
+    useOutsideFocus(refList, () => {
+        setHidden(true);
+    });
+
     const handleSelectClick = (e) => {
         e.stopPropagation();
         setHidden(!hidden);
@@ -69,19 +92,14 @@ export const Select = ({
                 id="#select"
                 classname="icon--select select__ico"
             />
-            <div
-                hidden={hidden}
-                className="select__list"
-            >
-                {renderItems(options)}
-            </div>
+            {!hidden && (
+                <div
+                    className="select__list"
+                    ref={refList}
+                >
+                    {renderItems(options)}
+                </div>
+            )}
         </div>
     );
-};
-
-Select.propTypes = {
-    id: PropTypes.string.isRequired,
-    handler: PropTypes.func.isRequired,
-    options: PropTypes.arrayOf(PropTypes.object).isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };

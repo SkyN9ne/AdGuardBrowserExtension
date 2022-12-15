@@ -16,7 +16,10 @@
         margin-bottom: 15px;
 
         &--confirm {
-            max-width: 300px
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 300px;
+            white-space: nowrap;
         }
     }
 
@@ -57,6 +60,15 @@
         padding: 7px 8px;
         outline: none;
 
+        &:focus-visible {
+            outline: none;
+            background-color: var(--gray300);
+
+            @media (prefers-color-scheme: dark) {
+                background-color: var(--gray900);
+            }
+        }
+
         @media (prefers-color-scheme: dark) {
             background-color: var(--black);
             color: var(--gray300);
@@ -79,7 +91,6 @@
         min-width: 175px;
 
         &--statistic {
-            line-height: 40px;
             min-width: 100px;
 
             &:first-child {
@@ -131,6 +142,10 @@
     .modal__input {
         color: var(--gray-base);
         background-color: transparent;
+
+        &:focus-visible {
+            background-color: var(--gray300);
+        }
     }
 }
 
@@ -142,5 +157,9 @@
     .modal__input {
         background-color: var(--black);
         color: var(--gray300);
+
+        &:focus-visible {
+            background-color: var(--gray900);
+        }
     }
 }

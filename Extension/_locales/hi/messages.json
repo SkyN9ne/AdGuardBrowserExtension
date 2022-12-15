@@ -14,6 +14,9 @@
     "popup_header_cta_link": {
         "message": "अधिक ब्लॉक करना चाहते हैं?"
     },
+    "popup_header_update_filters": {
+        "message": "अद्यतन के लिए जांचे"
+    },
     "popup_adguard_for_ios": {
         "message": "IOS के लिए AdGuard"
     },
@@ -266,6 +269,9 @@
     "popup_security_report": {
         "message": "वेबसाइट सुरक्षा रिपोर्ट"
     },
+    "popup_reset_custom_rules": {
+        "message": "इस पेज के लिए उपयोगकर्ता नियम रिसेट करें"
+    },
     "popup_open_settings": {
         "message": "AdGuard सेटिंग्स"
     },
@@ -377,9 +383,6 @@
     "filtering_modal_unblock": {
         "message": "अवरुध हटाएँ"
     },
-    "filtering_modal_remove_user": {
-        "message": "उपयोगकर्ता फ़िल्टर से निकालें"
-    },
     "filtering_modal_add_title": {
         "message": "एक नियम जोड़ें"
     },
@@ -413,9 +416,6 @@
     "options_theme_selector_system": {
         "message": "सिस्टम"
     },
-    "options_theme_selector_dark": {
-        "message": "डार्क थीम"
-    },
     "options_export_settings": {
         "message": "निर्यात सेटिंग्स"
     },
@@ -430,9 +430,6 @@
     },
     "options_check_update": {
         "message": "अद्यतन के लिए जांचे"
-    },
-    "options_set_update_interval": {
-        "message": "\tअद्यतन अंतराल जांचना"
     },
     "options_userfilter_export": {
         "message": "निर्यात"
@@ -518,9 +515,6 @@
     "popup_switch_button": {
         "message": "सुरक्षा स्थिति"
     },
-    "short_name": {
-        "message": "एडवर्ड टब्लिकर"
-    },
     "options_about": {
         "message": "के बारे में"
     },
@@ -550,5 +544,8 @@
     },
     "filtering_log_details_modal_try_again": {
         "message": "पुनः प्रयास करें"
+    },
+    "short_name": {
+        "message": "AdGuard"
     }
 }

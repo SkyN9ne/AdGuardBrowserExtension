@@ -9,7 +9,7 @@ deployment-permissions:
     permissions:
       - view
 environment-permissions:
-  - static.adguard.com:
+  - static.adtidy.org:
       - groups:
           - extensions-developers
         permissions:
@@ -22,6 +22,12 @@ environment-permissions:
           - view
           - deploy
   - Addons Mozilla:
+      - groups:
+          - extensions-developers
+        permissions:
+          - view
+          - deploy
+  - Edge Addons:
       - groups:
           - extensions-developers
         permissions:

@@ -167,18 +167,7 @@
     position: relative;
     cursor: pointer;
     height: 80px;
-    padding: 30px 5px 0 5px;
-
-    &:hover {
-        & .switcher__btn {
-            transition: var(--t3) box-shadow;
-            box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.1);
-
-            @media (prefers-color-scheme: dark) {
-                box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2);
-            }
-        }
-    }
+    padding: 0 5px;
 
     &__info {
         padding-top: 35px;
@@ -203,13 +192,13 @@
         width: 50px;
         height: 50px;
         right: 5px;
-        top: 30px;
+        top: 15px;
         border-radius: 50%;
         box-shadow: var(--switch-btn-shadow);
         background-color: var(--white);
         padding: 4px;
         cursor: pointer;
-        transition: 0.3s ease transform;
+        transition: var(--t3) box-shadow;
 
         &:before {
             content: '';
@@ -218,6 +207,16 @@
             height: 100%;
             border-radius: 50%;
             background-color: var(--white);
+        }
+    }
+
+    &:hover {
+        & .switcher__btn {
+            box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.1);
+
+            @media (prefers-color-scheme: dark) {
+                box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2);
+            }
         }
     }
 

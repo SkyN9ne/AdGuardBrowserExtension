@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Want to block more?"
     },
+    "popup_header_update_filters": {
+        "message": "Check for filter updates"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "The file extension must be %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "You will be subscribed to that filter."
+    },
+    "options_popup_url_title": {
+        "message": "New filter subscription"
     },
     "options_popup_url_placeholder": {
         "message": "Enter URL or file path"
@@ -333,7 +339,7 @@
         "message": "Check website security"
     },
     "popup_reset_custom_rules": {
-        "message": "Reset all user rules for this page"
+        "message": "Remove all user rules for this page"
     },
     "popup_open_settings": {
         "message": "AdGuard settings"
@@ -495,7 +501,7 @@
         "message": "Unblock"
     },
     "filtering_modal_remove_user": {
-        "message": "Remove from User rules"
+        "message": "Delete rule"
     },
     "filtering_modal_preview_request_button": {
         "message": "Preview"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Hide full URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Show full rule"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Hide full rule"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Show full element"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Hide full element"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Copy to clipboard"
@@ -612,7 +630,7 @@
         "message": "Theme"
     },
     "options_theme_selector_system": {
-        "message": "System"
+        "message": "System default"
     },
     "options_theme_selector_light": {
         "message": "Light"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Import settings"
+    },
+    "options_report_bug": {
+        "message": "Report a bug"
+    },
+    "options_leave_feedback": {
+        "message": "Leave feedback"
     },
     "options_privacy": {
         "message": "Stealth Mode"
@@ -639,7 +663,7 @@
         "message": "Checking..."
     },
     "options_set_update_interval": {
-        "message": "Filters update interval"
+        "message": "Auto-update filters"
     },
     "options_set_update_interval_desc": {
         "message": "For more effective blocking, the filters need to be updated regularly."
@@ -669,7 +693,7 @@
         "message": "Phishing and malware protection"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Check if domains are dangerous with <a>our web service<\/a>."
+        "message": "Enable AdGuard Browsing Security module that detects potentially malicious and phishing sites by checking them against an online database. <a>Read more<\/a>"
     },
     "options_site": {
         "message": "Official Website"
@@ -774,13 +798,13 @@
         "message": "Remove tracking parameters"
     },
     "options_strip_tracking_params_description": {
-        "message": "When enabled, AdGuard URL Tracking filter is used to remove tracking parameters from pages' URLs."
+        "message": "Remove parameters from web requests with AdGuard URL Tracking filter."
     },
     "options_block_known_trackers_title": {
-        "message": "Block known trackers"
+        "message": "Block trackers"
     },
     "options_block_known_trackers_description": {
-        "message": "When enabled, AdGuard Tracking Protection filter is used to block known trackers."
+        "message": "Block trackers and web analytics tools with AdGuard Tracking Protection filter."
     },
     "options_third_party_title": {
         "message": "Self-destruction of third-party cookies"
@@ -822,7 +846,7 @@
         "message": "Protection switch"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "About"
@@ -849,13 +873,10 @@
         "message": "Remove"
     },
     "options_nav_better_than_extension": {
-        "message": "Why is AdGuard full-fledged program better than extension?"
+        "message": "Why is the AdGuard app better than the extension?"
     },
     "options_nav_compare": {
-        "message": "How they compare"
-    },
-    "options_nav_hide": {
-        "message": "Hide"
+        "message": "Compare"
     },
     "options_filters_search": {
         "message": "Search"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Proceed anyway"
+    },
+    "text_collapser_show_default": {
+        "message": "Show full text"
+    },
+    "text_collapser_hide_default": {
+        "message": "Hide full text"
+    },
+    "close_button_title": {
+        "message": "Close"
     }
 }

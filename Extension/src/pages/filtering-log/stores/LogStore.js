@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* eslint-disable no-param-reassign */
 import {
     observable,
@@ -9,8 +27,8 @@ import {
 import find from 'lodash/find';
 import truncate from 'lodash/truncate';
 
+import { RequestType } from '../../../common/constants';
 import { reactTranslator } from '../../../common/translators/reactTranslator';
-import { RequestTypes } from '../../../background/utils/request-types';
 import { messenger } from '../../services/messenger';
 import { getFilterName } from '../components/RequestWizard/utils';
 import { matchesSearch } from './helpers';
@@ -98,42 +116,42 @@ const initEventTypesFilters = {
         {
             id: EVENT_TYPE_FILTERS.HTML,
             title: 'HTML',
-            types: [RequestTypes.DOCUMENT, RequestTypes.SUBDOCUMENT],
+            types: [RequestType.Document, RequestType.Subdocument],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_html'),
         },
         {
             id: EVENT_TYPE_FILTERS.CSS,
             title: 'CSS',
-            types: [RequestTypes.STYLESHEET],
+            types: [RequestType.Stylesheet],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_css'),
         },
         {
             id: EVENT_TYPE_FILTERS.JAVA_SCRIPT,
             title: 'JS',
-            types: [RequestTypes.SCRIPT],
+            types: [RequestType.Script],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_js'),
         },
         {
             id: EVENT_TYPE_FILTERS.XHR,
             title: 'XHR',
-            types: [RequestTypes.XMLHTTPREQUEST],
+            types: [RequestType.XmlHttpRequest],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_xhr'),
         },
         {
             id: EVENT_TYPE_FILTERS.IMAGE,
             title: 'Img',
-            types: [RequestTypes.IMAGE],
+            types: [RequestType.Image],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_img'),
         },
         {
             id: EVENT_TYPE_FILTERS.MEDIA,
             title: 'Media',
-            types: [RequestTypes.OBJECT, RequestTypes.MEDIA],
+            types: [RequestType.Object, RequestType.Media],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_media'),
         },
@@ -141,14 +159,14 @@ const initEventTypesFilters = {
             id: EVENT_TYPE_FILTERS.OTHER,
             title: reactTranslator.getMessage('filtering_type_other'),
             types: [
-                RequestTypes.OTHER,
-                RequestTypes.FONT,
-                RequestTypes.WEBSOCKET,
-                RequestTypes.CSP,
-                RequestTypes.COOKIE,
-                RequestTypes.PING,
-                RequestTypes.WEBRTC,
-                RequestTypes.CSP_REPORT,
+                RequestType.Other,
+                RequestType.Font,
+                RequestType.Websocket,
+                RequestType.Csp,
+                RequestType.Cookie,
+                RequestType.Ping,
+                RequestType.WebRTC,
+                RequestType.CspReport,
             ],
             enabled: true,
             tooltip: reactTranslator.getMessage('filtering_log_tag_tooltip_other'),
@@ -358,10 +376,10 @@ class LogStore {
                 // Cookie rules have document request type,
                 // but they refer to "other" filtering log events
                 if (filteringEvent?.requestRule?.isModifyingCookieRule) {
-                    return filter.types.includes(RequestTypes.COOKIE);
+                    return filter.types.includes(RequestType.Cookie);
                 }
                 if (filteringEvent?.cspReportBlocked) {
-                    return filter.types.includes(RequestTypes.CSP_REPORT);
+                    return filter.types.includes(RequestType.CspReport);
                 }
                 return filter.types.includes(requestType);
             });
@@ -379,13 +397,14 @@ class LogStore {
                 && !filteringEvent.replaceRules
                 && !filteringEvent.removeParam
                 && !filteringEvent.removeHeader;
-            const isModified = filteringEvent.requestRule?.isModifyingCookieRule
-                || filteringEvent.requestRule?.cssRule
-                || filteringEvent.requestRule?.scriptRule
-                || filteringEvent.requestRule?.cspRule
-                || filteringEvent.replaceRules
-                || filteringEvent.removeParam
-                || filteringEvent.removeHeader;
+            const isModified = !isAllowlisted
+                && (filteringEvent.requestRule?.isModifyingCookieRule
+                    || filteringEvent.requestRule?.cssRule
+                    || filteringEvent.requestRule?.scriptRule
+                    || filteringEvent.requestRule?.cspRule
+                    || filteringEvent.replaceRules
+                    || filteringEvent.removeParam
+                    || filteringEvent.removeHeader);
             const isUserFilter = filteringEvent.requestRule?.filterId === 0;
             const isFirstParty = !filteringEvent.requestThirdParty;
             const isThirdParty = filteringEvent.requestThirdParty;
@@ -421,7 +440,8 @@ class LogStore {
 
     /**
      * Clears filtering events ignoring preserve log
-     * @return {Promise<void>}
+     *
+     * @returns {Promise<void>}
      */
     @action
     clearFilteringEvents = async () => {
@@ -454,22 +474,29 @@ class LogStore {
         });
     };
 
-    toNumberOrString = (dirtyString) => {
-        const num = Number.parseInt(dirtyString, 10);
-        if (Number.isNaN(num)) {
-            return dirtyString;
+    @action
+    handleSelectEvent = (eventId) => {
+        if (this.selectedEvent
+            && this.rootStore.wizardStore.isModalOpen
+            && eventId === this.selectedEvent.eventId) {
+            this.selectedEvent = null;
+            this.rootStore.wizardStore.closeModal();
+            return;
         }
-        return String(num) === dirtyString ? num : dirtyString;
+
+        this.rootStore.wizardStore.setAddedRuleState(false);
+        this.setSelectedEventById(eventId);
+        this.rootStore.wizardStore.openModal();
     };
 
     @action
-    setSelectedEventById = (eventIdString) => {
-        const eventId = this.toNumberOrString(eventIdString);
-        if (this.selectedEvent && eventId !== this.selectedEvent.eventId) {
-            this.rootStore.wizardStore.setAddedRuleState(false);
-        }
+    setSelectedEventById = (eventId) => {
         this.selectedEvent = find(this.filteringEvents, { eventId });
-        this.rootStore.wizardStore.openModal();
+    };
+
+    @action
+    removeSelectedEvent = () => {
+        this.selectedEvent = null;
     };
 
     @computed
@@ -478,7 +505,7 @@ class LogStore {
             return null;
         }
 
-        return this.settings.values[this.settings.names.APPEARANCE_THEME];
+        return this.settings.values[this.settings.names.AppearanceTheme];
     }
 }
 

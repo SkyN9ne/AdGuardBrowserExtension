@@ -1,6 +1,25 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react';
 
+import { IOS_URL, ANDROID_URL } from '../../constants';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
 import { popupStore } from '../../stores/PopupStore';
 import { Icon } from '../../../common/components/ui/Icon';
@@ -10,15 +29,12 @@ import './footer.pcss';
 export const Footer = observer(() => {
     const store = useContext(popupStore);
 
-    const LINK_TO_IOS = 'https://adguard.com/forward.html?action=ios_about&from=popup&app=browser_extension';
-    const LINK_TO_ANDROID = 'https://adguard.com/forward.html?action=android_about&from=popup&app=browser_extension';
-
     let footerContent = (
         <>
             <div className="footer__text">{reactTranslator.getMessage('popup_adguard_footer_title')}</div>
             <div className="footer__platforms">
                 <a
-                    href={LINK_TO_IOS}
+                    href={IOS_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="footer__link"
@@ -30,7 +46,7 @@ export const Footer = observer(() => {
                     />
                 </a>
                 <a
-                    href={LINK_TO_ANDROID}
+                    href={ANDROID_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="footer__link"

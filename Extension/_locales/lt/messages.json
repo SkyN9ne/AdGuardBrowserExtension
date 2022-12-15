@@ -17,6 +17,9 @@
     "popup_header_cta_link": {
         "message": "Norite daugiau?"
     },
+    "popup_header_update_filters": {
+        "message": "Patikrinti filtro atnaujinimus"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Failo plėtinys turi būti %extension%"
     },
@@ -311,9 +314,6 @@
     "popup_security_report": {
         "message": "Patikrinti svetainės saugumą"
     },
-    "popup_reset_custom_rules": {
-        "message": "Atstatyti visas nuostatas šiame puslapyje"
-    },
     "popup_open_settings": {
         "message": "AdGuard nustatymai"
     },
@@ -449,9 +449,6 @@
     "filtering_modal_unblock": {
         "message": "Atblokuoti"
     },
-    "filtering_modal_remove_user": {
-        "message": "Pašalinti iš naudotojo filtrų"
-    },
     "filtering_modal_remove_allowlist": {
         "message": "Pašalinti iš baltojo sąrašo"
     },
@@ -525,7 +522,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "Sistemos"
+        "message": "Sisteminis"
     },
     "options_theme_selector_light": {
         "message": "Šviesi tema"
@@ -547,9 +544,6 @@
     },
     "options_check_update": {
         "message": "Tikrinti, ar yra atnaujinimų"
-    },
-    "options_set_update_interval": {
-        "message": "Filtrų atnaujinimo intervalas"
     },
     "options_userfilter_export": {
         "message": "Eksportas"
@@ -657,7 +651,7 @@
         "message": "Apsaugos perjungimas"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Apie"
@@ -679,9 +673,6 @@
     },
     "options_remove_filter_confirm_modal_ok_button": {
         "message": "Pašalinti"
-    },
-    "options_nav_hide": {
-        "message": "Paslėpti"
     },
     "options_filters_search": {
         "message": "Paieška"
@@ -721,5 +712,8 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Tęsti vis tiek"
+    },
+    "close_button_title": {
+        "message": "Uždaryti"
     }
 }

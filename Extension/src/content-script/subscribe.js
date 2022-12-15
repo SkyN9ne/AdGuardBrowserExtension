@@ -1,4 +1,5 @@
 /**
+ * @file
  * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
  * Adguard Browser Extension is free software: you can redistribute it and/or modify
@@ -100,9 +101,12 @@
         }
 
         contentPage.sendMessage({
+            handlerName: 'app',
             type: 'addFilterSubscription',
-            url,
-            title,
+            data: {
+                url,
+                title,
+            },
         });
     };
 

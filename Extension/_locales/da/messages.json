@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Blokere mere?"
     },
+    "popup_header_update_filters": {
+        "message": "Søg efter filteropdateringer"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Filtypenavnet skal være %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Du vil abonnere på dette filter."
+    },
+    "options_popup_url_title": {
+        "message": "Nyt filterabonnement"
     },
     "options_popup_url_placeholder": {
         "message": "Angiv URL eller sti"
@@ -333,7 +339,7 @@
         "message": "Tjek webstedets sikkerhed"
     },
     "popup_reset_custom_rules": {
-        "message": "Nulstil alle brugerregler for denne side"
+        "message": "Slet alle tilpassede regler for denne side"
     },
     "popup_open_settings": {
         "message": "AdGuard-indstillinger"
@@ -495,7 +501,7 @@
         "message": "Afblokér"
     },
     "filtering_modal_remove_user": {
-        "message": "Fjern fra Brugerregler"
+        "message": "Slet regel"
     },
     "filtering_modal_preview_request_button": {
         "message": "Forhåndsvisning"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Skjul komplet URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Vis komplet regel"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Skjul komplet regel"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Vis komplette element"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Skjul komplette element"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Kopiér til udklipsholder"
@@ -612,7 +630,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "System"
+        "message": "Systemstandard"
     },
     "options_theme_selector_light": {
         "message": "Lyst"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Importér indstillinger"
+    },
+    "options_report_bug": {
+        "message": "Anmeld en fejl"
+    },
+    "options_leave_feedback": {
+        "message": "Giv feedback"
     },
     "options_privacy": {
         "message": "Skjult Tilstand"
@@ -639,7 +663,7 @@
         "message": "Tjekker..."
     },
     "options_set_update_interval": {
-        "message": "Filtrenes opdateringsinterval"
+        "message": "Auto-opdatér filtre"
     },
     "options_set_update_interval_desc": {
         "message": "For en mere effektiv blokering bør filtre opdateres regelmæssigt."
@@ -669,7 +693,7 @@
         "message": "Phishing- og malware-beskyttelse"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Tjek, om domæner er farlige vha. <a>vores webtjeneste<\/a>."
+        "message": "Aktivér AdGuard Browsingsikkerhedsmodul, der opdager potentielt ondsindede og phishing-websteder ved at tjekke dem op mod en onlinedatabase. <a>Læs mere<\/a>"
     },
     "options_site": {
         "message": "Officielt websted"
@@ -774,13 +798,13 @@
         "message": "Fjern sporingsparametre"
     },
     "options_strip_tracking_params_description": {
-        "message": "Når aktiveret, bruges AdGuard URL Tracking-filteret til at fjerne sporingsparametre fra side-URL'er."
+        "message": "Fjern parametre fra webforespørgsler med AdGuard URL Tracking-filteret"
     },
     "options_block_known_trackers_title": {
-        "message": "Blokér kendte trackere"
+        "message": "Blokér trackere"
     },
     "options_block_known_trackers_description": {
-        "message": "Når det er aktiveret, bruges AdGuard Tracking Protection-filteret til at blokere kendte trackere."
+        "message": "Blokér trackere og webanalyseværktøjer med filteret AdGuard Sporingsbeskyttelse."
     },
     "options_third_party_title": {
         "message": "Selvdestruerende tredjepartscookies"
@@ -822,7 +846,7 @@
         "message": "Beskyttelsesskifter"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Om"
@@ -849,13 +873,10 @@
         "message": "Fjern"
     },
     "options_nav_better_than_extension": {
-        "message": "Hvorfor er det komplette AdGuard-program bedre end udvidelse?"
+        "message": "Hvorfor er AdGuard-appen bedre end udvidelse?"
     },
     "options_nav_compare": {
-        "message": "Deres indbyrdes forskelle"
-    },
-    "options_nav_hide": {
-        "message": "Skjul"
+        "message": "Sammenlign"
     },
     "options_filters_search": {
         "message": "Søg"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Fortsæt alligevel"
+    },
+    "text_collapser_show_default": {
+        "message": "Vis fuld tekst"
+    },
+    "text_collapser_hide_default": {
+        "message": "Skjul fuld tekst"
+    },
+    "close_button_title": {
+        "message": "Luk"
     }
 }

@@ -1,5 +1,5 @@
-/* eslint-disable no-nested-ternary */
 /**
+ * @file
  * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
  * Adguard Browser Extension is free software: you can redistribute it and/or modify
@@ -15,6 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
+
+/* eslint-disable no-nested-ternary */
+
+import { MessageType } from '../common/messages';
 
 const browser = window.browser || chrome;
 
@@ -292,7 +296,22 @@ export const devtoolsElementsSidebar = (() => {
         browser.devtools.inspectedWindow.eval(func, { useContentScriptContext: true });
     };
 
-    const addRuleForElement = function () {
+    /**
+     * Adds userrule via background page
+     * We add rule via background page to mitigate vulnerabilities
+     * related with messages from content script
+     *
+     * @param {string} ruleText
+     * @returns {Promise<void>}
+     */
+    const addRule = async (ruleText) => {
+        browser.runtime.sendMessage({
+            type: MessageType.AddUserRule,
+            data: { ruleText },
+        });
+    };
+
+    const addRuleForElement = async () => {
         if (window.adguardDevToolsPreview) {
             // Remove preview
             cancelPreview();
@@ -303,16 +322,11 @@ export const devtoolsElementsSidebar = (() => {
             return;
         }
 
-        const func = `DevToolsHelper.addRule(${JSON.stringify({ ruleText })});`;
-        browser.devtools.inspectedWindow.eval(func, {
-            useContentScriptContext: true,
-        }, () => {
-            applyPreview(ruleText);
+        await addRule(ruleText);
 
-            delete window.selectedElementInfo;
-
-            initElements();
-        });
+        applyPreview(ruleText);
+        delete window.selectedElementInfo;
+        initElements();
     };
 
     const init = () => {

@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, {
     useContext,
     useState,
@@ -23,7 +41,7 @@ import { SettingsSection } from '../Settings/SettingsSection';
 import { Icon } from '../../../common/components/ui/Icon';
 import { SEARCH_FILTERS } from './Search/constants';
 import { Setting, SETTINGS_TYPES } from '../Settings/Setting';
-import { ANTIBANNER_GROUPS_ID } from '../../../../common/constants';
+import { AntibannerGroupsId } from '../../../../common/constants';
 
 const QUERY_PARAM_NAMES = {
     GROUP: 'group',
@@ -206,7 +224,7 @@ const Filters = observer(() => {
         });
 
         // eslint-disable-next-line max-len
-        const isCustom = settingsStore.selectedGroupId === ANTIBANNER_GROUPS_ID.CUSTOM_FILTERS_GROUP_ID;
+        const isCustom = settingsStore.selectedGroupId === AntibannerGroupsId.CustomFilterGroupId;
         const isEmpty = filtersToRender.length === 0;
 
         const groupChangeHandler = async ({ id, data }) => {

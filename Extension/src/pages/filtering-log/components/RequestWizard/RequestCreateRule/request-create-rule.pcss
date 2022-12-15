@@ -10,14 +10,13 @@
 }
 
 .request-modal {
-    outline: none;
-
     &__rule-text {
         font-size: 16px;
         color: var(--gray900);
-        border: none;
+        border: 1px solid var(--regular-row-active);
+        border-radius: 4px;
+        padding: 8px;
         width: 100%;
-        outline: none;
         resize: vertical;
 
         @media (prefers-color-scheme: dark) {
@@ -76,11 +75,6 @@
                     margin-bottom: 0;
                 }
             }
-        }
-
-        .custom-checkbox,
-        .radio-button {
-            margin-right: 8px;
         }
     }
 }

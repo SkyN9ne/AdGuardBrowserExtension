@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Quer bloquear mais?"
     },
+    "popup_header_update_filters": {
+        "message": "Verificar atualizações de filtros"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "A extensão do ficheiro deve ser %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Estará subscrito a esse filtro."
+    },
+    "options_popup_url_title": {
+        "message": "Nova Assinatura de Filtro"
     },
     "options_popup_url_placeholder": {
         "message": "Insira a URL ou caminho:"
@@ -333,7 +339,7 @@
         "message": "Verificar a segurança do sítio"
     },
     "popup_reset_custom_rules": {
-        "message": "Repor todas as regras do utilizador para esta página"
+        "message": "Apagar todas as regras do usuário para esta página"
     },
     "popup_open_settings": {
         "message": "Definições do AdGuard"
@@ -420,7 +426,7 @@
         "message": "Registo de Filtragem"
     },
     "filtering_log_search_string": {
-        "message": "Filtrar registros de registro"
+        "message": "Filtrar registos de registo"
     },
     "filtering_log_search_tabs_placeholder": {
         "message": "Pesquisar nos separadores"
@@ -459,7 +465,7 @@
         "message": "Filtro"
     },
     "filtering_table_empty_reload_page_desc": {
-        "message": "<reset>Desactive os filtros<\/reset> ou <refresh>recarregue a página<\/refresh> para ver os registros de eventos de filtragem."
+        "message": "<reset>Desative os filtros<\/reset> ou <refresh>recarregue a página<\/refresh> para ver os registos de eventos de filtragem."
     },
     "filtering_modal_info_title": {
         "message": "Solicitar detalhes"
@@ -495,7 +501,7 @@
         "message": "Desbloquear"
     },
     "filtering_modal_remove_user": {
-        "message": "Remover das regras do utilizador"
+        "message": "Apagar regra"
     },
     "filtering_modal_preview_request_button": {
         "message": "Pré-visualização"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Esconder URL completa"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Mostrar regra completa"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Esconder regra completa"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Mostrar elemento completo"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Esconder elemento completo"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Copiar para a área de transferência"
@@ -612,7 +630,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "Sistema"
+        "message": "Sistema predefinido"
     },
     "options_theme_selector_light": {
         "message": "Claro"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Importar definições"
+    },
+    "options_report_bug": {
+        "message": "Comunicar um problema"
+    },
+    "options_leave_feedback": {
+        "message": "Deixar feedback"
     },
     "options_privacy": {
         "message": "Modo invisível"
@@ -639,7 +663,7 @@
         "message": "A verificar..."
     },
     "options_set_update_interval": {
-        "message": "Intervalo de atualização de filtros"
+        "message": "Atualização automática dos filtros"
     },
     "options_set_update_interval_desc": {
         "message": "Para um bloqueio mais eficaz, os filtros precisam ser atualizados regularmente."
@@ -669,7 +693,7 @@
         "message": "Proteção contra phishing e malware"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Verifique se os domínios são perigosos com <a>nosso serviço da web<\/a>."
+        "message": "Ativar o módulo de segurança da navegação do AdGuard que detecta os sítios potencialmente maliciosos e de phishing verificando um banco de dados em linha. <a>Saiba mais<\/a>"
     },
     "options_site": {
         "message": "Sítio oficial"
@@ -774,13 +798,13 @@
         "message": "Excluir parâmetros de monitorização"
     },
     "options_strip_tracking_params_description": {
-        "message": "Quando ativado, o filtro de monitorizamento de URL do AdGuard é usado para remover os parâmetros de monitorizamento de URLs de página"
+        "message": "Remova parâmetros de solicitações da Web com o filtro de monitorização de URL do AdGuard."
     },
     "options_block_known_trackers_title": {
-        "message": "Bloquear monitorizadores conhecidos"
+        "message": "Bloquear monitorizadores"
     },
     "options_block_known_trackers_description": {
-        "message": "Quando ativado, o filtro de proteção de monitorização do AdGuard é usado para bloquear rastreadores conhecidos."
+        "message": "Bloqueie monitorizadores e ferramentas de análise da web com o filtro de proteção de monitorização do AdGuard."
     },
     "options_third_party_title": {
         "message": "Autodestruir cookies de terceiros"
@@ -822,7 +846,7 @@
         "message": "Alternador de proteção"
     },
     "short_name": {
-        "message": "Bloqueador de publicidade do AdGuard"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Acerca de"
@@ -849,13 +873,10 @@
         "message": "Remover"
     },
     "options_nav_better_than_extension": {
-        "message": "Por que o programa completo do AdGuard é melhor do que a extensão?"
+        "message": "Porque a aplicação do AdGuard é melhor que a extensão?"
     },
     "options_nav_compare": {
-        "message": "Como eles comparam"
-    },
-    "options_nav_hide": {
-        "message": "Esconder"
+        "message": "Comparar"
     },
     "options_filters_search": {
         "message": "Pesquisar"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Prosseguir mesmo assim"
+    },
+    "text_collapser_show_default": {
+        "message": "Mostrar texto completo"
+    },
+    "text_collapser_hide_default": {
+        "message": "Esconder texto completo"
+    },
+    "close_button_title": {
+        "message": "Fechar"
     }
 }

@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, { useContext, useState } from 'react';
 import { observer } from 'mobx-react';
 
@@ -7,9 +25,10 @@ import { SETTINGS_TYPES } from '../Settings/Setting';
 import { messenger } from '../../../services/messenger';
 import { rootStore } from '../../stores/RootStore';
 import { userRulesEditorStore } from '../../../common/components/UserRulesEditor/UserRulesEditorStore';
-import { log } from '../../../../common/log';
+import { Log } from '../../../../common/log';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
 import { ConfirmModal } from '../../../common/components/ConfirmModal';
+import { COLLECT_HITS_LEARN_MORE_URL } from '../../constants';
 
 const Miscellaneous = observer(() => {
     const {
@@ -28,11 +47,8 @@ const Miscellaneous = observer(() => {
         return null;
     }
 
-    // eslint-disable-next-line max-len
-    const COLLECT_HITS_LEARN_MORE_URL = 'https://adguard.com/forward.html?action=filter_rules&from=options_screen&app=browser_extension';
-
     const settingChangeHandler = async ({ id, data }) => {
-        log.info(`Setting ${id} set to ${data}`);
+        Log.info(`Setting ${id} set to ${data}`);
         await settingsStore.updateSetting(id, data);
     };
 
@@ -68,13 +84,13 @@ const Miscellaneous = observer(() => {
     };
 
     const {
-        USE_OPTIMIZED_FILTERS,
-        DISABLE_COLLECT_HITS,
-        DISABLE_SHOW_CONTEXT_MENU,
-        DISABLE_SHOW_ADGUARD_PROMO_INFO,
-        DISABLE_SHOW_APP_UPDATED_NOTIFICATION,
-        DISABLE_SHOW_PAGE_STATS,
-        DEFAULT_ALLOWLIST_MODE,
+        UseOptimizedFilters,
+        DisableCollectHits,
+        DisableShowContextMenu,
+        DisableShowAdguardPromoInfo,
+        DisableShowAppUpdatedNotification,
+        DisableShowPageStats,
+        DefaultAllowlistMode,
     } = settings.names;
 
     return (
@@ -83,20 +99,20 @@ const Miscellaneous = observer(() => {
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_use_optimized_filters')}
                     description={reactTranslator.getMessage('options_use_optimized_filters_desc')}
-                    disabled={!settings.values[USE_OPTIMIZED_FILTERS]}
-                    id={USE_OPTIMIZED_FILTERS}
+                    disabled={!settings.values[UseOptimizedFilters]}
+                    id={UseOptimizedFilters}
                     label={reactTranslator.getMessage('options_use_optimized_filters')}
                     type={SETTINGS_TYPES.CHECKBOX}
-                    value={settings.values[USE_OPTIMIZED_FILTERS]}
+                    value={settings.values[UseOptimizedFilters]}
                     handler={settingChangeHandler}
                 />
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_allowlist_invert')}
                     description={reactTranslator.getMessage('options_allowlist_invert_desc')}
-                    id={DEFAULT_ALLOWLIST_MODE}
+                    id={DefaultAllowlistMode}
                     label={reactTranslator.getMessage('options_allowlist_invert')}
                     type={SETTINGS_TYPES.CHECKBOX}
-                    value={settings.values[DEFAULT_ALLOWLIST_MODE]}
+                    value={settings.values[DefaultAllowlistMode]}
                     handler={settingChangeHandler}
                     inverted
                 />
@@ -113,56 +129,56 @@ const Miscellaneous = observer(() => {
                             </a>
                         ),
                     })}
-                    disabled={settings.values[DISABLE_COLLECT_HITS]}
-                    id={DISABLE_COLLECT_HITS}
+                    disabled={settings.values[DisableCollectHits]}
+                    id={DisableCollectHits}
                     type={SETTINGS_TYPES.CHECKBOX}
                     label={reactTranslator.getMessage('options_collect_hit_stats_title')}
                     inverted
-                    value={settings.values[DISABLE_COLLECT_HITS]}
+                    value={settings.values[DisableCollectHits]}
                     handler={settingChangeHandler}
                 />
 
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_show_blocked_ads_count_title')}
-                    disabled={settings.values[DISABLE_SHOW_PAGE_STATS]}
-                    id={DISABLE_SHOW_PAGE_STATS}
+                    disabled={settings.values[DisableShowPageStats]}
+                    id={DisableShowPageStats}
                     type={SETTINGS_TYPES.CHECKBOX}
                     label={reactTranslator.getMessage('options_show_blocked_ads_count_title')}
                     inverted
-                    value={settings.values[DISABLE_SHOW_PAGE_STATS]}
+                    value={settings.values[DisableShowPageStats]}
                     handler={settingChangeHandler}
                 />
 
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_show_context_menu_title')}
-                    disabled={settings.values[DISABLE_SHOW_CONTEXT_MENU]}
-                    id={DISABLE_SHOW_CONTEXT_MENU}
+                    disabled={settings.values[DisableShowContextMenu]}
+                    id={DisableShowContextMenu}
                     type={SETTINGS_TYPES.CHECKBOX}
                     label={reactTranslator.getMessage('options_show_context_menu_title')}
                     inverted
-                    value={settings.values[DISABLE_SHOW_CONTEXT_MENU]}
+                    value={settings.values[DisableShowContextMenu]}
                     handler={settingChangeHandler}
                 />
 
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_show_adguard_full_version_title')}
-                    disabled={settings.values[DISABLE_SHOW_ADGUARD_PROMO_INFO]}
-                    id={DISABLE_SHOW_ADGUARD_PROMO_INFO}
+                    disabled={settings.values[DisableShowAdguardPromoInfo]}
+                    id={DisableShowAdguardPromoInfo}
                     type={SETTINGS_TYPES.CHECKBOX}
                     label={reactTranslator.getMessage('options_show_adguard_full_version_title')}
                     inverted
-                    value={settings.values[DISABLE_SHOW_ADGUARD_PROMO_INFO]}
+                    value={settings.values[DisableShowAdguardPromoInfo]}
                     handler={settingChangeHandler}
                 />
 
                 <SettingsSetCheckbox
                     title={reactTranslator.getMessage('options_show_app_updated_notification')}
-                    disabled={settings.values[DISABLE_SHOW_APP_UPDATED_NOTIFICATION]}
-                    id={DISABLE_SHOW_APP_UPDATED_NOTIFICATION}
+                    disabled={settings.values[DisableShowAppUpdatedNotification]}
+                    id={DisableShowAppUpdatedNotification}
                     type={SETTINGS_TYPES.CHECKBOX}
                     label={reactTranslator.getMessage('options_show_app_updated_notification')}
                     inverted
-                    value={settings.values[DISABLE_SHOW_APP_UPDATED_NOTIFICATION]}
+                    value={settings.values[DisableShowAppUpdatedNotification]}
                     handler={settingChangeHandler}
                 />
                 <button

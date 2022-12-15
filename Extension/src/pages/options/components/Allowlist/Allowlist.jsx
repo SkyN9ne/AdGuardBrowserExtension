@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import React, {
     useContext, useEffect, useRef, useState,
 } from 'react';
@@ -7,8 +25,8 @@ import { Link } from 'react-router-dom';
 import { SettingsSection } from '../Settings/SettingsSection';
 import { Editor } from '../../../common/components/Editor';
 import { rootStore } from '../../stores/RootStore';
-import { uploadFile } from '../../../helpers';
-import { log } from '../../../../common/log';
+import { handleFileUpload } from '../../../helpers';
+import { Log } from '../../../../common/log';
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
 import { AllowlistSavingButton } from './AllowlistSavingButton';
 import { usePrevious } from '../../../common/hooks/usePrevious';
@@ -42,7 +60,7 @@ const Allowlist = observer(() => {
 
     const { settings } = settingsStore;
 
-    const { DEFAULT_ALLOWLIST_MODE } = settings.names;
+    const { DefaultAllowlistMode } = settings.names;
 
     const importClickHandler = (e) => {
         e.preventDefault();
@@ -58,11 +76,11 @@ const Allowlist = observer(() => {
         const file = event.target.files[0];
 
         try {
-            const content = await uploadFile(file, 'txt');
+            const content = await handleFileUpload(file, 'txt');
             await settingsStore.appendAllowlist(content);
             setAllowlistRerender(true);
         } catch (e) {
-            log.debug(e.message);
+            Log.debug(e.message);
             uiStore.addNotification({ description: e.message });
         }
 
@@ -94,7 +112,7 @@ const Allowlist = observer(() => {
         await settingsStore.updateSetting(id, data);
     };
 
-    const { ALLOWLIST_ENABLED } = settings.names;
+    const { AllowlistEnabled } = settings.names;
 
     let shouldResetSize = false;
     if (settingsStore.allowlistSizeReset) {
@@ -106,8 +124,9 @@ const Allowlist = observer(() => {
         <>
             <SettingsSection
                 title={reactTranslator.getMessage('options_allowlist')}
-                id={ALLOWLIST_ENABLED}
-                description={settings.values[DEFAULT_ALLOWLIST_MODE]
+                id={AllowlistEnabled}
+                mode="smallContainer"
+                description={settings.values[DefaultAllowlistMode]
                     ? reactTranslator.getMessage('options_allowlist_desc')
                     : (
                         <div>
@@ -127,9 +146,9 @@ const Allowlist = observer(() => {
                     )}
                 inlineControl={(
                     <Setting
-                        id={ALLOWLIST_ENABLED}
+                        id={AllowlistEnabled}
                         type={SETTINGS_TYPES.CHECKBOX}
-                        value={settings.values[ALLOWLIST_ENABLED]}
+                        value={settings.values[AllowlistEnabled]}
                         handler={allowlistChangeHandler}
                     />
                 )}

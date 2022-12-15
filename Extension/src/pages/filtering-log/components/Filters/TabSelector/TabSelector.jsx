@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /*
 eslint-disable jsx-a11y/click-events-have-key-events,
 jsx-a11y/no-noninteractive-element-interactions
@@ -11,6 +29,7 @@ import { observer } from 'mobx-react';
 import { rootStore } from '../../../stores/RootStore';
 import { reactTranslator } from '../../../../../common/translators/reactTranslator';
 import { useOutsideClick } from '../../../../common/hooks/useOutsideClick';
+import { useOutsideFocus } from '../../../../common/hooks/useOutsideFocus';
 import { useKeyDown } from '../../../../common/hooks/useKeyDown';
 import { WASTE_CHARACTERS } from '../../../../../common/constants';
 
@@ -36,7 +55,7 @@ const TabSelector = observer(() => {
         if (refResult.current?.childNodes) {
             setResultItems(Array.from(refResult.current.childNodes));
         }
-    }, [searchValue]);
+    }, [selectIsOpen, searchValue]);
 
     useEffect(() => {
         if (resultItems) {
@@ -73,12 +92,18 @@ const TabSelector = observer(() => {
     });
 
     useKeyDown(refResult, 'Enter', () => {
+        // Selected with the arrow buttons
         const targetElem = resultItems?.find(
             (el) => el.classList.contains(SELECTED_CLASS_NAME),
         );
-        if (targetElem) {
+        // Selected with the tab button
+        const activeElem = resultItems?.find(
+            (el) => el === document.activeElement,
+        );
+
+        if (activeElem || targetElem) {
             (async () => {
-                await selectionHandlerSearch(Number(targetElem.id));
+                await selectionHandlerSearch(Number(activeElem ? activeElem.id : targetElem.id));
             })();
             document.activeElement.blur();
         }
@@ -99,6 +124,8 @@ const TabSelector = observer(() => {
     });
 
     useOutsideClick(refSelector, cancelTabSearch);
+
+    useOutsideFocus(refSelector, cancelTabSearch);
 
     useEffect(() => {
         const selectedTab = tabs.find((tab) => tab.tabId === selectedTabId);

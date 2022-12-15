@@ -1,19 +1,29 @@
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { observer } from 'mobx-react';
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-import { COMPARE_URL } from '../../../constants';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import { reactTranslator } from '../../../../common/translators/reactTranslator';
-import { rootStore } from '../../stores/RootStore';
 
 import './nav.pcss';
 
-const Nav = observer(({ closeSidebar }) => {
-    const { settingsStore } = useContext(rootStore);
-    const hideCompare = async () => {
-        await settingsStore.hideAdguardPromoInfo();
-    };
-
+const Nav = ({ closeSidebar }) => {
     const onClick = () => {
         closeSidebar();
     };
@@ -77,32 +87,8 @@ const Nav = observer(({ closeSidebar }) => {
             >
                 {reactTranslator.getMessage('options_about')}
             </NavLink>
-            {settingsStore.showAdguardPromoInfo && (
-                <div className="nav__desc">
-                    <div className="nav__message">
-                        {reactTranslator.getMessage('options_nav_better_than_extension')}
-                    </div>
-                    <div>
-                        <a
-                            className="nav__link"
-                            href={COMPARE_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {reactTranslator.getMessage('options_nav_compare')}
-                        </a>
-                    </div>
-                    <button
-                        type="button"
-                        className="nav__hide"
-                        onClick={hideCompare}
-                    >
-                        {reactTranslator.getMessage('options_nav_hide')}
-                    </button>
-                </div>
-            )}
         </div>
     );
-});
+};
 
 export { Nav };

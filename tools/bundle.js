@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* eslint-disable no-console,no-restricted-syntax,no-await-in-loop */
 import { program } from 'commander';
 
@@ -8,7 +26,6 @@ import { getWebpackConfig } from './bundle/webpack-config';
 import { crx } from './bundle/crx';
 import { xpi } from './bundle/xpi';
 import { buildInfo } from './bundle/build-info';
-import { genValidators } from './genValidators';
 
 const bundleChrome = (watch) => {
     const webpackConfig = getWebpackConfig(BROWSERS.CHROME);
@@ -43,37 +60,27 @@ const bundleFirefoxXpi = async () => {
     await xpi(BROWSERS.FIREFOX_STANDALONE);
 };
 
-const bundleAdguardApi = async () => {
-    const webpackConfig = getWebpackConfig(BROWSERS.ADGUARD_API);
-    return bundleRunner(webpackConfig);
-};
-
 const devPlan = [
-    genValidators,
     copyExternals,
     bundleChrome,
     bundleFirefoxAmo,
     bundleFirefoxStandalone,
     bundleEdge,
     bundleOpera,
-    bundleAdguardApi,
     buildInfo,
 ];
 
 const betaPlan = [
-    genValidators,
     copyExternals,
     bundleChrome,
     bundleChromeCrx,
     bundleFirefoxStandalone,
     bundleFirefoxXpi,
     bundleEdge,
-    bundleAdguardApi,
     buildInfo,
 ];
 
 const releasePlan = [
-    genValidators,
     copyExternals,
     bundleChrome,
     bundleFirefoxAmo,
@@ -116,15 +123,6 @@ const main = async () => {
     }
 };
 
-const adguardApi = async () => {
-    try {
-        await bundleAdguardApi();
-    } catch (e) {
-        console.error(e);
-        process.exit(1);
-    }
-};
-
 const chrome = async (watch) => {
     try {
         await bundleChrome(watch);
@@ -159,11 +157,6 @@ program
     .action(() => {
         firefox(program.watch);
     });
-
-program
-    .command('adguard-api')
-    .description('Builds sample extension with adguard api')
-    .action(adguardApi);
 
 program
     .description('By default builds for all platforms')

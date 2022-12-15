@@ -14,6 +14,9 @@
     "popup_header_cta_link": {
         "message": "ต้องการปิดกั้นอะไรอีกไหม?"
     },
+    "popup_header_update_filters": {
+        "message": "ตรวจสอบการอัปเดตตัวกรอง"
+    },
     "popup_adguard_for_ios": {
         "message": "AdGuard สำหรับ iOS"
     },
@@ -37,6 +40,9 @@
     },
     "options_popup_description": {
         "message": "คุณจะสมัครเป็นสมาชิกของตัวกรองนั้น"
+    },
+    "options_popup_url_title": {
+        "message": "การสมัครสมาชิกตัวกรองใหม่"
     },
     "options_popup_url_placeholder": {
         "message": "ใส่ URL หรือเส้นทาง"
@@ -374,9 +380,6 @@
     "filtering_modal_unblock": {
         "message": "เลิกปิดกั้น"
     },
-    "filtering_modal_remove_user": {
-        "message": "ลบออกจากตัวกรองผู้ใช้"
-    },
     "filtering_modal_add_title": {
         "message": "เพิ่มกฎ"
     },
@@ -408,13 +411,7 @@
         "message": "เปิดใช้งานตัวกรองที่เหมาะสมที่สุดโดยอัตโนมัติ"
     },
     "options_theme_selector_system": {
-        "message": "ระบบ"
-    },
-    "options_theme_selector_light": {
-        "message": "โหมดสว่าง"
-    },
-    "options_theme_selector_dark": {
-        "message": "โหมดมืด"
+        "message": "ระบบเริ่มต้น"
     },
     "options_export_settings": {
         "message": "ส่งออกการตั้งค่า"
@@ -430,9 +427,6 @@
     },
     "options_check_update": {
         "message": "ตรวจสอบการปรับปรุง"
-    },
-    "options_set_update_interval": {
-        "message": "กรองช่วงเวลาการอัปเดต"
     },
     "options_userfilter_export": {
         "message": "ส่งออก"
@@ -521,9 +515,6 @@
     "popup_switch_button": {
         "message": "สวิตช์ป้องกัน"
     },
-    "short_name": {
-        "message": "AdGuard AdBlocker"
-    },
     "options_about": {
         "message": "เกี่ยวกับ"
     },
@@ -541,9 +532,6 @@
     },
     "options_copyright": {
         "message": "สงวนลิขสิทธิ์"
-    },
-    "options_nav_compare": {
-        "message": "พวกเขาเปรียบเทียบกันอย่างไร"
     },
     "options_filters_search": {
         "message": "ค้นหา"
@@ -577,5 +565,8 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "ดำเนินการต่อ"
+    },
+    "short_name": {
+        "message": "AdGuard"
     }
 }

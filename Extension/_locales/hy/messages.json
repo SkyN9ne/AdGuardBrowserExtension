@@ -8,6 +8,9 @@
     "popup_header_cta_link": {
         "message": "Ավելի՞ն արգելափակել:"
     },
+    "popup_header_update_filters": {
+        "message": "Ստուգել զտիչի թարմացումները"
+    },
     "options_popup_next_button": {
         "message": "Հաջորդը"
     },
@@ -161,9 +164,6 @@
     "filtering_modal_unblock": {
         "message": "Ապաարգելափակել"
     },
-    "filtering_modal_remove_user": {
-        "message": "Հեռացնել օգտվողի զտիչից"
-    },
     "filtering_modal_preview_request_button": {
         "message": "Նախատեսք"
     },
@@ -226,9 +226,6 @@
     },
     "options_select_theme": {
         "message": "Ֆոն"
-    },
-    "options_theme_selector_system": {
-        "message": "Համակարգ"
     },
     "options_export_settings": {
         "message": "Արտահանել կարգավորումները"
@@ -317,10 +314,13 @@
     "blocking_pages_advanced_button": {
         "message": "Ընդլայնված"
     },
+    "close_button_title": {
+        "message": "Փակել"
+    },
     "name": {
         "message": "AdGuard AdBlocker"
     },
     "short_name": {
-        "message": "AdGuard AdBlocker"
+        "message": "AdGuard"
     }
 }

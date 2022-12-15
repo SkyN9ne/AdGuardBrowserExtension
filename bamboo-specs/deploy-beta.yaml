@@ -5,9 +5,9 @@ deployment:
   source-plan: ADGEXT-BEBETASPECS
 release-naming: ${bamboo.inject.version}-beta
 environments:
-  - static.adguard.com
+  - static.adtidy.org
   - Chrome WebStore
-static.adguard.com:
+static.adtidy.org:
   triggers: []
   tasks:
     - clean
@@ -32,6 +32,10 @@ static.adguard.com:
           - |-
             set -x
             set -e
+
+            # Fix mixed logs
+            exec 2>&1
+
             ls -la
 
             ./bamboo-deploy-publisher/deploy.sh browser-extension-beta
@@ -69,6 +73,10 @@ Chrome WebStore:
           - |-
             set -x
             set -e
+
+            # Fix mixed logs
+            exec 2>&1
+
             ls -la
 
             ./bamboo-deploy-publisher/deploy.sh browser-extension-webstore-beta

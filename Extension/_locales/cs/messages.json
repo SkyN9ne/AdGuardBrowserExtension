@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Chcete dále blokovat?"
     },
+    "popup_header_update_filters": {
+        "message": "Vyhledat aktualizace filtrů"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Přípona souboru rozšíření musí být %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Budete přihlášeni k odběru tohoto filtru."
+    },
+    "options_popup_url_title": {
+        "message": "Odběr nového filtru"
     },
     "options_popup_url_placeholder": {
         "message": "Zadejte URL nebo cestu"
@@ -333,7 +339,7 @@
         "message": "Zkontrolovat bezpečnost webové stránky"
     },
     "popup_reset_custom_rules": {
-        "message": "Resetovat všechna uživatelská pravidla pro tuto stránku"
+        "message": "Vymazat všechna vlastní pravidla pro tuto stránku"
     },
     "popup_open_settings": {
         "message": "Nastavení AdGuardu"
@@ -462,7 +468,7 @@
         "message": "Chcete-li zobrazit záznamy událostí filtrování, <reset>zakažte filtry<\/reset> nebo <refresh>obnovte stránku<\/refresh>."
     },
     "filtering_modal_info_title": {
-        "message": "Požadovat detaily"
+        "message": "Detaily požadavku"
     },
     "filtering_modal_preview_title": {
         "message": "Náhled"
@@ -495,7 +501,7 @@
         "message": "Odblokovat"
     },
     "filtering_modal_remove_user": {
-        "message": "Odstranit z Uživatelských pravidel"
+        "message": "Odstranit pravidlo"
     },
     "filtering_modal_preview_request_button": {
         "message": "Náhled"
@@ -546,10 +552,22 @@
         "message": "Otevřít v nové záložce"
     },
     "filtering_modal_show_full_url": {
-        "message": "Zobrazit úplnou URL"
+        "message": "Zobrazit celou URL"
     },
     "filtering_modal_hide_full_url": {
         "message": "Skrýt úplnou URL"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Zobrazit celé pravidlo"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Skrýt celé pravidlo"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Zobrazit celý prvek"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Skrýt celý prvek"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Kopírovat do schránky"
@@ -612,7 +630,7 @@
         "message": "Motiv"
     },
     "options_theme_selector_system": {
-        "message": "Systémový"
+        "message": "Výchozí systému"
     },
     "options_theme_selector_light": {
         "message": "Světlý"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Načíst nastavení"
+    },
+    "options_report_bug": {
+        "message": "Nahlásit chybu"
+    },
+    "options_leave_feedback": {
+        "message": "Zanechat zpětnou vazbu"
     },
     "options_privacy": {
         "message": "Soukromí"
@@ -639,7 +663,7 @@
         "message": "Kontroluji..."
     },
     "options_set_update_interval": {
-        "message": "Interval aktualizace filtrů"
+        "message": "Automatická aktualizace filtrů"
     },
     "options_set_update_interval_desc": {
         "message": "Pro efektivnější blokování je třeba filtry pravidelně aktualizovat."
@@ -669,7 +693,7 @@
         "message": "Ochrana proti phishingu a škodlivému softwaru"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Pomocí <a>speciální webové služby<\/a> zkontrolovat, zda jsou domény nebezpečné."
+        "message": "Zapne modul Bezpečné prohlížení AdGuard, který detekuje potenciálně škodlivé stránky a krádež identity jejich kontrolou v online databázi. <a>Další informece<\/a>"
     },
     "options_site": {
         "message": "Oficiální stránka"
@@ -774,13 +798,13 @@
         "message": "Odstranit sledovací identifikátory"
     },
     "options_strip_tracking_params_description": {
-        "message": "Pokud je zapnuto, k odstranění parametrů sledování z adres URL se používá AdGuard filtr sledování URL"
+        "message": "Odebrat parametry z webových požadavků pomocí AdGuard filtru sledování URL."
     },
     "options_block_known_trackers_title": {
-        "message": "Blokovat známé slídiče"
+        "message": "Blokovat slídiče"
     },
     "options_block_known_trackers_description": {
-        "message": "Pokud je zapnuto, AdGuard filtr ochrany sledování se používá k blokování známých slídičů."
+        "message": "Blokovat slídiče a nástroje pro webovou analýzu pomocí AdGuard filtru ochrany sledování."
     },
     "options_third_party_title": {
         "message": "Autodestrukce cookies třetích stran"
@@ -822,7 +846,7 @@
         "message": "Přepínač ochrany"
     },
     "short_name": {
-        "message": "Blokátor reklam AdGuard"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "O programu"
@@ -849,13 +873,10 @@
         "message": "Odstranit"
     },
     "options_nav_better_than_extension": {
-        "message": "Proč je plnohodnotný program AdGuard lepší než rozšíření?"
+        "message": "Proč je aplikace AdGuard lepší než rozšíření?"
     },
     "options_nav_compare": {
-        "message": "Jak porovnávají"
-    },
-    "options_nav_hide": {
-        "message": "Skrýt"
+        "message": "Porovnat"
     },
     "options_filters_search": {
         "message": "Hledat"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Přesto pokračovat"
+    },
+    "text_collapser_show_default": {
+        "message": "Zobrazit celý text"
+    },
+    "text_collapser_hide_default": {
+        "message": "Skrýt celý text"
+    },
+    "close_button_title": {
+        "message": "Zavřít"
     }
 }

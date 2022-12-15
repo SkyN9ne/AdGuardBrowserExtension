@@ -13,6 +13,7 @@
     }
 
     &__info {
+        flex-shrink: 1;
         font-size: 14px;
         color: var(--gray700);
         display: flex;
@@ -30,6 +31,7 @@
     }
 
     &__btn {
+        flex-shrink: 0;
         min-width: 200px;
     }
 }
@@ -46,9 +48,4 @@
         color: var(--white);
         opacity: 0.5;
     }
-}
-
-@keyframes spin {
-    0% {transform: rotate(0)}
-    100% {transform: rotate(360deg)}
 }

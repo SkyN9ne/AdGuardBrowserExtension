@@ -20,6 +20,9 @@
     "popup_header_cta_link": {
         "message": "Quer bloquear mais?"
     },
+    "popup_header_update_filters": {
+        "message": "Verificar atualizações de filtros"
+    },
     "options_popup_import_settings_wrong_file_ext": {
         "message": "Extensão de arquivo deve ser %extension%"
     },
@@ -49,6 +52,9 @@
     },
     "options_popup_description": {
         "message": "Você será inscrito nesse filtro."
+    },
+    "options_popup_url_title": {
+        "message": "Nova inscrição de filtro"
     },
     "options_popup_url_placeholder": {
         "message": "Digite a URL ou caminho:"
@@ -333,7 +339,7 @@
         "message": "Verificar a segurança do site"
     },
     "popup_reset_custom_rules": {
-        "message": "Redefinir todas as regras do usuário para esta página"
+        "message": "Apagar todas as regras do usuário para esta página"
     },
     "popup_open_settings": {
         "message": "Configurações do AdGuard"
@@ -495,7 +501,7 @@
         "message": "Desbloquear"
     },
     "filtering_modal_remove_user": {
-        "message": "Remover das regras de usuário"
+        "message": "Excluir regra"
     },
     "filtering_modal_preview_request_button": {
         "message": "Pré-visualização"
@@ -550,6 +556,18 @@
     },
     "filtering_modal_hide_full_url": {
         "message": "Ocultar URL completa"
+    },
+    "filtering_modal_show_full_rule": {
+        "message": "Mostrar regra completa"
+    },
+    "filtering_modal_hide_full_rule": {
+        "message": "Ocultar regra completa"
+    },
+    "filtering_modal_show_full_element": {
+        "message": "Mostrar elemento completo"
+    },
+    "filtering_modal_hide_full_element": {
+        "message": "Ocultar elemento completo"
     },
     "filtering_modal_copy_to_clipboard": {
         "message": "Copiar para área de transferência"
@@ -612,7 +630,7 @@
         "message": "Tema"
     },
     "options_theme_selector_system": {
-        "message": "Sistema"
+        "message": "Padrão do sistema"
     },
     "options_theme_selector_light": {
         "message": "Claro"
@@ -625,6 +643,12 @@
     },
     "options_import_settings": {
         "message": "Importar configurações"
+    },
+    "options_report_bug": {
+        "message": "Reportar um problema"
+    },
+    "options_leave_feedback": {
+        "message": "Deixar feedback"
     },
     "options_privacy": {
         "message": "Modo Invisível"
@@ -639,7 +663,7 @@
         "message": "Verificando..."
     },
     "options_set_update_interval": {
-        "message": "Intervalo de atualização de filtros"
+        "message": "Atualização automática de filtros"
     },
     "options_set_update_interval_desc": {
         "message": "Para um bloqueio mais eficaz, os filtros precisam ser atualizados regularmente."
@@ -669,7 +693,7 @@
         "message": "Proteção contra phishing e malware"
     },
     "options_safebrowsing_enabled_desc": {
-        "message": "Verifique se os domínios são perigosos com <a>nosso serviço da web<\/a>."
+        "message": "Ativar o módulo de segurança da navegação do AdGuard que detecta os sites potencialmente maliciosos e de phishing verificando um banco de dados em linha. <a>Saiba mais<\/a>"
     },
     "options_site": {
         "message": "Site Oficial"
@@ -774,13 +798,13 @@
         "message": "Remover parâmetros de rastreamento"
     },
     "options_strip_tracking_params_description": {
-        "message": "Quando ativado, o filtro de rastreamento de URL do AdGuard é usado para remover os parâmetros de rastreamento de URLs de página."
+        "message": "Remova parâmetros de solicitações da Web com o filtro contra rastreamento de URL do AdGuard."
     },
     "options_block_known_trackers_title": {
-        "message": "Bloquear rastreadores conhecidos"
+        "message": "Bloquear rastreadores"
     },
     "options_block_known_trackers_description": {
-        "message": "Quando ativado, o filtro de proteção contra rastreamento é usado para bloquear rastreadores conhecidos."
+        "message": "Bloqueie rastreadores e ferramentas de análise da web com o filtro de proteção contra rastreamento do AdGuard."
     },
     "options_third_party_title": {
         "message": "Destruir automaticamente cookies de terceiros"
@@ -822,7 +846,7 @@
         "message": "Interruptor de proteção"
     },
     "short_name": {
-        "message": "Bloqueador de anúncio do AdGuard"
+        "message": "AdGuard"
     },
     "options_about": {
         "message": "Sobre"
@@ -849,13 +873,10 @@
         "message": "Remover"
     },
     "options_nav_better_than_extension": {
-        "message": "Por que o programa completo do AdGuard é melhor do que a extensão?"
+        "message": "Porque o aplicativo do AdGuard é melhor que a extensão?"
     },
     "options_nav_compare": {
-        "message": "Como eles se comparam"
-    },
-    "options_nav_hide": {
-        "message": "Ocultar"
+        "message": "Comparar"
     },
     "options_filters_search": {
         "message": "Procurar"
@@ -1015,5 +1036,14 @@
     },
     "blocking_pages_btn_proceed": {
         "message": "Continuar mesmo assim"
+    },
+    "text_collapser_show_default": {
+        "message": "Mostrar texto completo"
+    },
+    "text_collapser_hide_default": {
+        "message": "Ocultar texto completo"
+    },
+    "close_button_title": {
+        "message": "Fechar"
     }
 }

@@ -1,3 +1,21 @@
+/**
+ * @file
+ * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ *
+ * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
@@ -5,7 +23,7 @@ import Modal from 'react-modal';
 
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../../common/translators/reactTranslator';
-import { log } from '../../../../../common/log';
+import { Log } from '../../../../../common/log';
 import { ModalContentWrapper } from './ModalContentWrapper';
 import { rootStore } from '../../../stores/RootStore';
 import { Icon } from '../../../../common/components/ui/Icon';
@@ -92,7 +110,7 @@ const AddCustomModal = ({
                 setStepToRender(STEPS.APPROVE);
             }
         } catch (e) {
-            log.error(e);
+            Log.error(e);
             setStepToRender(STEPS.ERROR);
         }
     };
@@ -100,7 +118,7 @@ const AddCustomModal = ({
     const renderInputStep = () => (
         <ModalContentWrapper
             closeModalHandler={closeModal}
-            title="New filter subscription"
+            title={reactTranslator.getMessage('options_popup_url_title')}
         >
             <form className="modal__content" onSubmit={handleSendUrlToCheck}>
                 <input
@@ -140,7 +158,7 @@ const AddCustomModal = ({
             await settingsStore.addCustomFilter(filterToAdd);
         } catch (e) {
             setStepToRender(STEPS.ERROR);
-            log.error(e);
+            Log.error(e);
         }
         closeModal();
     };
