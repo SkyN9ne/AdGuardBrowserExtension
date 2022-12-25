@@ -1,19 +1,19 @@
 /**
  * @file
- * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ * This file is part of AdGuard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
- * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * AdGuard Browser Extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * AdGuard Browser Extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -22,18 +22,29 @@ jsx-a11y/click-events-have-key-events,
 jsx-a11y/no-static-element-interactions
 */
 import React, {
-    useState, useContext, useRef, useLayoutEffect,
+    useState,
+    useContext,
+    useRef,
+    useLayoutEffect,
 } from 'react';
 import { observer } from 'mobx-react';
 import identity from 'lodash/identity';
 import cn from 'classnames';
 
-import { getFilterName, getRequestEventType, getCookieData } from '../utils';
+import {
+    getFilterName,
+    getRequestEventType,
+    getCookieData,
+} from '../utils';
 import { rootStore } from '../../../stores/RootStore';
 import { ADDED_RULE_STATES } from '../../../stores/WizardStore';
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../../common/translators/reactTranslator';
-import { AntiBannerFiltersId, StealthAction, RequestType } from '../../../../../common/constants';
+import {
+    AntiBannerFiltersId,
+    StealthAction,
+    RequestType,
+} from '../../../../../common/constants';
 import { Icon } from '../../../../common/components/ui/Icon';
 import { NetworkStatus, FilterStatus } from '../../Status';
 import { StatusMode, getStatusMode } from '../../../filteringLogStatus';

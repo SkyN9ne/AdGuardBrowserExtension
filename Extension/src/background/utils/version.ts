@@ -1,19 +1,19 @@
 /**
  * @file
- * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ * This file is part of AdGuard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
- * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * AdGuard Browser Extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * AdGuard Browser Extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -34,7 +34,7 @@ export class Version {
     // splitted semver
     public data: number[] = [];
 
-    constructor(version: string) {
+    constructor(version: unknown) {
         const parts = String(version || '').split('.', Version.MAX_LENGTH);
 
         for (let i = 0; i < Version.MAX_LENGTH; i += 1) {
@@ -43,6 +43,10 @@ export class Version {
             }
 
             const part = parts[i] || '0';
+
+            if (part.length > 1 && part.startsWith('0')) {
+                throw new Error(`Can not parse ${version}. Leading zeros are not allowed in the version parts`);
+            }
 
             if (Number.isNaN(Number.parseInt(part, 10))) {
                 throw new Error(`Can not parse '${version}' string`);

@@ -1,24 +1,25 @@
 /**
  * @file
- * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ * This file is part of AdGuard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
- * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * AdGuard Browser Extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * AdGuard Browser Extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import { Prefs } from '../prefs';
 import { appContext, AppContextKey } from '../storages';
 
 import { Version } from './version';
+import { Log } from '../../common/log';
 
 /**
  * Helper class for working with browser extension context
@@ -77,16 +78,24 @@ export class BrowserUtils {
     }
 
     /**
-     * {@link BrowserUtils.isSemver} checks if version matches simple (without labels) semantic versioning scheme
-     * https://semver.org/
+     * {@link BrowserUtils.isSemver} checks if version can be parsed. Our format is different from
+     * usual semver format, because it can handle 4 parts (1.1.1.1 - usually filters use such
+     * format) in version. To find out more details see {@link Version}
      *
      * @param version - version string
      *
-     * @returns true, if string matches simple (without labels) semantic versioning scheme, else returns false
+     * @returns true, if string matches our versioning scheme, otherwise returns false
      */
-    public static isSemver(version: string): boolean {
-        const semverRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
-        return semverRegex.test(version);
+    public static isSemver(version?: unknown): boolean {
+        try {
+            // eslint-disable-next-line no-new
+            new Version(version);
+        } catch (e: unknown) {
+            const errorMessage = e instanceof Error ? e.message : 'unknown error';
+            Log.debug(`Can\'t parse version: "${version}", error: "${errorMessage}"`);
+            return false;
+        }
+        return true;
     }
 
     /**

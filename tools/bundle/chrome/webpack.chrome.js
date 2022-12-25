@@ -1,19 +1,19 @@
 /**
  * @file
- * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ * This file is part of AdGuard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
- * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * AdGuard Browser Extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * AdGuard Browser Extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 
 import CopyWebpackPlugin from 'copy-webpack-plugin';
@@ -26,7 +26,7 @@ import { genCommonConfig } from '../webpack.common';
 import { chromeManifest } from './manifest.chrome';
 import { updateManifestBuffer } from '../../helpers';
 
-export const genChromeConfig = (browserConfig) => {
+export const genChromeConfig = (browserConfig, isWatchMode = false) => {
     const commonConfig = genCommonConfig(browserConfig);
 
     const DEVTOOLS_PATH = path.resolve(__dirname, '../../../Extension/pages/devtools');
@@ -64,12 +64,16 @@ export const genChromeConfig = (browserConfig) => {
                 filename: 'pages/devtools-elements-sidebar.html',
                 chunks: ['pages/devtools-elements-sidebar'],
             }),
-            new ZipWebpackPlugin({
-                path: '../',
-                filename: `${browserConfig.browser}.zip`,
-            }),
         ],
     };
+
+    // Run the archive only if it is not a watch mode
+    if (!isWatchMode) {
+        chromeConfig.plugins.push(new ZipWebpackPlugin({
+            path: '../',
+            filename: `${browserConfig.browser}.zip`,
+        }));
+    }
 
     return merge(commonConfig, chromeConfig);
 };

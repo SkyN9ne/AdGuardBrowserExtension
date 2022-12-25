@@ -1,23 +1,21 @@
 /**
  * @file
- * This file is part of Adguard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
+ * This file is part of AdGuard Browser Extension (https://github.com/AdguardTeam/AdguardBrowserExtension).
  *
- * Adguard Browser Extension is free software: you can redistribute it and/or modify
+ * AdGuard Browser Extension is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Adguard Browser Extension is distributed in the hope that it will be useful,
+ * AdGuard Browser Extension is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Adguard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
+ * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
-// TODO: fix tree-shacking
-import TSUrlFilter from '@adguard/tsurlfilter';
-
+import { RuleSyntaxUtils, RuleConverter } from '@adguard/tsurlfilter';
 import { Log } from '../../../common/log';
 import { AntiBannerFiltersId } from '../../../common/constants';
 import { SettingOption } from '../../schema';
@@ -72,7 +70,7 @@ export class UserRulesApi {
         }
 
         const userRules = await UserRulesApi.getUserRules();
-        return userRules.some(userRuleString => TSUrlFilter.RuleSyntaxUtils.isRuleForUrl(
+        return userRules.some(userRuleString => RuleSyntaxUtils.isRuleForUrl(
             userRuleString,
             url,
         ));
@@ -117,7 +115,7 @@ export class UserRulesApi {
     public static async removeRulesByUrl(url: string): Promise<void> {
         const userRules = await UserRulesApi.getUserRules();
 
-        await UserRulesApi.setUserRules(userRules.filter(rule => !TSUrlFilter.RuleSyntaxUtils.isRuleForUrl(rule, url)));
+        await UserRulesApi.setUserRules(userRules.filter(rule => !RuleSyntaxUtils.isRuleForUrl(rule, url)));
     }
 
     /**
@@ -164,7 +162,7 @@ export class UserRulesApi {
         rules.forEach((line) => {
             let converted: string[] = [];
             try {
-                converted = TSUrlFilter.RuleConverter.convertRule(line);
+                converted = RuleConverter.convertRule(line);
             } catch (e: unknown) {
                 Log.info(`Error converting rule ${line}, due to: ${e instanceof Error ? e.message : e}`);
             }
