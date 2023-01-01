@@ -1,6 +1,6 @@
 {
   "name": "browser-extension",
-  "version": "4.2.19",
+  "version": "4.2.23",
   "description": "AdGuard Extension",
   "scripts": {
     "dev": "cross-env BUILD_ENV=dev babel-node tools/bundle.js",
@@ -49,6 +49,7 @@
     "@types/css.escape": "^1.5.0",
     "@types/jest": "^29.0.0",
     "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.26",
     "@types/sinon-chrome": "^2.2.11",
     "@types/ua-parser-js": "^0.7.36",
     "@types/webextension-polyfill": "^0.8.2",
@@ -66,6 +67,8 @@
     "crx": "^5.0.1",
     "css-loader": "^6.2.0",
     "css.escape": "^1.5.1",
+    "esbuild": "^0.16.12",
+    "esbuild-jest": "^0.5.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^16.1.0",
