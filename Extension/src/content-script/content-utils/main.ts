@@ -15,28 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
+import { MessageType } from '../../common/messages';
+import { messageHandler } from './message-handler';
+import { Popups } from './popups';
 
-import browser from 'webextension-polyfill';
-import {
-    MessageType,
-    ExtractedMessage,
-    APP_MESSAGE_HANDLER_NAME,
-} from './constants';
+export class ContentUtils {
+    public static init(): void {
+        if (window !== window.top) {
+            return;
+        }
 
-/**
- * {@link sendMessage} sends app message via {@link browser.runtime.sendMessage} and
- * gets response from another extension page message handler
- *
- * @param message - partial {@link Message} record without {@link Message.handlerName} field
- *
- * @returns message handler response
- */
-export async function sendMessage<T extends MessageType>(
-    message: Omit<ExtractedMessage<T>, 'handlerName'>,
-): Promise<unknown> {
-    try {
-        return await browser.runtime.sendMessage({ handlerName: APP_MESSAGE_HANDLER_NAME, ...message });
-    } catch (e) {
-        // do nothing
+        if (!(document instanceof Document)) {
+            return;
+        }
+
+        messageHandler.init();
+
+        messageHandler.addListener(MessageType.ShowAlertPopup, Popups.showAlertPopup);
+        messageHandler.addListener(MessageType.ShowVersionUpdatedPopup, Popups.showVersionUpdatedPopup);
     }
 }

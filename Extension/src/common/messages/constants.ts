@@ -21,8 +21,8 @@ import { SettingOption, Settings } from '../../background/schema';
 import { NotifierType } from '../constants';
 
 /**
- * Message types used for message passing between background page and
- * other pages (popup, filtering log, content scripts)
+ * Message types used for message passing between extension contexts
+ * (popup, filtering log, content scripts, background)
  */
 
 export const APP_MESSAGE_HANDLER_NAME = 'app';
@@ -102,6 +102,9 @@ export enum MessageType {
   SetFilteringLogWindowState = 'setFilteringLogWindowState',
   AppInitialized = 'appInitialized',
   UpdateTotalBlocked = 'updateTotalBlocked',
+  ScriptletCloseWindow = 'scriptletCloseWindow',
+  ShowAlertPopup = 'showAlertPopup',
+  ShowVersionUpdatedPopup = 'showVersionUpdatedPopup',
 }
 
 export type ApplySettingsJsonMessage = {
@@ -404,6 +407,40 @@ export type SetNotificationViewedMessage = {
   }
 };
 
+export type ScriptletCloseWindowMessage = {
+  type: MessageType.ScriptletCloseWindow,
+};
+
+export type ShowAlertPopupMessage = {
+  type: MessageType.ShowAlertPopup,
+  data: {
+    isAdguardTab: boolean,
+    title: string,
+    text: string | string[],
+    alertStyles: string,
+    alertContainerStyles: string,
+  }
+};
+
+export type ShowVersionUpdatedPopupMessage = {
+  type: MessageType.ShowVersionUpdatedPopup,
+  data: {
+    isAdguardTab: boolean,
+    title: string,
+    description: string,
+    changelogHref: string,
+    changelogText: string,
+    showPromoNotification: boolean,
+    offer: string,
+    offerDesc: string,
+    offerButtonText: string,
+    offerButtonHref: string,
+    disableNotificationText: string,
+    alertStyles: string,
+    iframeStyles: string,
+  }
+};
+
 export type Message = (
   | ApplySettingsJsonMessage
   | AddFilteringSubscriptionMessage
@@ -449,6 +486,9 @@ export type Message = (
   | OpenSafebrowsingTrustedMessage
   | SetNotificationViewedMessage
   | RemoveListenerMessage
+  | ScriptletCloseWindowMessage
+  | ShowAlertPopupMessage
+  | ShowVersionUpdatedPopupMessage
 ) &
   MessageCommonProps;
 

@@ -16,7 +16,7 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import zod from 'zod';
-import { getHost, tabsApi as tsWebExtTabsApi } from '@adguard/tswebextension';
+import { tabsApi as tsWebExtTabsApi, getDomain } from '@adguard/tswebextension';
 import browser from 'webextension-polyfill';
 
 import { Log } from '../../../common/log';
@@ -161,7 +161,7 @@ export class AllowlistApi {
             return;
         }
 
-        const domain = getHost(mainFrame.url);
+        const domain = getDomain(mainFrame.url);
 
         if (!domain) {
             return;
@@ -193,7 +193,7 @@ export class AllowlistApi {
             return;
         }
 
-        const domain = getHost(mainFrame.url);
+        const domain = getDomain(mainFrame.url);
 
         if (!domain) {
             return;
