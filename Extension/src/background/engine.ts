@@ -39,19 +39,27 @@ import { WEB_ACCESSIBLE_RESOURCES_OUTPUT } from '../../../constants';
 
 export type { Message as EngineMessage } from '@adguard/tswebextension';
 
+/**
+ * Engine is a wrapper around the tswebextension to provide a better public
+ * interface with some internal business logic: updates rules counters,
+ * checks for some specific browsers actions.
+ */
 export class Engine {
-    static api = new TsWebExtension(WEB_ACCESSIBLE_RESOURCES_OUTPUT);
+    static readonly api = new TsWebExtension(WEB_ACCESSIBLE_RESOURCES_OUTPUT);
 
-    static updateTimeoutMs = 1000;
+    private static readonly UPDATE_TIMEOUT_MS = 1000;
 
-    static messageHandlerName = MESSAGE_HANDLER_NAME;
+    static readonly messageHandlerName = MESSAGE_HANDLER_NAME;
 
     static debounceUpdate = debounce(() => {
         Engine.update();
-    }, Engine.updateTimeoutMs);
+    }, Engine.UPDATE_TIMEOUT_MS);
 
     static handleMessage = Engine.api.getMessageHandler();
 
+    /**
+     * Starts the tswebextension and updates the counter of active rules.
+     */
     static async start(): Promise<void> {
         /**
          * By the rules of Firefox AMO we cannot use remote scripts (and our JS rules can be counted as such).
@@ -82,6 +90,10 @@ export class Engine {
         });
     }
 
+    /**
+     * Updates tswebextension configuration and after that updates the counter
+     * of active rules.
+     */
     static async update(): Promise<void> {
         const configuration = await Engine.getConfiguration();
 
@@ -97,7 +109,7 @@ export class Engine {
     }
 
     /**
-     * Creates tswebextension configuration based on current app state
+     * Creates tswebextension configuration based on current app state.
      */
     private static async getConfiguration(): Promise<ConfigurationMV2> {
         const enabledFilters = FiltersApi.getEnabledFilters();
@@ -137,19 +149,13 @@ export class Engine {
         if (UserRulesApi.isEnabled()) {
             userrules = await UserRulesApi.getUserRules();
 
-            /**
-             * remove empty strings
-             */
+            // Remove empty strings.
             userrules = userrules.filter(rule => !!rule);
 
-            /**
-             * remove duplicates
-             */
+            // Remove duplicates.
             userrules = Array.from(new Set(userrules));
 
-            /**
-             * Convert user rules
-             */
+            // Convert user rules.
             userrules = UserRulesApi.convertRules(userrules);
         }
 

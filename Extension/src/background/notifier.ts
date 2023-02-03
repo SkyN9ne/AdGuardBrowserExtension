@@ -21,20 +21,29 @@ import { NotifierType } from '../common/constants';
 
 type Listener = (...args: unknown[]) => unknown;
 
+/**
+ * The Notifier class contains all events, their listeners and handlers,
+ * as well as manages the work with them: add, delete, notify.
+ */
 class Notifier {
+    private static readonly NOTIFY_TIMEOUT_MS = 500;
+
     private listenerId = 0;
 
     private eventNotifierEventsMap: Record<string, string> = {};
 
     private listenersMap: Record<number, Listener> = {};
 
-    private listenersEventsMap: Record<number, Listener> = {};
+    private listenersEventsMap: Record<number, unknown[]> = {};
 
     /**
-     * Make accessible only constants without functions. They will be passed to content-page
+     * Make accessible only constants without functions. They will be passed to content-page.
      */
     events = NotifierType;
 
+    /**
+     * Creates new item of {@link Notifier}.
+     */
     constructor() {
         Object.entries(NotifierType).forEach(([key, value]) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -45,17 +54,15 @@ class Notifier {
     }
 
     /**
-     * Subscribes listener to the specified events
+     * Subscribes listener to the specified events.
      *
-     * @param events - Event type listener will be notified of
-     * @param listener - Listener callback
+     * @param events Event type listener will be notified of.
+     * @param listener Listener callback.
      *
-     * @returns listener id
-     * @throws error if listener is not a function
+     * @returns Listener id.
+     * @throws Error if listener is not a function.
      */
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    addSpecifiedListener(events, listener: Listener): number {
+    addSpecifiedListener(events: unknown[], listener: Listener): number {
         if (typeof listener !== 'function') {
             throw new Error('Illegal listener');
         }
@@ -67,11 +74,11 @@ class Notifier {
     }
 
     /**
-     * Subscribe specified listener to all events
+     * Subscribe specified listener to all events.
      *
-     * @param listener - Listener callback
-     * @returns listener id
-     * @throws error if listener is not a function
+     * @param listener Listener callback.
+     * @returns Listener id.
+     * @throws Error if listener is not a function.
      */
     addListener(listener: Listener): number {
         if (typeof listener !== 'function') {
@@ -84,9 +91,9 @@ class Notifier {
     }
 
     /**
-     * Unsubscribe listener
+     * Unsubscribe listener.
      *
-     * @param listenerId - listener id
+     * @param listenerId Listener id.
      */
     removeListener(listenerId: number): void {
         delete this.listenersMap[listenerId];
@@ -96,9 +103,9 @@ class Notifier {
     /**
      * Notifies listeners about the events passed as arguments of this function.
      *
-     * @param args - notifier event types
+     * @param args Notifier event types.
      *
-     * @throws error if some event is illegal
+     * @throws Error if some event is illegal.
      */
     notifyListeners(...args: [string, ...unknown[]]): void {
         const [event] = args;
@@ -110,8 +117,6 @@ class Notifier {
             this.listenersMap as Record<string, Listener>,
         ).forEach(([listenerId, listener]) => {
             const events = this.listenersEventsMap[Number(listenerId)];
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             if (events && events.length > 0 && events.indexOf(event) < 0) {
                 return;
             }
@@ -121,19 +126,6 @@ class Notifier {
                 Log.error(`Error invoking listener for ${event} cause:`, ex);
             }
         });
-    }
-
-    /**
-     * Asynchronously notifies all listeners about the events passed as arguments of this function.
-     * Some events should be dispatched asynchronously, for instance this is very important for Safari:
-     * https://github.com/AdguardTeam/AdguardBrowserExtension/issues/251
-     *
-     * @param args - notifier event types
-     */
-    notifyListenersAsync(...args: [string, ...unknown[]]): void {
-        setTimeout(() => {
-            this.notifyListeners(...args);
-        }, 500);
     }
 }
 

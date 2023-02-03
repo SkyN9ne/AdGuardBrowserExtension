@@ -29,13 +29,17 @@ import { TabsApi } from '../extension';
 import { LAST_NOTIFICATION_TIME_KEY, VIEWED_NOTIFICATIONS_KEY } from '../../../common/constants';
 import { UiApi } from './main';
 import { Log } from '../../../common/log';
+import { I18n } from '../../utils';
 
-export class NotificationApi {
-    private static checkTimeoutMs = 10 * 60 * 1000; // 10 minutes
+/**
+ * Promo Notification API is needed to work with notifications.
+ */
+export class PromoNotificationApi {
+    private static readonly CHECK_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
-    private static minPeriodMs = 30 * 60 * 1000; // 30 minutes
+    private static readonly MIN_PERIOD_MS = 30 * 60 * 1000; // 30 minutes
 
-    private static delayMs = 30 * 1000; // clear notification in 30 seconds
+    private static readonly DELAY_MS = 30 * 1000; // clear notification in 30 seconds
 
     private currentNotification: Notification | null = null;
 
@@ -46,11 +50,11 @@ export class NotificationApi {
     private isInit = false;
 
     /**
-     * Scans notifications list and prepares them to be used (or removes expired)
+     * Scans notifications list and prepares them to be used (or removes expired).
      */
     public init(): void {
         notificationStorage.forEach((notification, notificationKey, map) => {
-            notification.text = NotificationApi.getNotificationText(notification) || null;
+            notification.text = PromoNotificationApi.getNotificationText(notification) || null;
 
             const to = new Date(notification.to).getTime();
             const expired = new Date().getTime() > to;
@@ -65,9 +69,9 @@ export class NotificationApi {
     }
 
     /**
-     * Marks current notification as viewed
+     * Marks current notification as viewed.
      *
-     * @param withDelay - if true, do this after a 30 sec delay
+     * @param withDelay If true, do this after a 30 sec delay.
      */
     public async setNotificationViewed(withDelay: boolean): Promise<void> {
         if (withDelay) {
@@ -75,7 +79,8 @@ export class NotificationApi {
 
             this.timeoutId = window.setTimeout(() => {
                 this.setNotificationViewed(false);
-            }, NotificationApi.delayMs);
+            }, PromoNotificationApi.DELAY_MS);
+
             return;
         }
 
@@ -107,7 +112,7 @@ export class NotificationApi {
     }
 
     /**
-     * Finds out notification for current time and checks if notification wasn't shown yet
+     * Finds out notification for current time and checks if notification wasn't shown yet.
      */
     public async getCurrentNotification(): Promise<Notification | null> {
         // Do not display notification on Firefox
@@ -121,16 +126,16 @@ export class NotificationApi {
         }
 
         const currentTime = Date.now();
-        const timeSinceLastNotification = currentTime - await NotificationApi.getLastNotificationTime();
+        const timeSinceLastNotification = currentTime - await PromoNotificationApi.getLastNotificationTime();
 
         // Just a check to not show the notification too often
-        if (timeSinceLastNotification < NotificationApi.minPeriodMs) {
+        if (timeSinceLastNotification < PromoNotificationApi.MIN_PERIOD_MS) {
             return null;
         }
 
         // Check not often than once in 10 minutes
         const timeSinceLastCheck = currentTime - this.notificationCheckTime;
-        if (this.notificationCheckTime > 0 && timeSinceLastCheck <= NotificationApi.checkTimeoutMs) {
+        if (this.notificationCheckTime > 0 && timeSinceLastCheck <= PromoNotificationApi.CHECK_TIMEOUT_MS) {
             return this.currentNotification;
         }
 
@@ -166,13 +171,13 @@ export class NotificationApi {
     }
 
     /**
-     * Scans notification locales and returns the one matching navigator.language
+     * Scans notification locales and returns the one matching navigator.language.
      *
-     * @param notification notification object
-     * @returns {NotificationTextRecord | undefined} matching  notification text settings or undefined
+     * @param notification Notification object.
+     * @returns {NotificationTextRecord | undefined} Matching  notification text settings or undefined.
      */
     private static getNotificationText(notification: Notification): NotificationTextRecord | undefined {
-        const language = NotificationApi.normalizeLanguage(browser.i18n.getUILanguage());
+        const language = I18n.normalizeLanguageCode(browser.i18n.getUILanguage());
 
         if (!language) {
             return;
@@ -186,16 +191,8 @@ export class NotificationApi {
         return notification.locales[language] || notification.locales[languageCode];
     }
 
-    private static normalizeLanguage(locale: string): string | null {
-        if (!locale) {
-            return null;
-        }
-
-        return locale.toLowerCase().replace('-', '_');
-    }
-
     /**
-     * Gets the last time a notification was shown.
+     * Returns the last time a notification was shown.
      * If it was not shown yet, initialized with the current time.
      */
     private static async getLastNotificationTime(): Promise<number> {
@@ -210,4 +207,4 @@ export class NotificationApi {
     }
 }
 
-export const notificationApi = new NotificationApi();
+export const promoNotificationApi = new PromoNotificationApi();

@@ -338,8 +338,10 @@ class PopupStore {
         runInAction(() => {
             this.promoNotification = null;
         });
+        // TODO: This message will mark the notification as viewed,
+        // but it seems that we need to show it.
         await messenger.sendMessage(MessageType.SetNotificationViewed, { withDelay: false });
-        await messenger.sendMessage(MessageType.OpenTab, { url });
+        await browser.tabs.create({ url });
     };
 
     @action

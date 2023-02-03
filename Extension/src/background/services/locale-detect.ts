@@ -33,7 +33,6 @@ export type BrowsingLanguage = {
 };
 
 /**
- *
  * This service is used to auto-enable language-specific filters.
  */
 export class LocaleDetect {
@@ -108,17 +107,30 @@ export class LocaleDetect {
 
     private browsingLanguages: BrowsingLanguage[] = [];
 
+    /**
+     * Creates new {@link LocaleDetect}.
+     */
     constructor() {
         this.onTabUpdated = this.onTabUpdated.bind(this);
     }
 
+    /**
+     * Adds listener for tab update message.
+     */
     public init(): void {
         browser.tabs.onUpdated.addListener(this.onTabUpdated);
     }
 
+    /**
+     * Called when tab is updated.
+     *
+     * @param tabId Tab id. Unused.
+     * @param changeInfo Info about tab changed ({@link Tabs.OnUpdatedChangeInfoType}). Unused.
+     * @param tab Item of {@link Tabs.Tab}.
+     */
     private async onTabUpdated(
-        _tabId: number,
-        _changeInfo: Tabs.OnUpdatedChangeInfoType,
+        tabId: number,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
         tab: Tabs.Tab,
     ): Promise<void> {
         if (tab.status === 'complete') {
@@ -127,9 +139,9 @@ export class LocaleDetect {
     }
 
     /**
-     * Detects language for the specified tab
+     * Detects language for the specified tab.
      *
-     * @param tab - Tab details
+     * @param tab Tab details.
      */
     private async detectTabLanguage(tab: Tabs.Tab): Promise<void> {
         const isDetectDisabled = settingsStorage.get(SettingOption.DisableDetectFilters);
@@ -184,15 +196,15 @@ export class LocaleDetect {
     /**
      * Stores language in the special array containing languages of the last visited pages.
      * If user has visited enough pages with a specified language we call special callback
-     * to auto-enable filter for this language
+     * to auto-enable filter for this language.
      *
-     * @param language Page language
+     * @param language Page language.
      * @private
      */
     private detectLanguage(language: string): void {
         /**
          * For an unknown language "und" will be returned
-         * https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/detectLanguage
+         * https://developer.mozilla.org/en-US/Add-ons/WebExtensions/API/tabs/detectLanguage.
          */
         if (!language || language === 'und') {
             return;
@@ -220,7 +232,7 @@ export class LocaleDetect {
     /**
      * Called when LocaleDetector has detected language-specific filters we can enable.
      *
-     * @param filterIds List of detected language-specific filters identifiers
+     * @param filterIds List of detected language-specific filters identifiers.
      * @private
      */
     private static async onFilterDetectedByLocale(filterIds: number[]): Promise<void> {

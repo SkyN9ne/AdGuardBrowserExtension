@@ -17,28 +17,47 @@
  */
 import browser, { WebRequest } from 'webextension-polyfill';
 import { RequestType } from '@adguard/tsurlfilter';
-import { RequestData, RequestEvents } from '@adguard/tswebextension';
+import {
+    RequestData,
+    RequestEvents,
+    tabsApi as tsWebExtTabsApi,
+} from '@adguard/tswebextension';
 import { SafebrowsingApi, TabsApi } from '../api';
 import { SettingOption } from '../schema';
 import { settingsEvents } from '../events';
 import { messageHandler } from '../message-handler';
 import { MessageType, OpenSafebrowsingTrustedMessage } from '../../common/messages';
+import { UserAgent } from '../../common/user-agent';
+import { Log } from '../../common/log';
+import { getErrorMessage } from '../../common/error';
 
+/**
+ * SafebrowsingService adds listeners for correct work of {@link SafebrowsingApi} module.
+ */
 export class SafebrowsingService {
+    /**
+     * Initializes the cache in {@link SafebrowsingApi} and registers listeners:
+     * - for disabling secure browsing in settings;
+     * - for {@link RequestEvents.onHeadersReceived};
+     * - for adding a trusted domain.
+     */
     public static async init(): Promise<void> {
         await SafebrowsingApi.initCache();
 
-        settingsEvents.addListener(
-            SettingOption.DisableSafebrowsing,
-            SafebrowsingApi.clearCache,
-        );
+        settingsEvents.addListener(SettingOption.DisableSafebrowsing, SafebrowsingApi.clearCache);
 
-        RequestEvents.onHeadersReceived.addListener(SafebrowsingService.onHeaderReceived);
+        RequestEvents.onHeadersReceived.addListener(SafebrowsingService.onHeadersReceived);
 
         messageHandler.addListener(MessageType.OpenSafebrowsingTrusted, SafebrowsingService.onAddTrustedDomain);
     }
 
-    private static onHeaderReceived({ context }: RequestData<WebRequest.OnHeadersReceivedDetailsType>): void {
+    /**
+     * Called with every web request when the headers are received.
+     *
+     * @param event Item of {@link RequestData<WebRequest.OnHeadersReceivedDetailsType>}.
+     * @param event.context Context of the request: status code, request url, tab id, etc.
+     */
+    private static onHeadersReceived({ context }: RequestData<WebRequest.OnHeadersReceivedDetailsType>): void {
         if (!context) {
             return;
         }
@@ -55,14 +74,44 @@ export class SafebrowsingService {
             SafebrowsingApi
                 .checkSafebrowsingFilter(requestUrl, referrerUrl)
                 .then((safebrowsingUrl) => {
-                    if (safebrowsingUrl) {
-                        browser.tabs.update(tabId, { url: safebrowsingUrl });
+                    if (!safebrowsingUrl) {
+                        return;
+                    }
+
+                    // Chrome doesn't allow open extension url in incognito mode
+                    if (tsWebExtTabsApi.isIncognitoTab(tabId) && UserAgent.isChrome) {
+                        // Closing tab before opening a new one may lead to browser crash (Chromium)
+                        browser.tabs.create({ url: safebrowsingUrl })
+                            .then(() => {
+                                browser.tabs.remove(tabId);
+                            })
+                            .catch((e) => {
+                                const errorMessage = getErrorMessage(e);
+                                Log.warn(`Can't open info page about blocked domain. Original error: ${errorMessage}`);
+                            });
+                    } else {
+                        browser.tabs.update(tabId, { url: safebrowsingUrl })
+                            .catch((e) => {
+                                const errorMessage = getErrorMessage(e);
+                                Log.warn(`Can't update tab with id ${tabId} to show info page about blocked domain. `
+                                        + `Original error: ${errorMessage}`);
+                            });
                     }
                 })
-                .catch(() => {});
+                .catch((e) => {
+                    const errorMessage = getErrorMessage(e);
+                    Log.warn(`Can't execute safe browsing check for requested url "${requestUrl}".`
+                            + ` Original err: ${errorMessage}`);
+                });
         }
     }
 
+    /**
+     * Called when a trusted domain is added.
+     *
+     * @param message Message of type {@link OpenSafebrowsingTrustedMessage}.
+     * @param message.data Trusted domain url.
+     */
     private static async onAddTrustedDomain({ data }: OpenSafebrowsingTrustedMessage): Promise<void> {
         const { url } = data;
         await SafebrowsingApi.addToSafebrowsingTrusted(url);

@@ -47,7 +47,7 @@ class Messenger {
     }
 
     /**
-     * Creates long lived connections between popup and background page
+     * Creates long lived connections between popup and background page.
      *
      * @param {string} page
      * @param events
@@ -86,7 +86,7 @@ class Messenger {
     };
 
     /**
-     * Method subscribes to notifier module events
+     * Method subscribes to notifier module events.
      *
      * @param events - list of events to which subscribe
      * @param callback - callback called when event fires
@@ -151,7 +151,7 @@ class Messenger {
     }
 
     async disableFilter(filterId) {
-        return this.sendMessage(MessageType.DisableAntibannerFilter, { filterId });
+        return this.sendMessage(MessageType.DisableFilter, { filterId });
     }
 
     async applySettingsJson(json) {
@@ -191,7 +191,7 @@ class Messenger {
     }
 
     async updateFilters() {
-        return this.sendMessage(MessageType.CheckAntibannerFiltersUpdate);
+        return this.sendMessage(MessageType.CheckFiltersUpdate);
     }
 
     async updateGroupStatus(id, data) {
@@ -205,7 +205,7 @@ class Messenger {
     async updateFilterStatus(filterId, data) {
         const type = data
             ? MessageType.AddAndEnableFilter
-            : MessageType.DisableAntibannerFilter;
+            : MessageType.DisableFilter;
         await this.sendMessage(type, { filterId });
     }
 
@@ -218,7 +218,7 @@ class Messenger {
     }
 
     async removeCustomFilter(filterId) {
-        await this.sendMessage(MessageType.RemoveAntibannerFilter, { filterId });
+        await this.sendMessage(MessageType.RemoveAntiBannerFilter, { filterId });
     }
 
     async getTabInfoForPopup(tabId) {
@@ -291,10 +291,6 @@ class Messenger {
 
     async refreshPage(tabId, preserveLogEnabled) {
         await this.sendMessage(MessageType.RefreshPage, { tabId, preserveLogEnabled });
-    }
-
-    async openTab(url, options) {
-        await this.sendMessage(MessageType.OpenTab, { url, options });
     }
 
     async addUserRule(ruleText) {

@@ -17,21 +17,21 @@
  */
 
 /**
- * Helper class for working with i18n locales
+ * Helper class for working with i18n locales.
  */
 export class I18n {
     /**
-     * Gets matched locale from locales list or dictionary
+     * Returns matched locale from locales list or dictionary.
      *
-     * @param locales - list or dictionary of i18n locales
-     * @param locale - target locale
-     * @returns matched locale or null, if locale is not found
+     * @param locales List or dictionary of i18n locales.
+     * @param locale Target locale.
+     * @returns Matched locale or null, if locale is not found.
      */
     public static find(
         locales: string[] | Record<string, unknown>,
         locale: string,
     ): string | null {
-        const lang = locale.replace('-', '_');
+        const lang = this.normalizeLanguageCode(locale);
 
         if (I18n.isIncludesLocale(locales, locale)) {
             return lang;
@@ -47,16 +47,27 @@ export class I18n {
     }
 
     /**
-     * Checks if {@link locales} includes {@link locale}
+     * Checks if {@link locales} includes {@link locale}.
      *
      * @param locales Locales array or record.
      * @param locale Target locale.
-     * @returns true if {@link locales} includes {@link locale}, else returns false
+     * @returns True if {@link locales} includes {@link locale}, else returns false.
      */
     private static isIncludesLocale(
         locales: string[] | Record<string, unknown>,
         locale: string,
     ): boolean {
         return Array.isArray(locales) ? locales.includes(locale) : locale in locales;
+    }
+
+    /**
+     * Normalizes language code.
+     *
+     * @param locale Language code.
+     *
+     * @returns Normalized language code.
+     */
+    public static normalizeLanguageCode(locale: string): string {
+        return locale.toLowerCase().replace('-', '_');
     }
 }

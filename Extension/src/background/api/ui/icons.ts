@@ -21,9 +21,24 @@ import { SettingOption } from '../../schema';
 import { settingsStorage } from '../../storages';
 import { getIconImageData } from '../extension';
 import { FrameData } from './frames';
-import { notificationApi } from './notification';
+import { promoNotificationApi } from './promo-notification';
 
+/**
+ * The Icons API is responsible for setting the icon that corresponds
+ * to the current state of the background extension in the specified tab.
+ */
 export class IconsApi {
+    /**
+     * Updates current extension icon for specified tab.
+     *
+     * @param tabId Tab's id.
+     * @param frameData The information from {@link FrameData} is needed
+     * to estimate the current status of the background extension
+     * in the specified tab.
+     * @param frameData.documentAllowlisted Is website allowlisted.
+     * @param frameData.applicationFilteringDisabled Is app filtering disabled globally.
+     * @param frameData.totalBlockedTab Number of blocked requests.
+     */
     static async updateTabIcon(
         tabId: number,
         {
@@ -69,7 +84,7 @@ export class IconsApi {
             }
 
             // If there's an active notification, indicate it on the badge
-            const notification = await notificationApi.getCurrentNotification();
+            const notification = await promoNotificationApi.getCurrentNotification();
             if (notification) {
                 badge = notification.badgeText || badge;
                 badgeColor = notification.badgeBgColor || badgeColor;

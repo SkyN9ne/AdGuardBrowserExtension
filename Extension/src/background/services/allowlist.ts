@@ -39,11 +39,11 @@ export type GetAllowlistDomainsResponse = {
 };
 
 /**
- * Service for processing events with a allowlist
+ * Service for processing events with a allowlist.
  */
 export class AllowlistService {
     /**
-     * Initialize handlers
+     * Initialize handlers.
      */
     public static init(): void {
         messageHandler.addListener(MessageType.GetAllowlistDomains, AllowlistService.onGetAllowlistDomains);
@@ -73,9 +73,9 @@ export class AllowlistService {
     }
 
     /**
-     * Gets domains depending on current allowlist mode
+     * Returns domains depending on current allowlist mode.
      *
-     * @returns - {@link GetAllowlistDomainsResponse}
+     * @returns Object of type {@link GetAllowlistDomainsResponse}.
      */
     private static onGetAllowlistDomains(): GetAllowlistDomainsResponse {
         const domains = AllowlistApi.isInverted()
@@ -87,12 +87,22 @@ export class AllowlistService {
         return { content, appVersion: Prefs.version };
     }
 
+    /**
+     * The listener for the allowlist domain addition event.
+     *
+     * @param message Message of type {@link AddAllowlistDomainPopupMessage}.
+     */
     private static async onAddAllowlistDomain(message: AddAllowlistDomainPopupMessage): Promise<void> {
         const { tabId } = message.data;
 
         await AllowlistApi.addTabUrlToAllowlist(tabId);
     }
 
+    /**
+     * The listener for the allowlist domain deletion event.
+     *
+     * @param message Message of type {@link RemoveAllowlistDomainMessage}.
+     */
     private static async onRemoveAllowlistDomain(message: RemoveAllowlistDomainMessage): Promise<void> {
         const { tabId } = message.data;
 
@@ -100,9 +110,9 @@ export class AllowlistService {
     }
 
     /**
-     * Stores domains depending on current allowlist mode
+     * Stores domains depending on current allowlist mode.
      *
-     * @param message -message data
+     * @param message Message data.
      */
     private static async handleDomainsSave(message: SaveAllowlistDomainsMessage): Promise<void> {
         const { value } = message.data;
@@ -118,6 +128,9 @@ export class AllowlistService {
         await Engine.update();
     }
 
+    /**
+     * Listener for an event to enable site filtering from the context menu.
+     */
     private static async enableSiteFilteringFromContextMenu(): Promise<void> {
         const activeTab = await TabsApi.getActive();
 
@@ -128,6 +141,9 @@ export class AllowlistService {
         }
     }
 
+    /**
+     * Listener for an event to disable site filtering from the context menu.
+     */
     private static async disableSiteFilteringFromContextMenu(): Promise<void> {
         const activeTab = await TabsApi.getActive();
 
@@ -139,14 +155,14 @@ export class AllowlistService {
     }
 
     /**
-     * Triggers engine update on enabling
+     * Triggers engine update on enabling.
      */
     static async onEnableStateChange(): Promise<void> {
         await Engine.update();
     }
 
     /**
-     * Triggers engine update on mode switch
+     * Triggers engine update on mode switch.
      */
     static async onAllowlistModeChange(): Promise<void> {
         await Engine.update();
