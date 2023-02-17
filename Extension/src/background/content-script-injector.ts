@@ -16,14 +16,17 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import browser from 'webextension-polyfill';
+
 import { isHttpRequest } from '@adguard/tswebextension';
-import { TabsApi } from './api/extension/tabs';
+
 import { Log } from '../common/log';
 import {
     CONTENT_SCRIPT_START_OUTPUT,
     CONTENT_SCRIPT_END_OUTPUT,
     SUBSCRIBE_OUTPUT,
 } from '../../../constants';
+
+import { TabsApi } from './api/extension/tabs';
 
 /**
  * Helper class for injecting content script into tabs, opened before extension initialization.
@@ -69,7 +72,7 @@ export class ContentScriptInjector {
         // Handles errors
         promises.forEach((promise) => {
             if (promise.status === 'rejected') {
-                Log.error(promise.reason);
+                Log.error('Cannot inject script to tab due to: ', promise.reason);
             }
         });
     }

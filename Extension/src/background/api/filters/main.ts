@@ -18,7 +18,6 @@
 import { Log } from '../../../common/log';
 import { AntibannerGroupsId, CUSTOM_FILTERS_GROUP_DISPLAY_NUMBER } from '../../../common/constants';
 import { translator } from '../../../common/translators/translator';
-
 import {
     filterStateStorage,
     groupStateStorage,
@@ -31,7 +30,6 @@ import {
     FilterVersionStorage,
     FiltersStorage,
 } from '../../storages';
-
 import {
     Metadata,
     RegularFilterMetadata,
@@ -42,8 +40,8 @@ import {
     filterVersionStorageDataValidator,
     groupStateStorageDataValidator,
 } from '../../schema';
-
 import { network } from '../network';
+
 import { UserRulesApi } from './userrules';
 import { AllowlistApi } from './allowlist';
 import { CommonFilterApi } from './common';
@@ -155,7 +153,15 @@ export class FiltersApi {
 
         await FiltersApi.loadMetadata(remote);
 
-        await Promise.allSettled(unloadedFilters.map(id => CommonFilterApi.loadFilterRulesFromBackend(id, remote)));
+        const tasks = unloadedFilters.map(id => CommonFilterApi.loadFilterRulesFromBackend(id, remote));
+        const promises = await Promise.allSettled(tasks);
+
+        // Handles errors
+        promises.forEach((promise) => {
+            if (promise.status === 'rejected') {
+                Log.error('Cannot load filter rules due to: ', promise.reason);
+            }
+        });
     }
 
     /**
@@ -197,7 +203,15 @@ export class FiltersApi {
 
         await FiltersApi.loadMetadata(true);
 
-        await Promise.allSettled(commonFilters.map(id => CommonFilterApi.loadFilterRulesFromBackend(id, true)));
+        const tasks = commonFilters.map(id => CommonFilterApi.loadFilterRulesFromBackend(id, true));
+        const promises = await Promise.allSettled(tasks);
+
+        // Handles errors
+        promises.forEach((promise) => {
+            if (promise.status === 'rejected') {
+                Log.error('Cannot load filter rules due to: ', promise.reason);
+            }
+        });
 
         filterStateStorage.enableFilters(filtersIds);
     }
@@ -333,7 +347,8 @@ export class FiltersApi {
             const i18nMetadata = i18nMetadataValidator.parse(JSON.parse(storageData));
             i18nMetadataStorage.setCache(i18nMetadata);
         } catch (e) {
-            Log.warn(`Can't parse data from ${i18nMetadataStorage.key} storage, load it from local assets`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse data from "${i18nMetadataStorage.key}" storage, load from local assets. Origin error: `, e);
             await FiltersApi.loadI18nMetadataFromBackend(false);
         }
     }
@@ -354,7 +369,8 @@ export class FiltersApi {
             const metadata = metadataValidator.parse(JSON.parse(storageData));
             metadataStorage.setCache(metadata);
         } catch (e) {
-            Log.warn(`Can't parse data from ${metadataStorage.key} storage, load it from local assets`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse data from "${metadataStorage.key}" storage, load from local assets. Origin error: `, e);
             await FiltersApi.loadMetadataFromFromBackend(false);
         }
     }
@@ -390,7 +406,8 @@ export class FiltersApi {
 
             filterStateStorage.setData(data);
         } catch (e) {
-            Log.warn(`Can't parse data from ${filterStateStorage.key} storage, load default states`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse data from "${filterStateStorage.key}" storage, load default states. Origin error: `, e);
             filterStateStorage.setData(FilterStateStorage.applyMetadata({}, metadata));
         }
     }
@@ -415,7 +432,8 @@ export class FiltersApi {
 
             groupStateStorage.setData(data);
         } catch (e) {
-            Log.warn(`Can't parse data from ${groupStateStorage.key} storage, set default states`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse data from "${groupStateStorage.key}" storage, set default states. Origin error: `, e);
             groupStateStorage.setData(GroupStateStorage.applyMetadata({}, metadata));
         }
     }
@@ -440,7 +458,8 @@ export class FiltersApi {
 
             filterVersionStorage.setData(data);
         } catch (e) {
-            Log.warn(`Can't parse data from ${filterVersionStorage.key} storage, set default states`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse data from "${filterVersionStorage.key}" storage, set default states. Origin error: `, e);
             filterVersionStorage.setData(FilterVersionStorage.applyMetadata({}, metadata));
         }
     }
@@ -462,6 +481,12 @@ export class FiltersApi {
                 Log.info(`Filter with id: ${id} removed from the storage`);
             });
 
-        await Promise.allSettled(tasks);
+        const promises = await Promise.allSettled(tasks);
+        // Handles errors
+        promises.forEach((promise) => {
+            if (promise.status === 'rejected') {
+                Log.error('Cannot remove obsoleted filter from storage due to: ', promise.reason);
+            }
+        });
     }
 }

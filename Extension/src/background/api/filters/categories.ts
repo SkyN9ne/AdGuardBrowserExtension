@@ -22,8 +22,6 @@ import {
     groupStateStorage,
     filterVersionStorage,
 } from '../../storages';
-import { CommonFilterApi } from './common';
-import { FilterMetadata, FiltersApi } from './main';
 import {
     GroupMetadata,
     TagMetadata,
@@ -34,6 +32,9 @@ import {
     CustomFilterMetadata,
 } from '../../schema';
 import { Log } from '../../../common/log';
+
+import { CommonFilterApi } from './common';
+import { FilterMetadata, FiltersApi } from './main';
 
 /**
  * Filter data displayed in category section on options page.
@@ -249,12 +250,12 @@ export class Categories {
             const filterVersion = filterVersionStorage.get(filterMetadata.filterId);
 
             if (!filterState) {
-                Log.error(`Can't find filter ${filterMetadata.filterId} state data`);
+                Log.error(`Cannot find filter ${filterMetadata.filterId} state data`);
                 return;
             }
 
             if (!filterVersion) {
-                Log.error(`Can't find filter ${filterMetadata.filterId} version data`);
+                Log.error(`Cannot find filter ${filterMetadata.filterId} version data`);
                 return;
             }
 
@@ -283,7 +284,7 @@ export class Categories {
             const groupState = groupStateStorage.get(groupMetadata.groupId);
 
             if (!groupState) {
-                Log.error(`Can't find group ${groupMetadata.groupId} state data`);
+                Log.error(`Cannot find group ${groupMetadata.groupId} state data`);
                 return;
             }
 

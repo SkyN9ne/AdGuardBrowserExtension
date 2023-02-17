@@ -16,16 +16,19 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import { debounce } from 'lodash';
+
 import {
     TsWebExtension,
     ConfigurationMV2,
     MESSAGE_HANDLER_NAME,
 } from '@adguard/tswebextension';
+
 import { Log } from '../common/log';
+import { UserAgent } from '../common/user-agent';
+import { WEB_ACCESSIBLE_RESOURCES_OUTPUT } from '../../../constants';
+
 import { listeners } from './notifier';
-
 import { FiltersStorage } from './storages';
-
 import {
     FiltersApi,
     AllowlistApi,
@@ -34,8 +37,6 @@ import {
     DocumentBlockApi,
     network,
 } from './api';
-import { UserAgent } from '../common/user-agent';
-import { WEB_ACCESSIBLE_RESOURCES_OUTPUT } from '../../../constants';
 
 export type { Message as EngineMessage } from '@adguard/tswebextension';
 
@@ -106,6 +107,30 @@ export class Engine {
         listeners.notifyListeners(listeners.RequestFilterUpdated, {
             rulesCount,
         });
+    }
+
+    /**
+     * TODO: improve {@link TsWebExtension#configure} method instead using this one.
+     * Update `filteringEnabled` configuration value without re-initialization of engine.
+     *
+     * @param value `filteringEnabled` config value.
+     */
+    static setFilteringEnabled(value: boolean): void {
+        if (Engine.api.configuration) {
+            Engine.api.configuration.settings.filteringEnabled = value;
+        }
+    }
+
+    /**
+     * TODO: improve {@link TsWebExtension#configure} method instead using this one.
+     * Update `collectHitStats` configuration value without re-initialization of engine.
+     *
+     * @param value `collectHitStats` config value.
+     */
+    static setCollectHitStats(value: boolean): void {
+        if (Engine.api.configuration) {
+            Engine.api.configuration.settings.collectStats = value;
+        }
     }
 
     /**

@@ -30,6 +30,7 @@ import {
 } from '../schema';
 import { StringStorage } from '../utils/string-storage';
 import { I18n } from '../utils/i18n';
+
 import { settingsStorage } from './settings';
 
 /**
@@ -163,7 +164,7 @@ export class MetadataStorage extends StringStorage<SettingOption.Metadata, Metad
      * Refreshes metadata objects with i18n metadata.
      *
      * @param metadata Current {@link Metadata}.
-     * @param i18nMetadata {@link I18nMetadata}.
+     * @param i18nMetadata Applied {@link I18nMetadata}.
      *
      * @returns Updated {@link Metadata}.
      */

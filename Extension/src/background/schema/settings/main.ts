@@ -16,6 +16,7 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import zod from 'zod';
+
 import { SchemaPreprocessor } from '../preprocessor';
 
 export enum SettingOption {
@@ -59,7 +60,7 @@ export enum SettingOption {
     HideReferrer = 'stealth-hide-referrer',
     HideSearchQueries = 'stealth-hide-search-queries',
     SendDoNotTrack = 'stealth-send-do-not-track',
-    BlockChromeClientData = 'stealth-remove-x-client',
+    RemoveXClientData = 'stealth-remove-x-client',
     BlockWebRTC = 'stealth-block-webrtc',
     SelfDestructThirdPartyCookies = 'stealth-block-third-party-cookies',
     SelfDestructThirdPartyCookiesTime = 'stealth-block-third-party-cookies-time',
@@ -86,7 +87,7 @@ export const settingsValidator = zod.object({
     [SettingOption.HideReferrer]: SchemaPreprocessor.booleanValidator,
     [SettingOption.HideSearchQueries]: SchemaPreprocessor.booleanValidator,
     [SettingOption.SendDoNotTrack]: SchemaPreprocessor.booleanValidator,
-    [SettingOption.BlockChromeClientData]: SchemaPreprocessor.booleanValidator,
+    [SettingOption.RemoveXClientData]: SchemaPreprocessor.booleanValidator,
     [SettingOption.BlockWebRTC]: SchemaPreprocessor.booleanValidator,
     [SettingOption.SelfDestructThirdPartyCookies]: SchemaPreprocessor.booleanValidator,
     [SettingOption.SelfDestructThirdPartyCookiesTime]: SchemaPreprocessor.numberValidator,

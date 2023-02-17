@@ -16,8 +16,9 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import zod from 'zod';
-import { tabsApi as tsWebExtTabsApi, getDomain } from '@adguard/tswebextension';
 import browser from 'webextension-polyfill';
+
+import { tabsApi as tsWebExtTabsApi, getDomain } from '@adguard/tswebextension';
 
 import { Log } from '../../../common/log';
 import { SettingOption } from '../../schema';
@@ -27,7 +28,6 @@ import {
     allowlistDomainsStorage,
     invertedAllowlistDomainsStorage,
 } from '../../storages';
-
 import { Engine } from '../../engine';
 
 /**
@@ -157,7 +157,7 @@ export class AllowlistApi {
     public static async removeTabUrlFromAllowlist(tabId: number): Promise<void> {
         const mainFrame = tsWebExtTabsApi.getTabMainFrame(tabId);
 
-        if (!mainFrame?.url) {
+        if (!mainFrame) {
             return;
         }
 
@@ -189,7 +189,7 @@ export class AllowlistApi {
     public static async addTabUrlToAllowlist(tabId: number): Promise<void> {
         const mainFrame = tsWebExtTabsApi.getTabMainFrame(tabId);
 
-        if (!mainFrame?.url) {
+        if (!mainFrame) {
             return;
         }
 
@@ -284,7 +284,8 @@ export class AllowlistApi {
                 storage.setData(defaultData);
             }
         } catch (e) {
-            Log.warn(`Can't parse ${storage.key} storage data from persisted storage, reset to default`);
+            // eslint-disable-next-line max-len
+            Log.warn(`Cannot parse ${storage.key} storage data from persisted storage, reset to default. Origin error: `, e);
             storage.setData(defaultData);
         }
     }

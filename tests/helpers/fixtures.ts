@@ -1,8 +1,8 @@
 import { SettingsConfig } from '@adguard/tswebextension';
+
 import metadata from '../../Extension/filters/chromium/filters.json';
 import i18nMetadata from '../../Extension/filters/chromium/filters_i18n.json';
 import { GetStatisticsDataResponse } from '../../Extension/src/background/api';
-
 import {
     metadataValidator,
     i18nMetadataValidator,
@@ -79,10 +79,10 @@ export const getDefaultExportFixture = (): Config => ({
         [StealthOption.SendDoNotTrack]: true,
         [StealthOption.BlockWebRTC]: false,
         [StealthOption.RemoveXClientData]: UserAgent.isChrome,
-        [StealthOption.BlockThirdPartyCookies]: true,
-        [StealthOption.BlockThirdPartyCookiesTime]: 2880,
-        [StealthOption.BlockFirstPartyCookies]: false,
-        [StealthOption.BlockFirstPartyCookiesTime]: 4320,
+        [StealthOption.SelfDestructThirdPartyCookies]: true,
+        [StealthOption.SelfDestructThirdPartyCookiesTime]: 2880,
+        [StealthOption.SelfDestructFirstPartyCookies]: false,
+        [StealthOption.SelfDestructFirstPartyCookiesTime]: 4320,
         [StealthOption.BlockKnownTrackers]: false,
         [StealthOption.StripTrackingParams]: false,
     },
@@ -100,7 +100,7 @@ export const getDefaultSettingsConfigFixture = (
     stealthModeEnabled: !defaultSettings[SettingOption.DisableStealthMode],
     filteringEnabled: !defaultSettings[SettingOption.DisableFiltering],
     stealth: {
-        blockChromeClientData: defaultSettings[SettingOption.BlockChromeClientData],
+        blockChromeClientData: defaultSettings[SettingOption.RemoveXClientData],
         hideReferrer: defaultSettings[SettingOption.HideReferrer],
         hideSearchQueries: defaultSettings[SettingOption.HideSearchQueries],
         sendDoNotTrack: defaultSettings[SettingOption.SendDoNotTrack],

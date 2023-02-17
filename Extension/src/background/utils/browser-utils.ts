@@ -17,9 +17,9 @@
  */
 import { Prefs } from '../prefs';
 import { appContext, AppContextKey } from '../storages';
+import { Log } from '../../common/log';
 
 import { Version } from './version';
-import { Log } from '../../common/log';
 
 /**
  * Helper class for working with browser extension context.
@@ -90,8 +90,7 @@ export class BrowserUtils {
             // eslint-disable-next-line no-new
             new Version(version);
         } catch (e: unknown) {
-            const errorMessage = e instanceof Error ? e.message : 'unknown error';
-            Log.debug(`Can\'t parse version: "${version}", error: "${errorMessage}"`);
+            Log.debug(`Can not parse version: "${version}", error: `, e);
             return false;
         }
         return true;

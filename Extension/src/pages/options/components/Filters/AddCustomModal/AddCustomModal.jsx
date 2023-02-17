@@ -17,16 +17,19 @@
  */
 
 /* eslint-disable jsx-a11y/no-autofocus */
+
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+
+import PropTypes from 'prop-types';
 
 import { messenger } from '../../../../services/messenger';
 import { reactTranslator } from '../../../../../common/translators/reactTranslator';
 import { Log } from '../../../../../common/log';
-import { ModalContentWrapper } from './ModalContentWrapper';
 import { rootStore } from '../../../stores/RootStore';
 import { Icon } from '../../../../common/components/ui/Icon';
+
+import { ModalContentWrapper } from './ModalContentWrapper';
 
 Modal.setAppElement('#root');
 
@@ -67,6 +70,7 @@ const AddCustomModal = ({
         ERROR: 'error',
     };
 
+    const [isLoading, setLoading] = useState(false);
     const [customUrlToAdd, setCustomUrlToAdd] = useState(initialUrl);
     const [stepToRender, setStepToRender] = useState(STEPS.INPUT);
     const [error, setError] = useState(reactTranslator.getMessage('options_popup_check_false_description'));
@@ -76,6 +80,7 @@ const AddCustomModal = ({
 
     const closeModal = () => {
         closeModalHandler();
+        setLoading(false);
         setCustomUrlToAdd('');
         setStepToRender(STEPS.INPUT);
         setError('');
@@ -161,6 +166,7 @@ const AddCustomModal = ({
     };
 
     const handleApprove = async () => {
+        setLoading(true);
         try {
             if (!filterToAdd.name) {
                 filterToAdd.name = filterToAddName || customUrlToAdd;
@@ -187,6 +193,7 @@ const AddCustomModal = ({
                     <div className="modal__row">
                         <div className="modal__cell modal__cell--title">{reactTranslator.getMessage('options_popup_filter_title')}</div>
                         <input
+                            disabled={isLoading}
                             className="modal__input"
                             type="text"
                             placeholder={reactTranslator.getMessage('options_popup_title_placeholder')}
@@ -219,6 +226,7 @@ const AddCustomModal = ({
                             <input
                                 id="trusted"
                                 type="checkbox"
+                                disabled={isLoading}
                                 onChange={handleTrustedCheckbox}
                             />
                             <div className="custom-checkbox">
@@ -232,6 +240,7 @@ const AddCustomModal = ({
                     {reactTranslator.getMessage('options_popup_trusted_filter_description')}
                 </div>
                 <button
+                    disabled={isLoading}
                     type="button"
                     onClick={handleApprove}
                     className="button button--m button--green modal__btn"

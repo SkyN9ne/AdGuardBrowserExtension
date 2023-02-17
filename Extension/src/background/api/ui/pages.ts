@@ -98,18 +98,17 @@ export class PagesApi {
     public static readonly extensionStoreUrl = PagesApi.getExtensionStoreUrl();
 
     /**
-     * Opens settings page tab.
-     * If the page has been already opened, focus on tab instead creating new one.
+     * Opens the settings tab and focuses on it if there is no open setting tab.
+     * Otherwise only focuses on the open setting tab.
      */
     public static async openSettingsPage(): Promise<void> {
-        const tab = await TabsApi.findOne({ url: `${PagesApi.settingsUrl}*` });
+        let tab = await TabsApi.findOne({ url: `${PagesApi.settingsUrl}*` });
 
-        if (tab) {
-            await TabsApi.focus(tab);
-            return;
+        if (!tab) {
+            tab = await browser.tabs.create({ url: PagesApi.settingsUrl });
         }
 
-        await browser.tabs.create({ url: PagesApi.settingsUrl });
+        await TabsApi.focus(tab);
     }
 
     /**
@@ -182,7 +181,7 @@ export class PagesApi {
         const filterIds = Engine.api.configuration?.filters || [];
 
         const params: ForwardParams = {
-            action: ForwardAction.Report,
+            action: ForwardAction.IssueReport,
             from,
             product_type: 'Ext',
             product_version: encodeURIComponent(browser.runtime.getManifest().version),
@@ -400,7 +399,7 @@ export class PagesApi {
             },
             {
                 queryKey: 'stealth.x_client',
-                settingKey: SettingOption.BlockChromeClientData,
+                settingKey: SettingOption.RemoveXClientData,
             },
             {
                 queryKey: 'stealth.webrtc',

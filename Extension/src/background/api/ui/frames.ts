@@ -16,11 +16,12 @@
  * along with AdGuard Browser Extension. If not, see <http://www.gnu.org/licenses/>.
  */
 import {
-    TabContext,
+    type TabContext,
     isHttpRequest,
     getDomain,
     MAIN_FRAME_ID,
 } from '@adguard/tswebextension';
+
 import { AntiBannerFiltersId } from '../../../common/constants';
 import { SettingOption } from '../../schema';
 import { appContext, AppContextKey } from '../../storages';
@@ -55,9 +56,10 @@ export class FramesApi {
      * and returns it.
      *
      * @param tabContext Tab context.
-     * @param tabContext.info Tab's context information {@link Tabs.Tab}.
+     * @param tabContext.info Tab's context information from webextension tabs API.
      * @param tabContext.frames Tab's context frames.
-     * @param tabContext.metadata Tab's context metadata {@link TabMetadata}.
+     * @param tabContext.blockedRequestCount Tab's context blocked request count.
+     * @param tabContext.mainFrameRule Tab's context document level rule.
      *
      * @returns The {@link FrameData} object can be partially empty if no frames
      * were found for a given tab context.
@@ -65,10 +67,9 @@ export class FramesApi {
     public static getMainFrameData({
         info,
         frames,
-        metadata,
+        blockedRequestCount,
+        mainFrameRule,
     }: TabContext): FrameData {
-        const { blockedRequestCount, mainFrameRule } = metadata;
-
         const mainFrame = frames.get(MAIN_FRAME_ID);
 
         const url = info?.url
@@ -88,7 +89,7 @@ export class FramesApi {
 
         const totalBlocked = PageStatsApi.getTotalBlocked();
 
-        const totalBlockedTab = blockedRequestCount || 0;
+        const totalBlockedTab = blockedRequestCount;
         const applicationFilteringDisabled = SettingsApi.getSetting(SettingOption.DisableFiltering);
 
         if (applicationAvailable) {
