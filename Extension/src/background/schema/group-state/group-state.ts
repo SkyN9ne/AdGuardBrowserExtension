@@ -23,8 +23,15 @@ import { SchemaPreprocessor } from '../preprocessor';
  * Runtime validator for persistent group state data.
  */
 export const groupStateDataValidator = zod.object({
+    /**
+     * Is group enabled or not.
+     */
     enabled: zod.boolean(),
-    toggled: zod.boolean(),
+    /**
+     * Whether the group has ever been switched. Can be affected
+     * programmatically, e.g. After importing settings.
+     */
+    touched: zod.boolean(),
 });
 
 export type GroupStateData = zod.infer<typeof groupStateDataValidator>;
